@@ -15,13 +15,9 @@
     <div id="loading">Loading editor…</div>
 
     <!--
-      Sveltia CMS — drop-in replacement for Decap CMS.
-      Loads from CDN; the schema lives in /admin/config.yml.
-
-      Auth uses DecapBridge (https://decapbridge.com) so the editor logs in
-      with an email magic link instead of needing GitHub credentials.
-      Configure DECAP_BRIDGE_SITE_UUID in config.yml's backend.site_uuid.
+      Decap CMS with DecapBridge PKCE auth. Loads from CDN; schema in /admin/config.yml.
+      Sveltia was tried but rejects DecapBridge's `name: git-gateway` PKCE config.
     -->
-    <script src="https://unpkg.com/@sveltia/cms@0/dist/sveltia-cms.js"></script>
+    <script src="https://unpkg.com/decap-cms@^3.8.3/dist/decap-cms.js"></script>
   </body>
 </html>
