@@ -7,11 +7,14 @@
 # Customize collections below as Aviara's content shape solidifies.
 
 backend:
-  name: git-gateway
+  name: github
   repo: Woollbert/AviaraDesignCo
   branch: main
-  # DecapBridge UUID — register the site at https://decapbridge.com (free), paste the UUID here.
-  site_uuid: REPLACE_WITH_DECAP_BRIDGE_SITE_UUID
+  # Sveltia + DecapBridge OAuth — proxies through DecapBridge so the editor logs in
+  # with an email magic link instead of needing a GitHub account. After signing up
+  # at https://decapbridge.com, replace REPLACE_WITH_DECAP_BRIDGE_SITE_UUID below.
+  base_url: https://decapbridge.com
+  auth_endpoint: sites/REPLACE_WITH_DECAP_BRIDGE_SITE_UUID/auth
 
 media_folder: aviara-site/public/uploads
 public_folder: /uploads
