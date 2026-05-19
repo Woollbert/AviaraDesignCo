@@ -12,6 +12,8 @@
     "test:headed": "playwright test --headed"
   },
   "dependencies": {
+    "@octokit/rest": "^21.1.1",
+    "@puckeditor/core": "^0.21.2",
     "framer-motion": "^11.11.17",
     "next": "15.5.0",
     "react": "19.0.0",

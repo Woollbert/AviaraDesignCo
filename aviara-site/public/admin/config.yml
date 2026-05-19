@@ -1,0 +1,82 @@
+# Sveltia CMS configuration for Aviara Design Co.
+#
+# Sveltia is a drop-in replacement for Decap CMS — same config schema, same Git
+# backend, better UX. Auth uses DecapBridge so editors log in via email magic
+# link instead of needing GitHub credentials.
+#
+# Customize collections below as Aviara's content shape solidifies.
+
+backend:
+  name: git-gateway
+  repo: Woollbert/AviaraDesignCo
+  branch: main
+  # DecapBridge UUID — register the site at https://decapbridge.com (free), paste the UUID here.
+  site_uuid: REPLACE_WITH_DECAP_BRIDGE_SITE_UUID
+
+media_folder: aviara-site/public/uploads
+public_folder: /uploads
+
+site_url: https://aviaradesignco.com
+display_url: https://aviaradesignco.com
+
+collections:
+  - name: settings
+    label: Site Settings
+    files:
+      - name: site
+        label: Site Info
+        file: aviara-site/src/content/site.json
+        format: json
+        fields:
+          - { name: name, label: Business Name, widget: string }
+          - { name: tagline, label: Tagline, widget: string }
+          - { name: phone, label: Phone, widget: string }
+          - { name: email, label: Email, widget: string }
+          - { name: serviceArea, label: Service Area, widget: string }
+
+  - name: projects
+    label: Projects (Portfolio)
+    folder: aviara-site/src/content/projects
+    create: true
+    slug: '{{slug}}'
+    format: json
+    summary: '{{title}} — {{location}}'
+    fields:
+      - { name: title, label: Project Title, widget: string }
+      - { name: location, label: Location, widget: string }
+      - { name: completedDate, label: Completed Date, widget: datetime }
+      - { name: shortDescription, label: Short Description, widget: text }
+      - name: photos
+        label: Photo Set
+        widget: list
+        summary: '{{room}} — {{caption}}'
+        fields:
+          - { name: url, label: Image, widget: image }
+          - { name: caption, label: Caption, widget: string, required: false }
+          - { name: room, label: Room, widget: select, options: [Kitchen, Living Room, Bedroom, Bathroom, Dining, Office, Other] }
+
+  - name: testimonials
+    label: Testimonials
+    folder: aviara-site/src/content/testimonials
+    create: true
+    slug: '{{slug}}'
+    format: json
+    summary: '{{attribution}} — {{quote | truncate(40)}}'
+    fields:
+      - { name: quote, label: Quote, widget: text }
+      - { name: attribution, label: Attributed To, widget: string }
+      - { name: role, label: Role (Realtor, Homeowner, etc.), widget: string, required: false }
+      - { name: featured, label: Show on homepage, widget: boolean, default: false }
+
+  - name: services
+    label: Services
+    folder: aviara-site/src/content/services
+    create: true
+    slug: '{{slug}}'
+    format: json
+    summary: '{{name}}'
+    fields:
+      - { name: name, label: Service Name, widget: string }
+      - { name: shortDescription, label: Short Description, widget: text }
+      - { name: longDescription, label: Long Description, widget: markdown }
+      - { name: hero, label: Hero Image, widget: image, required: false }

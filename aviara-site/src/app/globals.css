@@ -14,6 +14,16 @@
   --color-brass-deep: #6e5421;
   --color-brass-soft: #d9c394;
   --color-line: #ddd3c2;
+
+  /* WebsiteEditorKit compatibility aliases — kit blocks reference these
+     generic names. Mapping them here means the 8 reference blocks pick up
+     Aviara's brand colors without modifying any block source files. */
+  --color-cream: var(--color-bone);
+  --color-cream-soft: var(--color-ivory);
+  --color-ink-soft: var(--color-slate);
+  --color-gold: var(--color-brass);
+  --color-gold-deep: var(--color-brass-deep);
+  --font-display: var(--font-display); /* already set by next/font in layout.tsx */
 }
 
 @layer base {

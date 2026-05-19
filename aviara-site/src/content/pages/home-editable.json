@@ -1,0 +1,28 @@
+{
+  "content": [
+    {
+      "type": "Hero",
+      "props": {
+        "id": "Hero-aviara-1",
+        "heading": "Welcome to Aviara Design Co.",
+        "subheading": "This is a Puck-managed page that lives alongside Aviara's existing hand-coded homepage. Open /admin/pages/home-editable to edit.",
+        "ctaLabel": "Edit this page",
+        "ctaHref": "/admin/pages/home-editable",
+        "variant": "centered",
+        "imageUrl": ""
+      }
+    },
+    {
+      "type": "CTABand",
+      "props": {
+        "id": "CTABand-aviara-1",
+        "heading": "WebsiteEditorKit dry-run port",
+        "body": "If you can see this page rendered in Aviara's brand colors (warm cream, ink, brass accents), the theme bridging worked.",
+        "ctaLabel": "Done",
+        "ctaHref": "/",
+        "background": "gold"
+      }
+    }
+  ],
+  "root": { "props": {} }
+}
