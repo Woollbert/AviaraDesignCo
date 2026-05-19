@@ -43,6 +43,9 @@ site_url: https://aviaradesignco.com
 display_url: https://aviaradesignco.com
 
 collections:
+  # ==========================================================================
+  # Site Settings — identity, contact, social, hours, areas served
+  # ==========================================================================
   - name: settings
     label: Site Settings
     files:
@@ -52,54 +55,160 @@ collections:
         format: json
         fields:
           - { name: name, label: Business Name, widget: string }
+          - { name: shortName, label: Short Name (for menus), widget: string }
           - { name: tagline, label: Tagline, widget: string }
-          - { name: phone, label: Phone, widget: string }
+          - { name: description, label: Site Description (used in SEO), widget: text }
+          - { name: url, label: Live URL, widget: string }
+          - { name: phone, label: Phone (display), widget: string, hint: 'e.g. (949) 697-1618' }
+          - { name: phoneTel, label: Phone (tel: link), widget: string, hint: 'e.g. +19496971618 — used in click-to-call' }
           - { name: email, label: Email, widget: string }
-          - { name: serviceArea, label: Service Area, widget: string }
+          - { name: smsHref, label: SMS link, widget: string, hint: 'e.g. sms:+19496971618' }
+          - { name: licensing, label: Licensing line, widget: string, hint: 'Shown in hero/header' }
+          - name: social
+            label: Social Links
+            widget: object
+            fields:
+              - { name: instagram, label: Instagram URL, widget: string }
+              - { name: facebook, label: Facebook URL, widget: string }
+              - { name: yelp, label: Yelp URL, widget: string }
+          - name: address
+            label: Address
+            widget: object
+            fields:
+              - { name: city, label: City, widget: string }
+              - { name: region, label: State/Region (e.g. CA), widget: string }
+          - name: serviceAreas
+            label: Service Areas (cities served)
+            widget: list
+            field: { name: area, label: Area, widget: string }
+          - name: hours
+            label: Business Hours
+            widget: list
+            summary: '{{day}}: {{time}}'
+            fields:
+              - { name: day, label: Day(s), widget: string, hint: 'e.g. "Mon to Fri" or "Sat"' }
+              - { name: time, label: Hours, widget: string, hint: 'e.g. "By appointment" or "9am–5pm"' }
 
-  - name: projects
-    label: Projects (Portfolio)
-    folder: aviara-site/src/content/projects
-    create: true
-    slug: '{{slug}}'
-    format: json
-    summary: '{{title}} — {{location}}'
-    fields:
-      - { name: title, label: Project Title, widget: string }
-      - { name: location, label: Location, widget: string }
-      - { name: completedDate, label: Completed Date, widget: datetime }
-      - { name: shortDescription, label: Short Description, widget: text }
-      - name: photos
-        label: Photo Set
-        widget: list
-        summary: '{{room}} — {{caption}}'
-        fields:
-          - { name: url, label: Image, widget: image }
-          - { name: caption, label: Caption, widget: string, required: false }
-          - { name: room, label: Room, widget: select, options: [Kitchen, Living Room, Bedroom, Bathroom, Dining, Office, Other] }
-
-  - name: testimonials
-    label: Testimonials
-    folder: aviara-site/src/content/testimonials
-    create: true
-    slug: '{{slug}}'
-    format: json
-    summary: '{{attribution}} — {{quote | truncate(40)}}'
-    fields:
-      - { name: quote, label: Quote, widget: text }
-      - { name: attribution, label: Attributed To, widget: string }
-      - { name: role, label: Role (Realtor, Homeowner, etc.), widget: string, required: false }
-      - { name: featured, label: Show on homepage, widget: boolean, default: false }
-
+  # ==========================================================================
+  # Services — the 4 service offerings + stats shown on the homepage
+  # ==========================================================================
   - name: services
     label: Services
-    folder: aviara-site/src/content/services
-    create: true
-    slug: '{{slug}}'
-    format: json
-    summary: '{{name}}'
-    fields:
-      - { name: name, label: Service Name, widget: string }
-      - { name: shortDescription, label: Short Description, widget: text }
-      - { name: longDescription, label: Long Description, widget: markdown }
-      - { name: hero, label: Hero Image, widget: image, required: false }
+    files:
+      - name: services
+        label: Services
+        file: aviara-site/src/content/services.json
+        format: json
+        fields:
+          - name: items
+            label: Service Offerings
+            widget: list
+            summary: '{{name}}'
+            fields:
+              - { name: slug, label: URL Slug, widget: string, hint: 'Lowercase, dashes only — e.g. vacant-staging' }
+              - { name: name, label: Service Name, widget: string }
+              - { name: short, label: Short Description (1 sentence), widget: text }
+              - { name: description, label: Full Description, widget: text }
+              - name: features
+                label: Feature Bullets
+                widget: list
+                field: { name: feature, label: Feature, widget: string }
+              - { name: imageUrl, label: Image, widget: image }
+              - { name: imageAlt, label: Image Alt Text (for accessibility), widget: string }
+          - name: stats
+            label: Stats Row (homepage)
+            widget: list
+            summary: '{{value}} {{label}}'
+            fields:
+              - { name: value, label: Value, widget: string, hint: 'e.g. "10+" or "< 21"' }
+              - { name: label, label: Label, widget: string, hint: 'e.g. "Years Designing"' }
+
+  # ==========================================================================
+  # Team — founder bio + supporting team members
+  # ==========================================================================
+  - name: team
+    label: Team
+    files:
+      - name: team
+        label: Team
+        file: aviara-site/src/content/team.json
+        format: json
+        fields:
+          - name: founder
+            label: Founder
+            widget: object
+            fields:
+              - { name: name, label: Name, widget: string }
+              - { name: role, label: Role, widget: string }
+              - { name: bio, label: Bio, widget: text }
+              - { name: photoUrl, label: Photo, widget: image, required: false }
+          - name: members
+            label: Team Members
+            widget: list
+            summary: '{{name}} — {{role}}'
+            fields:
+              - { name: name, label: Name, widget: string }
+              - { name: role, label: Role, widget: string }
+              - { name: bio, label: Bio, widget: text }
+              - { name: photoUrl, label: Photo, widget: image, required: false }
+
+  # ==========================================================================
+  # Portfolio — project showcase + client testimonials
+  # ==========================================================================
+  - name: portfolio
+    label: Portfolio
+    files:
+      - name: portfolio
+        label: Portfolio
+        file: aviara-site/src/content/portfolio.json
+        format: json
+        fields:
+          - name: projects
+            label: Projects
+            widget: list
+            summary: '{{title}} — {{location}}'
+            fields:
+              - { name: slug, label: URL Slug, widget: string, hint: 'Lowercase, dashes only' }
+              - { name: title, label: Project Title, widget: string }
+              - { name: location, label: Location, widget: string }
+              - name: category
+                label: Category
+                widget: select
+                options: [Vacant Staging, Occupied Staging, Interior Design]
+              - { name: imageUrl, label: Image, widget: image }
+              - { name: imageAlt, label: Image Alt Text, widget: string }
+          - name: testimonials
+            label: Client Testimonials
+            widget: list
+            summary: '{{author}}'
+            fields:
+              - { name: quote, label: Quote, widget: text }
+              - { name: author, label: Author, widget: string }
+              - { name: role, label: Role / Context, widget: string }
+
+  # ==========================================================================
+  # Process — the 4 process steps + the value proposition bullets
+  # ==========================================================================
+  - name: process
+    label: Process & Values
+    files:
+      - name: process
+        label: Process & Values
+        file: aviara-site/src/content/process.json
+        format: json
+        fields:
+          - name: steps
+            label: Process Steps
+            widget: list
+            summary: '{{number}} — {{title}}'
+            fields:
+              - { name: number, label: Step Number (display), widget: string, hint: 'e.g. "01"' }
+              - { name: title, label: Step Title, widget: string }
+              - { name: body, label: Step Description, widget: text }
+          - name: valueProps
+            label: Value Propositions
+            widget: list
+            summary: '{{title}}'
+            fields:
+              - { name: title, label: Title, widget: string }
+              - { name: body, label: Body, widget: text }

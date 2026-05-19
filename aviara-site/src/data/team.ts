@@ -1,3 +1,5 @@
+import data from "@/content/team.json";
+
 export type TeamMember = {
   name: string;
   role: string;
@@ -5,23 +7,5 @@ export type TeamMember = {
   photoUrl?: string;
 };
 
-export const founder: TeamMember = {
-  name: "Brooklyn James",
-  role: "Founder & Lead Stager",
-  bio: "Brooklyn founded Aviara with a passion for creating spaces that feel both elevated and inviting, where thoughtful design meets intentional strategy. With a background in hospitality and luxury client experience, she brings a refined eye and a deeply human approach to every home Aviara touches.",
-  photoUrl: "/images/brooklyn-portrait.png",
-};
-
-export const team: TeamMember[] = [
-  {
-    name: "Dre James",
-    role: "Install Lead",
-    bio: "Brooklyn's husband and Aviara's right hand on every install. He moves inventory in and out, protecting the home and the timeline at every stop.",
-  },
-  {
-    name: "Darren DiMarco",
-    role: "Install & Logistics",
-    bio: "Brooklyn's brother and a steady hand on every move day. He keeps the team rolling and the inventory in the right place at the right time.",
-    photoUrl: "/images/darren-portrait.png",
-  },
-];
+export const founder: TeamMember = data.founder as TeamMember;
+export const team: TeamMember[] = data.members as TeamMember[];

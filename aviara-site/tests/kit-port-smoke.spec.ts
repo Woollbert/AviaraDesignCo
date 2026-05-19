@@ -34,10 +34,12 @@ test.describe('Kit port smoke tests', () => {
     expect(bg).toBe('rgb(154, 123, 61)');
   });
 
-  test('Sveltia admin loads', async ({ page }) => {
+  test('Decap admin loads', async ({ page }) => {
     const res = await page.goto('/admin/index.html');
     expect(res?.status()).toBe(200);
-    expect(await page.content()).toContain('sveltia-cms.js');
+    // Switched from Sveltia to Decap CMS during Aviara port — Sveltia rejected
+    // DecapBridge's git-gateway PKCE config.
+    expect(await page.content()).toContain('decap-cms.js');
   });
 
   test('Puck editor route loads (with EDITOR_SHARED_TOKEN set)', async ({ page }) => {
