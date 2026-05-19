@@ -1,0 +1,38 @@
+export const site = {
+  name: "Aviara Design Co.",
+  shortName: "Aviara",
+  tagline: "Livable Luxury Staging & Interiors",
+  description:
+    "A licensed and insured family-owned home staging and interior design studio crafting livable luxury spaces across Southern California.",
+  url: "https://www.aviaradesignco.com",
+  phone: "(949) 697-1618",
+  phoneTel: "+19496971618",
+  email: "aviaradesignco@gmail.com",
+  smsHref: "sms:+19496971618",
+  social: {
+    instagram: "https://www.instagram.com/aviaradesignco",
+    facebook: "https://www.facebook.com/aviaradesignco",
+    yelp: "https://www.yelp.com",
+  },
+  address: {
+    city: "Temecula",
+    region: "CA",
+  },
+  serviceAreas: [
+    "Temecula",
+    "Murrieta",
+    "Menifee",
+    "Fallbrook",
+    "San Diego",
+    "Orange County",
+    "Inland Empire",
+  ],
+  hours: [
+    { day: "Mon to Fri", time: "By appointment" },
+    { day: "Sat", time: "By appointment" },
+    { day: "Sun", time: "Closed" },
+  ],
+  licensing: "Licensed & Insured · Family Owned · Southern California",
+} as const;
+
+export const fullLocation = `${site.address.city}, ${site.address.region}`;

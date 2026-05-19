@@ -1,0 +1,63 @@
+export type Service = {
+  slug: string;
+  name: string;
+  short: string;
+  description: string;
+  features: string[];
+  imageUrl: string;
+  imageAlt: string;
+};
+
+export const services: Service[] = [
+  {
+    slug: "vacant-staging",
+    name: "Vacant Home Staging",
+    short:
+      "Empty rooms, fully imagined. We dress every surface so buyers feel home the moment the door opens.",
+    description:
+      "From living rooms to primary suites, we furnish and accessorize every key space with curated, livable luxury that drives faster offers and stronger comps.",
+    features: ["Full inventory delivery", "30-day rolling rentals", "Listing-day photography ready"],
+    imageUrl: "/images/A7405929.jpeg",
+    imageAlt: "Fully staged open-concept kitchen and dining room with brass pendants and warm neutrals",
+  },
+  {
+    slug: "occupied-staging",
+    name: "Occupied Home Staging",
+    short:
+      "Working with what's already loved. Refining, editing, and elevating the home buyers will actually see.",
+    description:
+      "We blend a homeowner's existing furnishings with our curated accessories and art to create a refined, market-ready impression without disrupting daily life.",
+    features: ["On-site styling", "Furniture editing & layout", "Accessory & art layering"],
+    imageUrl: "/images/IMG_4160.jpeg",
+    imageAlt: "Refined occupied living room with sectional, crystal chandelier, and cowhide rug",
+  },
+  {
+    slug: "interior-design",
+    name: "Interior Design",
+    short:
+      "Spaces designed to be lived in. Quiet luxury that holds up to a real Southern California life.",
+    description:
+      "Full-service interior design for homeowners who want a thoughtfully composed space, from material palettes to custom furnishings, tailored to the way you actually live.",
+    features: ["Concept & material palette", "Custom furnishings", "Procurement & install"],
+    imageUrl: "/images/A7406059.jpeg",
+    imageAlt: "Designed primary bedroom with brass mirror, sage accent wall, and refined linens",
+  },
+  {
+    slug: "consultations",
+    name: "Staging Consultations",
+    short:
+      "A one-visit walkthrough with a clear, room-by-room playbook to get a home buyer-ready.",
+    description:
+      "For agents and sellers preparing to list, we walk the home and leave you with a prioritized list of moves: what to keep, edit, repair, repaint, and add. Fast.",
+    features: ["90-minute walkthrough", "Room-by-room playbook", "Trade & vendor referrals"],
+    imageUrl: "/images/IMG_9482.jpeg",
+    imageAlt: "Styled vignette with fluted candle bowl and curated accessories",
+  },
+];
+
+export const stats = [
+  { value: "10+", label: "Years Designing" },
+  { value: "300+", label: "Homes Staged" },
+  { value: "< 21", label: "Avg Days on Market" },
+  { value: "8%", label: "Avg ROI Lift" },
+];
