@@ -251,40 +251,70 @@ collections:
               - { name: photoUrl, label: Photo, widget: image, required: false }
 
   # ==========================================================================
-  # Portfolio — project showcase + client testimonials
+  # Projects — one file per staged home. Each has a full photo gallery shown
+  # at /portfolio/<slug>/ and a card on the /portfolio/ index.
   # ==========================================================================
-  - name: portfolio
-    label: Portfolio
-    description: 'Featured project showcase (with photos) and client testimonial quotes.'
+  - name: projects
+    label: Projects
+    description: 'Each project = one staged home. Add a new project to create a new portfolio page at /portfolio/<slug>/.'
+    folder: aviara-site/src/content/projects
+    create: true
+    slug: '{{slug}}'
+    format: json
+    summary: '{{title}} — {{category}}'
+    editor: { preview: false }
+    sortable_fields: [order, title]
+    view_groups:
+      - { label: By Category, field: category }
+    fields:
+      - { name: slug, label: URL Slug, widget: string, hint: 'Lowercase, dashes only — e.g. "fallbrook-estate". Becomes /portfolio/<slug>/' }
+      - { name: title, label: Project Title, widget: string }
+      - { name: location, label: Location, widget: string, hint: 'e.g. "Fallbrook, CA"' }
+      - name: category
+        label: Category
+        widget: select
+        options: [Vacant Staging, Occupied Staging, Interior Design]
+      - { name: order, label: Display Order, widget: number, value_type: int, default: 99, hint: 'Lower numbers show first on /portfolio/ index. Use 1, 2, 3...' }
+      - { name: shortDescription, label: Short Description (1-2 sentences), widget: text, hint: 'Shown on the project detail page as a large pulled quote.' }
+      - { name: longDescription, label: Long Description (full paragraph), widget: text }
+      - { name: coverImage, label: Cover Image, widget: image, choose_url: false, media_library: { config: { multiple: false } }, hint: 'The hero photo for the project page + the card on /portfolio/.' }
+      - { name: coverImageAlt, label: Cover Image Alt Text, widget: string }
+      - name: photos
+        label: Photo Gallery
+        widget: list
+        summary: '{{room}} — {{alt | truncate(40)}}'
+        hint: 'All photos for this project. Reorder by dragging. Upload via the media library — they save to /images/.'
+        fields:
+          - { name: url, label: Photo, widget: image, choose_url: false, media_library: { config: { multiple: false } } }
+          - { name: alt, label: Alt Text (accessibility), widget: string }
+          - name: room
+            label: Room
+            widget: select
+            required: false
+            options: [Living, Kitchen, Dining, Bedroom, Bathroom, Office, Outdoor, Entry, Detail, Other]
+          - { name: caption, label: Caption (optional), widget: string, required: false }
+
+  # ==========================================================================
+  # Testimonials — client quotes shown on the homepage testimonials section
+  # ==========================================================================
+  - name: testimonials
+    label: Testimonials
+    description: 'Client quotes shown in the homepage Testimonials section. If multiple, they rotate via the dot navigation.'
     files:
-      - name: portfolio
-        label: Portfolio
-        file: aviara-site/src/content/portfolio.json
+      - name: testimonials
+        label: Client Testimonials
+        file: aviara-site/src/content/testimonials.json
         format: json
         editor: { preview: false }
         fields:
-          - name: projects
-            label: Projects
-            widget: list
-            summary: '{{title}} — {{location}}'
-            fields:
-              - { name: slug, label: URL Slug, widget: string, hint: 'Lowercase, dashes only' }
-              - { name: title, label: Project Title, widget: string }
-              - { name: location, label: Location, widget: string }
-              - name: category
-                label: Category
-                widget: select
-                options: [Vacant Staging, Occupied Staging, Interior Design]
-              - { name: imageUrl, label: Image, widget: image, choose_url: false, media_library: { config: { multiple: false } } }
-              - { name: imageAlt, label: Image Alt Text, widget: string, hint: 'One sentence describing the photo for screen-readers and SEO.' }
-          - name: testimonials
-            label: Client Testimonials
+          - name: items
+            label: Testimonials
             widget: list
             summary: '{{author}}'
             fields:
               - { name: quote, label: Quote, widget: text }
-              - { name: author, label: Author, widget: string }
-              - { name: role, label: Role / Context, widget: string }
+              - { name: author, label: Author Name, widget: string }
+              - { name: role, label: Role / Context, widget: string, hint: 'e.g. "Real Estate Professional · Temecula, CA · Yelp · 5 stars"' }
 
   # ==========================================================================
   # Process — the 4 process steps + the value proposition bullets

@@ -1,0 +1,19 @@
+{
+  "slug": "menifee-family-home",
+  "title": "Menifee Family Home",
+  "location": "Menifee, CA",
+  "category": "Interior Design",
+  "order": 2,
+  "shortDescription": "A young family's first forever home — designed to grow with the kids, the dog, and the way life actually moves through a house.",
+  "longDescription": "A full-service interior design project for a young family in Menifee, blending durable performance fabrics with editorial-grade composition. Cream sectionals, warm plank flooring, marble accents, and intentional negative space create rooms that feel collected, considered, and quietly elevated — without sacrificing the rough-and-tumble realities of daily family life.",
+  "coverImage": "/images/IMG_9822.jpeg",
+  "coverImageAlt": "Cream sectional with chocolate throw, marble side table, and warm plank flooring",
+  "photos": [
+    { "url": "/images/IMG_9822.jpeg", "alt": "Cream sectional with chocolate throw, marble side table, and warm plank flooring", "room": "Living" },
+    { "url": "/images/IMG_9826.jpeg", "alt": "Living room view from the entryway, layered lighting and curated accessories", "room": "Living" },
+    { "url": "/images/IMG_9828.jpeg", "alt": "Refined living room composition with curated coffee-table styling", "room": "Living" },
+    { "url": "/images/IMG_9842.jpeg", "alt": "A signature Aviara styled vignette: white pottery vase with deep red blooms", "room": "Detail" },
+    { "url": "/images/IMG_4148.jpeg", "alt": "Designed dining space with linen-upholstered chairs and brass pendant", "room": "Dining" },
+    { "url": "/images/IMG_4160.jpeg", "alt": "Refined occupied living room with sectional, crystal chandelier, and cowhide rug", "room": "Living" }
+  ]
+}

@@ -38,15 +38,15 @@ export default function Portfolio() {
           {projects.map((p, i) => (
             <Reveal key={p.slug} as="li" delay={i * 100}>
               <a
-                href="#contact"
+                href={`/portfolio/${p.slug}/`}
                 className="group block"
-                aria-label={`${p.title}: view project inquiry`}
+                aria-label={`${p.title}: view full project`}
                 data-testid={`project-${p.slug}`}
               >
                 <div className="photo-frame relative aspect-[4/5] overflow-hidden bg-linen">
                   <Image
-                    src={p.imageUrl}
-                    alt={p.imageAlt}
+                    src={p.coverImage}
+                    alt={p.coverImageAlt}
                     fill
                     sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                     className="object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-105"

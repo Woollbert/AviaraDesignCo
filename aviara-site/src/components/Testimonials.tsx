@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Reveal from "./Reveal";
-import { testimonials } from "@/data/portfolio";
+import { testimonials } from "@/data/testimonials";
 import { site } from "@/data/site";
 
 export default function Testimonials() {
