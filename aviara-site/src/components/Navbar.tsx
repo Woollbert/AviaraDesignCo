@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Logo from "./Logo";
 
 const navLinks = [
@@ -13,7 +14,17 @@ const navLinks = [
   { href: "#contact", label: "Contact" },
 ];
 
+// On the homepage, "#about" scrolls to the About section. On any other route
+// (e.g. /portfolio/fallbrook-estate/), the same href would just append a hash
+// to the current URL without navigating — looks broken. Prefix the home path
+// when not on home so clicks always land on the matching homepage section.
+function resolveNavHref(href: string, pathname: string): string {
+  if (!href.startsWith("#")) return href;
+  return pathname === "/" ? href : `/${href}`;
+}
+
 export default function Navbar() {
+  const pathname = usePathname() ?? "/";
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -60,7 +71,7 @@ export default function Navbar() {
           {navLinks.map((l) => (
             <a
               key={l.href}
-              href={l.href}
+              href={resolveNavHref(l.href, pathname)}
               className={`nav-link ${onLight ? "" : "nav-link-light"}`}
             >
               {l.label}
@@ -70,7 +81,7 @@ export default function Navbar() {
 
         <div className="hidden lg:flex items-center gap-3">
           <a
-            href="#contact"
+            href={resolveNavHref("#contact", pathname)}
             className={onLight ? "btn btn-ink" : "btn btn-ghost-light"}
           >
             Inquire
@@ -130,7 +141,7 @@ export default function Navbar() {
         {navLinks.map((l) => (
           <a
             key={l.href}
-            href={l.href}
+            href={resolveNavHref(l.href, pathname)}
             onClick={() => setOpen(false)}
             className="font-display text-3xl text-ink"
           >
@@ -138,7 +149,7 @@ export default function Navbar() {
           </a>
         ))}
         <a
-          href="#contact"
+          href={resolveNavHref("#contact", pathname)}
           onClick={() => setOpen(false)}
           className="btn btn-ink mt-4 self-start"
         >
