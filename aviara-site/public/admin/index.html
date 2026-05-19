@@ -1,23 +1,19 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="robots" content="noindex, nofollow" />
-    <title>Content Manager</title>
-    <link rel="icon" href="/favicon.ico" />
-    <style>
-      body { margin: 0; font-family: system-ui, sans-serif; }
-      #loading { padding: 2rem; text-align: center; color: #666; }
-    </style>
-  </head>
-  <body>
-    <div id="loading">Loading editor…</div>
-
-    <!--
-      Decap CMS with DecapBridge PKCE auth. Loads from CDN; schema in /admin/config.yml.
-      Sveltia was tried but rejects DecapBridge's `name: git-gateway` PKCE config.
-    -->
-    <script src="https://unpkg.com/decap-cms@^3.8.3/dist/decap-cms.js"></script>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Aviara — Content Manager</title>
+  <link rel="icon" href="/favicon.ico" />
+</head>
+<body>
+  <!--
+    Decap CMS admin shell. Loads config from ./config.yml.
+    Auth handled by DecapBridge PKCE (email magic link, no GitHub account needed).
+    NO inline body styles — those conflict with Decap's own layout CSS and cause
+    the top nav to overlap form fields. Keep this file as bare as possible.
+  -->
+  <script src="https://unpkg.com/decap-cms@^3.8.3/dist/decap-cms.js"></script>
+</body>
 </html>

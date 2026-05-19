@@ -19,12 +19,12 @@ backend:
   auth_token_endpoint: /sites/ffc07cc9-158d-4391-a772-6cd16bfd44fe/token
   gateway_url: https://gateway.decapbridge.com
   commit_messages:
-    create: Create {{collection}} "{{slug}}" - {{author-name}} <{{author-login}}> via DecapBridge
-    update: Update {{collection}} "{{slug}}" - {{author-name}} <{{author-login}}> via DecapBridge
-    delete: Delete {{collection}} "{{slug}}" - {{author-name}} <{{author-login}}> via DecapBridge
-    uploadMedia: Upload "{{path}}" - {{author-name}} <{{author-login}}> via DecapBridge
-    deleteMedia: Delete "{{path}}" - {{author-name}} <{{author-login}}> via DecapBridge
-    openAuthoring: Message {{message}} - {{author-name}} <{{author-login}}> via DecapBridge
+    create: 'Create {{collection}} "{{slug}}" - {{author-name}} <{{author-login}}> via DecapBridge'
+    update: 'Update {{collection}} "{{slug}}" - {{author-name}} <{{author-login}}> via DecapBridge'
+    delete: 'Delete {{collection}} "{{slug}}" - {{author-name}} <{{author-login}}> via DecapBridge'
+    uploadMedia: 'Upload "{{path}}" - {{author-name}} <{{author-login}}> via DecapBridge'
+    deleteMedia: 'Delete "{{path}}" - {{author-name}} <{{author-login}}> via DecapBridge'
+    openAuthoring: 'Message {{message}} - {{author-name}} <{{author-login}}> via DecapBridge'
 
 # Surface DecapBridge identity claims so commits get authored as the editor.
 auth:
@@ -42,12 +42,9 @@ public_folder: /uploads
 site_url: https://aviaradesignco.com
 display_url: https://aviaradesignco.com
 
-# Disable Decap's default preview pane globally — for this site the form IS the
-# editor. The default preview just dumps fields as plain text with bold labels,
-# which looks broken even though it's working. Editors get a cleaner full-width
-# form instead. To re-enable for specific collections, add `editor: { preview: true }`.
-editor:
-  preview: false
+# Single-step publishing flow — owner clicks Publish and it commits + deploys
+# immediately. No draft/review state. Matches ACA's setup.
+publish_mode: simple
 
 collections:
   # ==========================================================================
@@ -55,11 +52,13 @@ collections:
   # ==========================================================================
   - name: settings
     label: Site Settings
+    description: 'Business name, tagline, phone, email, hours, social links, service areas.'
     files:
       - name: site
         label: Site Info
         file: aviara-site/src/content/site.json
         format: json
+        editor: { preview: false }
         fields:
           - { name: name, label: Business Name, widget: string }
           - { name: shortName, label: Short Name (for menus), widget: string }
@@ -101,11 +100,13 @@ collections:
   # ==========================================================================
   - name: services
     label: Services
+    description: 'Service offerings (Vacant Staging, Interior Design, etc.) and the stat row.'
     files:
       - name: services
         label: Services
         file: aviara-site/src/content/services.json
         format: json
+        editor: { preview: false }
         fields:
           - name: items
             label: Service Offerings
@@ -135,11 +136,13 @@ collections:
   # ==========================================================================
   - name: team
     label: Team
+    description: 'Founder bio and supporting team members shown on the homepage.'
     files:
       - name: team
         label: Team
         file: aviara-site/src/content/team.json
         format: json
+        editor: { preview: false }
         fields:
           - name: founder
             label: Founder
@@ -164,11 +167,13 @@ collections:
   # ==========================================================================
   - name: portfolio
     label: Portfolio
+    description: 'Featured project showcase (with photos) and client testimonial quotes.'
     files:
       - name: portfolio
         label: Portfolio
         file: aviara-site/src/content/portfolio.json
         format: json
+        editor: { preview: false }
         fields:
           - name: projects
             label: Projects
@@ -198,11 +203,13 @@ collections:
   # ==========================================================================
   - name: process
     label: Process & Values
+    description: 'How Aviara works (4 process steps) and why-choose-us value propositions.'
     files:
       - name: process
         label: Process & Values
         file: aviara-site/src/content/process.json
         format: json
+        editor: { preview: false }
         fields:
           - name: steps
             label: Process Steps
