@@ -60,7 +60,7 @@ collections:
           - { name: description, label: Site Description (used in SEO), widget: text }
           - { name: url, label: Live URL, widget: string }
           - { name: phone, label: Phone (display), widget: string, hint: 'e.g. (949) 697-1618' }
-          - { name: phoneTel, label: Phone (tel: link), widget: string, hint: 'e.g. +19496971618 — used in click-to-call' }
+          - { name: phoneTel, label: "Phone (tel link)", widget: string, hint: 'e.g. +19496971618 — used in click-to-call' }
           - { name: email, label: Email, widget: string }
           - { name: smsHref, label: SMS link, widget: string, hint: 'e.g. sms:+19496971618' }
           - { name: licensing, label: Licensing line, widget: string, hint: 'Shown in hero/header' }
