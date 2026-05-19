@@ -38,6 +38,28 @@ export const metadata: Metadata = {
     title: site.name,
     description: site.description,
   },
+  // Adaptive favicons: cream-bg variant for light browser themes, ink-bg for
+  // dark themes. Both versions are pre-rendered in public/ so the icon always
+  // pops regardless of what background color the browser tab shows. /favicon.ico
+  // (multi-size, dark variant) is also served at the root for search engines.
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      // Unconditional 192px fallback for browsers that don't honor media queries.
+      { url: "/favicon-192-dark.png", type: "image/png", sizes: "192x192" },
+      // Light-theme variants
+      { url: "/favicon-16-light.png", type: "image/png", sizes: "16x16", media: "(prefers-color-scheme: light)" },
+      { url: "/favicon-32-light.png", type: "image/png", sizes: "32x32", media: "(prefers-color-scheme: light)" },
+      { url: "/favicon-48-light.png", type: "image/png", sizes: "48x48", media: "(prefers-color-scheme: light)" },
+      { url: "/favicon-192-light.png", type: "image/png", sizes: "192x192", media: "(prefers-color-scheme: light)" },
+      // Dark-theme variants
+      { url: "/favicon-16-dark.png", type: "image/png", sizes: "16x16", media: "(prefers-color-scheme: dark)" },
+      { url: "/favicon-32-dark.png", type: "image/png", sizes: "32x32", media: "(prefers-color-scheme: dark)" },
+      { url: "/favicon-48-dark.png", type: "image/png", sizes: "48x48", media: "(prefers-color-scheme: dark)" },
+      { url: "/favicon-192-dark.png", type: "image/png", sizes: "192x192", media: "(prefers-color-scheme: dark)" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+  },
 };
 
 export default function RootLayout({

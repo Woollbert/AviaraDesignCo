@@ -36,8 +36,10 @@ auth:
 # Branded login screen artwork.
 logo_url: https://decapbridge.com/decapcms-with-bridge.svg
 
-media_folder: aviara-site/public/uploads
-public_folder: /uploads
+# Point the media library at Aviara's existing /images/ folder so the editor
+# can pick from the staged-home shots already in the repo (plus add new ones).
+media_folder: aviara-site/public/images
+public_folder: /images
 
 site_url: https://aviaradesignco.com
 display_url: https://aviaradesignco.com
@@ -121,8 +123,8 @@ collections:
                 label: Feature Bullets
                 widget: list
                 field: { name: feature, label: Feature, widget: string }
-              - { name: imageUrl, label: Image, widget: image }
-              - { name: imageAlt, label: Image Alt Text (for accessibility), widget: string }
+              - { name: imageUrl, label: Image, widget: image, choose_url: false, media_library: { config: { multiple: false } } }
+              - { name: imageAlt, label: Image Alt Text (for accessibility), widget: string, hint: 'One sentence describing the photo for screen-readers and SEO.' }
           - name: stats
             label: Stats Row (homepage)
             widget: list
@@ -187,8 +189,8 @@ collections:
                 label: Category
                 widget: select
                 options: [Vacant Staging, Occupied Staging, Interior Design]
-              - { name: imageUrl, label: Image, widget: image }
-              - { name: imageAlt, label: Image Alt Text, widget: string }
+              - { name: imageUrl, label: Image, widget: image, choose_url: false, media_library: { config: { multiple: false } } }
+              - { name: imageAlt, label: Image Alt Text, widget: string, hint: 'One sentence describing the photo for screen-readers and SEO.' }
           - name: testimonials
             label: Client Testimonials
             widget: list
