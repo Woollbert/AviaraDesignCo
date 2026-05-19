@@ -42,6 +42,13 @@ public_folder: /uploads
 site_url: https://aviaradesignco.com
 display_url: https://aviaradesignco.com
 
+# Disable Decap's default preview pane globally — for this site the form IS the
+# editor. The default preview just dumps fields as plain text with bold labels,
+# which looks broken even though it's working. Editors get a cleaner full-width
+# form instead. To re-enable for specific collections, add `editor: { preview: true }`.
+editor:
+  preview: false
+
 collections:
   # ==========================================================================
   # Site Settings — identity, contact, social, hours, areas served
