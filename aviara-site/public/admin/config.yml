@@ -96,6 +96,21 @@ collections:
             fields:
               - { name: day, label: Day(s), widget: string, hint: 'e.g. "Mon to Fri" or "Sat"' }
               - { name: time, label: Hours, widget: string, hint: 'e.g. "By appointment" or "9am–5pm"' }
+          - name: hero
+            label: Homepage Hero
+            widget: object
+            hint: 'The big top section visitors see first — background photo, headline, subhead, and CTA buttons.'
+            fields:
+              - { name: bgImageUrl, label: Background Image, widget: image, choose_url: false, media_library: { config: { multiple: false } } }
+              - { name: bgImageAlt, label: Background Image Alt Text, widget: string, hint: 'Describes the photo for screen readers and SEO. One sentence.' }
+              - { name: headlineLine1, label: Headline (Line 1), widget: string, hint: 'First line of the big headline. Currently: "Livable luxury,"' }
+              - { name: headlineLine2, label: Headline (Line 2 — shown in italic), widget: string, hint: 'Second line, shown italic in brass. Currently: "thoughtfully staged."' }
+              - { name: subhead, label: Subhead Paragraph, widget: text }
+              - { name: ctaPrimaryLabel, label: Primary Button Label, widget: string, hint: 'e.g. "Begin a Project"' }
+              - { name: ctaPrimaryHref, label: Primary Button Link, widget: string, hint: 'e.g. "#contact" (scroll to section) or "/contact"' }
+              - { name: ctaSecondaryLabel, label: Secondary Button Label, widget: string }
+              - { name: ctaSecondaryHref, label: Secondary Button Link, widget: string }
+              - { name: footerLabel, label: Bottom-of-hero label, widget: string, hint: 'Small text in the bottom-left of the hero. Currently: "Serving Southern California"' }
 
   # ==========================================================================
   # Services — the 4 service offerings + stats shown on the homepage

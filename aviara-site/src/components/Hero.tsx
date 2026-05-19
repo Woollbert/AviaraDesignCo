@@ -2,6 +2,7 @@ import Image from "next/image";
 import { site } from "@/data/site";
 
 export default function Hero() {
+  const hero = site.hero;
   return (
     <section
       id="top"
@@ -10,8 +11,8 @@ export default function Hero() {
     >
       <div className="absolute inset-0 z-0" data-testid="hero-poster">
         <Image
-          src="/images/A7405944.jpeg"
-          alt=""
+          src={hero.bgImageUrl}
+          alt={hero.bgImageAlt}
           fill
           priority
           sizes="100vw"
@@ -51,29 +52,27 @@ export default function Hero() {
             data-testid="hero-headline"
             style={{ textShadow: "0 2px 24px rgba(0,0,0,0.45)" }}
           >
-            Livable luxury,
+            {hero.headlineLine1}
             <br />
-            <span className="italic font-light text-brassSoft">thoughtfully staged.</span>
+            <span className="italic font-light text-brassSoft">{hero.headlineLine2}</span>
           </h1>
           <p
             className="mt-7 text-lg md:text-xl max-w-2xl text-ivory leading-relaxed"
             data-testid="hero-subhead"
             style={{ textShadow: "0 1px 14px rgba(0,0,0,0.55)" }}
           >
-            A licensed, family-owned home staging and interior design studio creating
-            spaces that feel both elevated and inviting, across Temecula, San Diego,
-            Orange County, and the Inland Empire.
+            {hero.subhead}
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <a
-              href="#contact"
+              href={hero.ctaPrimaryHref}
               className="btn bg-ivory text-ink hover:bg-brassSoft hover:text-ink border border-ivory"
               data-testid="hero-cta-primary"
             >
-              Begin a Project
+              {hero.ctaPrimaryLabel}
             </a>
-            <a href="#portfolio" className="btn btn-ghost-light" data-testid="hero-cta-secondary">
-              View the Work
+            <a href={hero.ctaSecondaryHref} className="btn btn-ghost-light" data-testid="hero-cta-secondary">
+              {hero.ctaSecondaryLabel}
             </a>
           </div>
         </div>
@@ -81,7 +80,7 @@ export default function Hero() {
         <div className="pb-12 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-8 border-t border-ivory/15 pt-8">
           <div className="flex items-center gap-3 text-[0.7rem] uppercase tracking-widest text-ivory/70">
             <span className="inline-block w-8 h-px bg-brassSoft" />
-            Serving Southern California
+            {hero.footerLabel}
           </div>
           <a
             href="#about"

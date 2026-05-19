@@ -31,5 +31,17 @@
     { "day": "Sat", "time": "By appointment" },
     { "day": "Sun", "time": "Closed" }
   ],
-  "licensing": "Licensed & Insured · Family Owned · Southern California"
+  "licensing": "Licensed & Insured · Family Owned · Southern California",
+  "hero": {
+    "bgImageUrl": "/images/A7405944.jpeg",
+    "bgImageAlt": "Fully staged living room with neutral palette, brass accents, and natural light",
+    "headlineLine1": "Livable luxury,",
+    "headlineLine2": "thoughtfully staged.",
+    "subhead": "A licensed, family-owned home staging and interior design studio creating spaces that feel both elevated and inviting, across Temecula, San Diego, Orange County, and the Inland Empire.",
+    "ctaPrimaryLabel": "Begin a Project",
+    "ctaPrimaryHref": "#contact",
+    "ctaSecondaryLabel": "View the Work",
+    "ctaSecondaryHref": "#portfolio",
+    "footerLabel": "Serving Southern California"
+  }
 }

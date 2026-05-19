@@ -2,6 +2,19 @@ import siteJson from "@/content/site.json";
 
 export type SiteHours = { day: string; time: string };
 
+export type Hero = {
+  bgImageUrl: string;
+  bgImageAlt: string;
+  headlineLine1: string;
+  headlineLine2: string;
+  subhead: string;
+  ctaPrimaryLabel: string;
+  ctaPrimaryHref: string;
+  ctaSecondaryLabel: string;
+  ctaSecondaryHref: string;
+  footerLabel: string;
+};
+
 export type Site = {
   name: string;
   shortName: string;
@@ -17,6 +30,7 @@ export type Site = {
   serviceAreas: string[];
   hours: SiteHours[];
   licensing: string;
+  hero: Hero;
 };
 
 export const site: Site = siteJson as Site;
