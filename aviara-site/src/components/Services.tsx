@@ -4,10 +4,12 @@ import { useState } from "react";
 import Image from "next/image";
 import Reveal from "./Reveal";
 import { services } from "@/data/services";
+import { site } from "@/data/site";
 
 export default function Services() {
   const [active, setActive] = useState(0);
   const current = services[active];
+  const s = site.sections.services;
 
   return (
     <section id="services" className="section relative overflow-hidden bg-ivory border-y border-line">
@@ -21,16 +23,15 @@ export default function Services() {
             <div className="md:col-span-7">
               <p className="eyebrow flex items-center gap-3">
                 <span className="gold-rule" />
-                Services
+                {s.eyebrow}
               </p>
               <h2 className="mt-5 font-display text-4xl md:text-5xl lg:text-[3.25rem] leading-[1.05] text-ink max-w-3xl">
-                A focused practice. Every service treated as a
-                <span className="italic text-brass"> signature.</span>
+                {s.headlineLine1}
+                <span className="italic text-brass"> {s.headlineItalic}</span>
               </h2>
             </div>
             <p className="md:col-span-5 text-base md:text-lg text-mute md:text-right max-w-md md:ml-auto">
-              From single-room consultations to full vacant installs, our work is
-              designed to translate cleanly to camera and to life.
+              {s.intro}
             </p>
           </div>
         </Reveal>
@@ -103,8 +104,8 @@ export default function Services() {
                     </li>
                   ))}
                 </ul>
-                <a href="#contact" className="btn btn-outline mt-8 self-start">
-                  Inquire
+                <a href={s.inquireCtaHref} className="btn btn-outline mt-8 self-start">
+                  {s.inquireCtaLabel}
                 </a>
               </div>
             </div>

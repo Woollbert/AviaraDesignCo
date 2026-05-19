@@ -1,13 +1,15 @@
 import Image from "next/image";
 import Reveal from "./Reveal";
 import { process, valueProps } from "@/data/process";
+import { site } from "@/data/site";
 
 export default function Process() {
+  const s = site.sections.process;
   return (
     <section id="process" className="section relative bg-ink text-ivory overflow-hidden">
       <div aria-hidden="true" className="absolute inset-0 opacity-[0.22]">
         <Image
-          src="/images/A7405959.jpeg"
+          src={s.bgImage}
           alt=""
           fill
           sizes="100vw"
@@ -32,18 +34,16 @@ export default function Process() {
           <Reveal className="lg:col-span-7">
             <p className="eyebrow !text-brassSoft flex items-center gap-3">
               <span className="inline-block w-10 h-px bg-brassSoft" />
-              The Process
+              {s.eyebrow}
             </p>
             <h2 className="mt-5 font-display text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.05] text-ivory">
-              Calm, considered,
-              <span className="italic text-brassSoft"> on schedule.</span>
+              {s.headlineLine1}
+              <span className="italic text-brassSoft"> {s.headlineItalic}</span>
             </h2>
           </Reveal>
           <Reveal delay={120} className="lg:col-span-5">
             <p className="text-base md:text-lg text-ivory/75 leading-relaxed">
-              From the first walkthrough to the final styled vignette, every
-              project moves through the same four-step rhythm, designed to
-              protect your time and elevate your home.
+              {s.intro}
             </p>
           </Reveal>
         </div>

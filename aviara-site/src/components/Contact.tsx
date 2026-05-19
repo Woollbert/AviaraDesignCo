@@ -44,15 +44,14 @@ export default function Contact() {
       <div className="container-wide relative z-10 grid lg:grid-cols-12 gap-12 items-start">
         <Reveal className="lg:col-span-5">
           <p className="eyebrow flex items-center gap-3">
-            <span className="gold-rule" /> Begin
+            <span className="gold-rule" /> {site.sections.contact.eyebrow}
           </p>
           <h2 className="mt-5 font-display text-4xl md:text-5xl lg:text-[3.25rem] leading-[1.05] text-ink">
-            Let's talk about your
-            <span className="italic text-brass"> project.</span>
+            {site.sections.contact.headlineLine1}
+            <span className="italic text-brass"> {site.sections.contact.headlineItalic}</span>
           </h2>
           <p className="mt-6 text-lg text-mute leading-relaxed">
-            Tell us about your home, your timeline, and what you're hoping to feel
-            when the install is done. We'll be in touch within one business day.
+            {site.sections.contact.intro}
           </p>
 
           <dl className="mt-10 space-y-6">

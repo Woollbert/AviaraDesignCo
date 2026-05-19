@@ -1,8 +1,10 @@
 import Image from "next/image";
 import Reveal from "./Reveal";
 import { projects } from "@/data/portfolio";
+import { site } from "@/data/site";
 
 export default function Portfolio() {
+  const s = site.sections.portfolio;
   return (
     <section id="portfolio" className="section relative bg-bone overflow-hidden">
       <div aria-hidden="true" className="watermark bottom-[-6rem] -right-12">
@@ -15,17 +17,16 @@ export default function Portfolio() {
             <div className="max-w-2xl">
               <p className="eyebrow flex items-center gap-3">
                 <span className="gold-rule" />
-                Portfolio
+                {s.eyebrow}
               </p>
               <h2 className="mt-5 font-display text-4xl md:text-5xl lg:text-[3.25rem] leading-[1.05] text-ink">
-                A few of our recent
-                <span className="italic text-brass"> homes.</span>
+                {s.headlineLine1}
+                <span className="italic text-brass"> {s.headlineItalic}</span>
               </h2>
             </div>
 
             <p className="md:max-w-xs md:text-right text-mute text-base">
-              Three different houses, three different briefs. One studio behind
-              every install.
+              {s.intro}
             </p>
           </div>
         </Reveal>

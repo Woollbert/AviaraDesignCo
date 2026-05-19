@@ -111,6 +111,77 @@ collections:
               - { name: ctaSecondaryLabel, label: Secondary Button Label, widget: string }
               - { name: ctaSecondaryHref, label: Secondary Button Link, widget: string }
               - { name: footerLabel, label: Bottom-of-hero label, widget: string, hint: 'Small text in the bottom-left of the hero. Currently: "Serving Southern California"' }
+          - name: sections
+            label: Homepage Section Copy
+            widget: object
+            hint: 'The eyebrow, headline, intro paragraph, and decorative image for each homepage section. Edit the words here, not the layout.'
+            fields:
+              - name: about
+                label: About Section
+                widget: object
+                fields:
+                  - { name: eyebrow, label: Eyebrow (small label above headline), widget: string }
+                  - { name: headlineLine1, label: Headline (regular text), widget: string }
+                  - { name: headlineItalic, label: Headline (italic suffix), widget: string, hint: 'The italic accent at the end. Currently: "live."' }
+                  - name: bodyParagraphs
+                    label: Body Paragraphs
+                    widget: list
+                    field: { name: paragraph, label: Paragraph, widget: text }
+                  - { name: image, label: Vignette Image (right side), widget: image, choose_url: false, media_library: { config: { multiple: false } } }
+                  - { name: imageAlt, label: Vignette Image Alt Text, widget: string }
+                  - { name: founderLabel, label: Founder Card Label, widget: string, hint: 'Default: "Founder"' }
+              - name: services
+                label: Services Section Header
+                widget: object
+                fields:
+                  - { name: eyebrow, label: Eyebrow, widget: string }
+                  - { name: headlineLine1, label: Headline (regular), widget: string }
+                  - { name: headlineItalic, label: Headline (italic suffix), widget: string }
+                  - { name: intro, label: Intro Paragraph, widget: text }
+                  - { name: inquireCtaLabel, label: 'Inquire Button Label', widget: string }
+                  - { name: inquireCtaHref, label: 'Inquire Button Link', widget: string }
+              - name: process
+                label: Process Section Header
+                widget: object
+                fields:
+                  - { name: eyebrow, label: Eyebrow, widget: string }
+                  - { name: headlineLine1, label: Headline (regular), widget: string }
+                  - { name: headlineItalic, label: Headline (italic suffix), widget: string }
+                  - { name: intro, label: Intro Paragraph, widget: text }
+                  - { name: bgImage, label: Background Image (washed-out behind dark gradient), widget: image, choose_url: false, media_library: { config: { multiple: false } } }
+              - name: team
+                label: Team Section Header
+                widget: object
+                fields:
+                  - { name: eyebrow, label: Eyebrow, widget: string }
+                  - { name: headlineLine1, label: Headline (regular), widget: string }
+                  - { name: headlineItalic, label: Headline (italic suffix), widget: string }
+                  - { name: intro, label: Intro Paragraph, widget: text }
+              - name: portfolio
+                label: Portfolio Section Header
+                widget: object
+                fields:
+                  - { name: eyebrow, label: Eyebrow, widget: string }
+                  - { name: headlineLine1, label: Headline (regular), widget: string }
+                  - { name: headlineItalic, label: Headline (italic suffix), widget: string }
+                  - { name: intro, label: Intro Paragraph (right-aligned, short), widget: text }
+              - name: testimonials
+                label: Testimonials Section Header
+                widget: object
+                fields:
+                  - { name: eyebrow, label: Eyebrow, widget: string }
+                  - { name: headlineLine1, label: Headline (regular), widget: string }
+                  - { name: headlineItalic, label: Headline (italic suffix), widget: string }
+                  - { name: image, label: Vignette Image (left side), widget: image, choose_url: false, media_library: { config: { multiple: false } } }
+                  - { name: imageAlt, label: Vignette Image Alt Text, widget: string }
+              - name: contact
+                label: Contact Section Header
+                widget: object
+                fields:
+                  - { name: eyebrow, label: Eyebrow, widget: string }
+                  - { name: headlineLine1, label: Headline (regular), widget: string }
+                  - { name: headlineItalic, label: Headline (italic suffix), widget: string }
+                  - { name: intro, label: Intro Paragraph, widget: text }
 
   # ==========================================================================
   # Services — the 4 service offerings + stats shown on the homepage

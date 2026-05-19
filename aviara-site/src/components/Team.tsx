@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Reveal from "./Reveal";
 import { team, founder, type TeamMember } from "@/data/team";
+import { site } from "@/data/site";
 
 function initials(name: string) {
   return name
@@ -45,22 +46,21 @@ function MemberPortrait({ m }: { m: TeamMember }) {
 
 export default function Team() {
   const everyone = [founder, ...team];
+  const s = site.sections.team;
   return (
     <section id="team" className="section relative bg-ivory border-y border-line overflow-hidden">
       <div className="container-wide">
         <Reveal>
           <div className="text-center max-w-2xl mx-auto">
             <p className="eyebrow flex items-center justify-center gap-3">
-              <span className="gold-rule" /> The Team <span className="gold-rule" />
+              <span className="gold-rule" /> {s.eyebrow} <span className="gold-rule" />
             </p>
             <h2 className="mt-5 font-display text-4xl md:text-5xl lg:text-[3.25rem] leading-[1.05] text-ink">
-              Family owned. Every project is
-              <span className="italic text-brass"> hands-on.</span>
+              {s.headlineLine1}
+              <span className="italic text-brass"> {s.headlineItalic}</span>
             </h2>
             <p className="mt-5 text-lg text-mute">
-              Aviara is run by Brooklyn alongside her husband and brother. You'll
-              meet the same three faces from the first walkthrough to the final
-              styled vignette. No layered hand-offs, no template installs.
+              {s.intro}
             </p>
           </div>
         </Reveal>

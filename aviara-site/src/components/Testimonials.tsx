@@ -4,10 +4,12 @@ import { useState } from "react";
 import Image from "next/image";
 import Reveal from "./Reveal";
 import { testimonials } from "@/data/portfolio";
+import { site } from "@/data/site";
 
 export default function Testimonials() {
   const [active, setActive] = useState(0);
   const t = testimonials[active];
+  const s = site.sections.testimonials;
 
   return (
     <section
@@ -22,8 +24,8 @@ export default function Testimonials() {
         <Reveal className="lg:col-span-5">
           <div className="photo-frame photo-frame--dark relative aspect-[4/5] overflow-hidden bg-linen">
             <Image
-              src="/images/IMG_9463.jpeg"
-              alt="A signature Aviara styled vignette: black candle on a marble side table"
+              src={s.image}
+              alt={s.imageAlt}
               fill
               sizes="(min-width: 1024px) 40vw, 100vw"
               className="object-cover animate-kenburns"
@@ -33,11 +35,11 @@ export default function Testimonials() {
 
         <Reveal delay={120} className="lg:col-span-7">
           <p className="eyebrow flex items-center gap-3">
-            <span className="gold-rule" /> Testimonials
+            <span className="gold-rule" /> {s.eyebrow}
           </p>
           <h2 className="mt-5 font-display text-4xl md:text-5xl lg:text-[3.25rem] leading-[1.05] text-ink">
-            Trusted by agents and homeowners across
-            <span className="italic text-brass"> Southern California.</span>
+            {s.headlineLine1}
+            <span className="italic text-brass"> {s.headlineItalic}</span>
           </h2>
 
           <blockquote

@@ -43,5 +43,59 @@
     "ctaSecondaryLabel": "View the Work",
     "ctaSecondaryHref": "#portfolio",
     "footerLabel": "Serving Southern California"
+  },
+  "sections": {
+    "about": {
+      "eyebrow": "About the Studio",
+      "headlineLine1": "Spaces designed for the way you actually",
+      "headlineItalic": "live.",
+      "bodyParagraphs": [
+        "Aviara Design Co. is a boutique home staging and interior design studio, family-owned and based in Temecula, California. We believe that staging and design are more than aesthetics. They are powerful tools for connection, storytelling, and transformation.",
+        "Whether we are preparing a luxury listing for market or composing a forever home, our work is unified by a single intent: livable luxury that feels collected, considered, and quietly elevated."
+      ],
+      "image": "/images/IMG_9842.jpeg",
+      "imageAlt": "A signature Aviara styled vignette: white pottery vase with deep red blooms",
+      "founderLabel": "Founder"
+    },
+    "services": {
+      "eyebrow": "Services",
+      "headlineLine1": "A focused practice. Every service treated as a",
+      "headlineItalic": "signature.",
+      "intro": "From single-room consultations to full vacant installs, our work is designed to translate cleanly to camera and to life.",
+      "inquireCtaLabel": "Inquire",
+      "inquireCtaHref": "#contact"
+    },
+    "process": {
+      "eyebrow": "The Process",
+      "headlineLine1": "Calm, considered,",
+      "headlineItalic": "on schedule.",
+      "intro": "From the first walkthrough to the final styled vignette, every project moves through the same four-step rhythm, designed to protect your time and elevate your home.",
+      "bgImage": "/images/A7405959.jpeg"
+    },
+    "team": {
+      "eyebrow": "The Team",
+      "headlineLine1": "Family owned. Every project is",
+      "headlineItalic": "hands-on.",
+      "intro": "Aviara is run by Brooklyn alongside her husband and brother. You'll meet the same three faces from the first walkthrough to the final styled vignette. No layered hand-offs, no template installs."
+    },
+    "portfolio": {
+      "eyebrow": "Portfolio",
+      "headlineLine1": "A few of our recent",
+      "headlineItalic": "homes.",
+      "intro": "Three different houses, three different briefs. One studio behind every install."
+    },
+    "testimonials": {
+      "eyebrow": "Testimonials",
+      "headlineLine1": "Trusted by agents and homeowners across",
+      "headlineItalic": "Southern California.",
+      "image": "/images/IMG_9463.jpeg",
+      "imageAlt": "A signature Aviara styled vignette: black candle on a marble side table"
+    },
+    "contact": {
+      "eyebrow": "Begin",
+      "headlineLine1": "Let's talk about your",
+      "headlineItalic": "project.",
+      "intro": "Tell us about your home, your timeline, and what you're hoping to feel when the install is done. We'll be in touch within one business day."
+    }
   }
 }
