@@ -23,7 +23,9 @@
   --color-ink-soft: var(--color-slate);
   --color-gold: var(--color-brass);
   --color-gold-deep: var(--color-brass-deep);
-  --font-display: var(--font-display); /* already set by next/font in layout.tsx */
+  /* Do NOT redeclare --font-display or --font-sans here — next/font sets them
+     on the <html> element via the className. Redeclaring at :root with
+     var() self-reference creates a resolution loop that kills the font. */
 }
 
 @layer base {

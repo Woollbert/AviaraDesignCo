@@ -1,0 +1,143 @@
+{
+  "items": [
+    {
+      "slug": "fallbrook-estate",
+      "title": "Fallbrook Estate",
+      "location": "Fallbrook, CA",
+      "category": "Vacant Staging",
+      "order": 1,
+      "shortDescription": "An empty California estate fully imagined — staged for the listing camera and the open-house walkthrough alike.",
+      "longDescription": "A sprawling vacant home in Fallbrook hills, dressed top to bottom with a warm, livable luxury palette tuned to attract buyers in the upper segment. Brass pendants, neutral textiles, layered art, and a tight three-week inventory rolling rental kept the home camera-ready through the entire listing window.",
+      "coverImage": "/images/A7405914.jpeg",
+      "coverImageAlt": "Open-concept kitchen, dining, and living room staged with brass and warm neutrals",
+      "photos": [
+        {
+          "url": "/images/A7405914.jpeg",
+          "alt": "Open-concept kitchen, dining, and living room staged with brass and warm neutrals",
+          "room": "Living"
+        },
+        {
+          "url": "/images/A7405929.jpeg",
+          "alt": "Fully staged open-concept kitchen and dining room with brass pendants",
+          "room": "Kitchen"
+        },
+        {
+          "url": "/images/A7405944.jpeg",
+          "alt": "Fully staged living room with neutral palette, brass accents, and natural light",
+          "room": "Living"
+        },
+        {
+          "url": "/images/A7405949.jpeg",
+          "alt": "Living room detail with layered textiles and warm wood furniture",
+          "room": "Living"
+        },
+        {
+          "url": "/images/A7405954.jpeg",
+          "alt": "Dining vignette with white pottery, brass flatware, and linen runner",
+          "room": "Dining"
+        },
+        {
+          "url": "/images/A7405959.jpeg",
+          "alt": "Primary bedroom staged with crisp linens, walnut bed frame, and soft layered lighting",
+          "room": "Bedroom"
+        },
+        {
+          "url": "/images/A7406034.jpeg",
+          "alt": "Office or den styled with reading chair, layered rugs, and refined accessories",
+          "room": "Office"
+        },
+        {
+          "url": "/images/A7406059.jpeg",
+          "alt": "Designed primary bedroom with brass mirror, sage accent wall, and refined linens",
+          "room": "Bedroom"
+        }
+      ]
+    },
+    {
+      "slug": "menifee-family-home",
+      "title": "Menifee Family Home",
+      "location": "Menifee, CA",
+      "category": "Interior Design",
+      "order": 2,
+      "shortDescription": "A young family's first forever home — designed to grow with the kids, the dog, and the way life actually moves through a house.",
+      "longDescription": "A full-service interior design project for a young family in Menifee, blending durable performance fabrics with editorial-grade composition. Cream sectionals, warm plank flooring, marble accents, and intentional negative space create rooms that feel collected, considered, and quietly elevated — without sacrificing the rough-and-tumble realities of daily family life.",
+      "coverImage": "/images/IMG_9822.jpeg",
+      "coverImageAlt": "Cream sectional with chocolate throw, marble side table, and warm plank flooring",
+      "photos": [
+        {
+          "url": "/images/IMG_9822.jpeg",
+          "alt": "Cream sectional with chocolate throw, marble side table, and warm plank flooring",
+          "room": "Living"
+        },
+        {
+          "url": "/images/IMG_9826.jpeg",
+          "alt": "Living room view from the entryway, layered lighting and curated accessories",
+          "room": "Living"
+        },
+        {
+          "url": "/images/IMG_9828.jpeg",
+          "alt": "Refined living room composition with curated coffee-table styling",
+          "room": "Living"
+        },
+        {
+          "url": "/images/IMG_9842.jpeg",
+          "alt": "A signature Aviara styled vignette: white pottery vase with deep red blooms",
+          "room": "Detail"
+        },
+        {
+          "url": "/images/IMG_4148.jpeg",
+          "alt": "Designed dining space with linen-upholstered chairs and brass pendant",
+          "room": "Dining"
+        },
+        {
+          "url": "/images/IMG_4160.jpeg",
+          "alt": "Refined occupied living room with sectional, crystal chandelier, and cowhide rug",
+          "room": "Living"
+        }
+      ]
+    },
+    {
+      "slug": "temeku-hills-golf-estate",
+      "title": "Temeku Hills Golf Estate",
+      "location": "Temecula, CA",
+      "category": "Occupied Staging",
+      "order": 3,
+      "shortDescription": "An occupied home in Temecula's Temeku Hills, edited and elevated for the listing without disrupting the family's daily routine.",
+      "longDescription": "A discreet occupied-staging project on a fairway-facing lot, working with the homeowner's existing furniture and adding curated accessories, art, and styling layers to translate the home cleanly to the listing photography. Black dining surfaces, brass details, and seasonal florals tied the spaces together while staying respectful of the family's daily flow.",
+      "coverImage": "/images/IMG_9465.jpeg",
+      "coverImageAlt": "Black dining table styled with brass flatware and a vase of deep red hydrangeas",
+      "photos": [
+        {
+          "url": "/images/IMG_9465.jpeg",
+          "alt": "Black dining table styled with brass flatware and a vase of deep red hydrangeas",
+          "room": "Dining"
+        },
+        {
+          "url": "/images/IMG_9463.jpeg",
+          "alt": "A signature Aviara styled vignette: black candle on a marble side table",
+          "room": "Detail"
+        },
+        {
+          "url": "/images/IMG_9482.jpeg",
+          "alt": "Styled vignette with fluted candle bowl and curated accessories",
+          "room": "Detail"
+        },
+        {
+          "url": "/images/IMG_9165.jpeg",
+          "alt": "Occupied living-room edit blending homeowner furniture with curated styling layers",
+          "room": "Living"
+        },
+        {
+          "url": "/images/IMG_2926.jpeg",
+          "alt": "Bedroom edited and styled for the listing camera with crisp linens",
+          "room": "Bedroom"
+        },
+        {
+          "url": "/images/IMG_2955.jpeg",
+          "alt": "Outdoor-facing room styled to maximize the golf-course view",
+          "room": "Outdoor"
+        }
+      ]
+    }
+  ]
+}
