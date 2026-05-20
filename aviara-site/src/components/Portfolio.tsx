@@ -79,6 +79,21 @@ export default function Portfolio() {
             </Reveal>
           ))}
         </ul>
+
+        <Reveal>
+          <div className="mt-14 md:mt-16 flex flex-col sm:flex-row items-center justify-center gap-5 text-center">
+            <a
+              href="/portfolio/"
+              className="btn btn-ink"
+              data-testid="portfolio-view-all"
+            >
+              View Full Portfolio
+            </a>
+            <p className="text-sm text-mute">
+              Browse every staged home with full photo galleries.
+            </p>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
