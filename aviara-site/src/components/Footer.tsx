@@ -1,20 +1,22 @@
 import Image from "next/image";
+import Link from "next/link";
 import { site } from "@/data/site";
+import { cities } from "@/data/cities";
 
 export default function Footer() {
   const year = new Date().getFullYear();
   return (
     <footer className="bg-bone border-t border-line text-slate">
       <div className="container-wide py-16 md:py-20">
-        <div className="grid md:grid-cols-2 gap-12 md:gap-0 items-center">
-          {/* LEFT: large brand mark */}
+        <div className="grid md:grid-cols-4 gap-12 md:gap-10 items-start">
+          {/* COL 1: brand mark */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left">
-            <span className="relative inline-block w-[160px] h-[160px] md:w-[200px] md:h-[200px]">
+            <span className="relative inline-block w-[140px] h-[140px] md:w-[160px] md:h-[160px]">
               <Image
                 src="/images/aviara-monogram.png"
                 alt="Aviara Design Co."
                 fill
-                sizes="(min-width: 768px) 200px, 160px"
+                sizes="(min-width: 768px) 160px, 140px"
                 className="object-contain"
               />
             </span>
@@ -26,10 +28,78 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* RIGHT: quick links column */}
-          <div className="md:border-l md:border-line md:pl-12 lg:pl-20 flex flex-col items-center md:items-start text-center md:text-left">
+          {/* COL 2: Service Areas — internal links boost local SEO */}
+          <div className="md:border-l md:border-line md:pl-8 flex flex-col items-center md:items-start text-center md:text-left">
             <h4 className="font-sans text-base font-semibold tracking-[0.18em] uppercase text-ink">
-              Quick Links
+              Service Areas
+            </h4>
+            <ul className="mt-6 space-y-3">
+              {cities.map((c) => (
+                <li key={c.slug}>
+                  <Link
+                    href={`/${c.slug}/`}
+                    className="text-base text-ink hover:text-brass transition-colors"
+                  >
+                    Home Staging {c.city}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* COL 3: Explore */}
+          <div className="md:border-l md:border-line md:pl-8 flex flex-col items-center md:items-start text-center md:text-left">
+            <h4 className="font-sans text-base font-semibold tracking-[0.18em] uppercase text-ink">
+              Explore
+            </h4>
+            <ul className="mt-6 space-y-3">
+              <li>
+                <Link
+                  href="/portfolio/"
+                  className="text-base text-ink hover:text-brass transition-colors"
+                >
+                  Portfolio
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/journal/"
+                  className="text-base text-ink hover:text-brass transition-colors"
+                >
+                  Journal
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/#about"
+                  className="text-base text-ink hover:text-brass transition-colors"
+                >
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/#services"
+                  className="text-base text-ink hover:text-brass transition-colors"
+                >
+                  Services
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/#contact"
+                  className="text-base text-ink hover:text-brass transition-colors"
+                >
+                  Contact
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* COL 4: Contact + social */}
+          <div className="md:border-l md:border-line md:pl-8 flex flex-col items-center md:items-start text-center md:text-left">
+            <h4 className="font-sans text-base font-semibold tracking-[0.18em] uppercase text-ink">
+              Get in Touch
             </h4>
 
             <ul className="mt-6 space-y-3">

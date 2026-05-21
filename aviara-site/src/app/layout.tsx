@@ -5,6 +5,52 @@ import { site } from "@/data/site";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
+// LocalBusiness structured data — tells Google what kind of business this is
+// and where we operate. Without this, we can't appear in rich results / local
+// pack metadata. Uses HomeAndConstructionBusiness as the closest @type for
+// home staging + interior design.
+const baseUrl = site.url.replace(/\/$/, "");
+const localBusinessJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "HomeAndConstructionBusiness",
+  "@id": `${baseUrl}/#business`,
+  name: site.name,
+  alternateName: site.shortName,
+  description: site.description,
+  url: baseUrl,
+  telephone: site.phoneTel,
+  email: site.email,
+  image: `${baseUrl}/logo-512.png`,
+  logo: `${baseUrl}/logo-512.png`,
+  priceRange: "$$$",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: site.address.city,
+    addressRegion: site.address.region,
+    addressCountry: "US",
+  },
+  areaServed: site.serviceAreas.map((area) => ({
+    "@type": "City",
+    name: area,
+  })),
+  sameAs: [site.social.instagram, site.social.facebook].filter(Boolean),
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      description: "By appointment",
+    },
+  ],
+  knowsAbout: [
+    "Home Staging",
+    "Vacant Home Staging",
+    "Occupied Home Staging",
+    "Luxury Home Staging",
+    "Interior Design",
+    "Real Estate Staging",
+  ],
+};
+
 const display = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
@@ -70,6 +116,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${display.variable} ${sans.variable}`}>
       <body className="min-h-screen flex flex-col bg-bone text-slate">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
+        />
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 btn btn-ink"
