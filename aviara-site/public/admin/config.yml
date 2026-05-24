@@ -317,6 +317,111 @@ collections:
               - { name: role, label: Role / Context, widget: string, hint: 'e.g. "Real Estate Professional · Temecula, CA · Yelp · 5 stars"' }
 
   # ==========================================================================
+  # City landing pages — one file per city, generates /home-staging-<slug>/
+  # ==========================================================================
+  - name: cities
+    label: City Landing Pages
+    description: 'One file per city. Editing here updates the public /home-staging-<slug>/ page. To add a brand new city: create a new entry below AND ask the developer to add the matching route file.'
+    folder: aviara-site/src/content/cities
+    create: true
+    slug: '{{fields.city | lower | replace(" ", "-")}}'
+    format: json
+    summary: '{{city}} ({{county}})'
+    editor: { preview: false }
+    sortable_fields: [city]
+    fields:
+      - { name: slug, label: URL Slug, widget: string, hint: 'Lowercase, dashes only — e.g. "home-staging-temecula". Becomes /<slug>/.' }
+      - { name: city, label: City Name, widget: string, hint: 'e.g. "Temecula"' }
+      - { name: county, label: County, widget: string, hint: 'e.g. "Riverside County"' }
+      - { name: metaTitle, label: SEO Page Title, widget: string, hint: 'Shows in the browser tab + Google search results.' }
+      - { name: metaDescription, label: SEO Description, widget: text, hint: 'Shows under the page title in Google search results. Aim for ~150-160 characters.' }
+      - { name: h1, label: Page Heading (H1), widget: string, hint: 'The big headline at the top of the page. e.g. "Home Staging in Temecula, CA"' }
+      - { name: intro, label: Hero Intro Paragraph, widget: text, hint: 'The paragraph under the H1. Sets up the page.' }
+      - name: marketContext
+        label: Market Context Paragraphs
+        widget: list
+        required: false
+        hint: 'Optional. 2-3 paragraphs about the local market, buyers, and what makes the city distinct.'
+        field: { name: paragraph, label: Paragraph, widget: text }
+      - name: whyStaging
+        label: 'Why Staging Works Here (3 points)'
+        widget: list
+        summary: '{{point | truncate(60)}}'
+        field: { name: point, label: Point, widget: text }
+      - { name: localProof, label: Local Work Blurb, widget: text, hint: 'One paragraph about Aviara projects in this city.' }
+      - name: serviceNotes
+        label: Per-Service Local Notes
+        widget: list
+        required: false
+        summary: '{{name}}'
+        hint: 'Optional. For each service (Vacant Staging, Occupied Staging, Interior Design, Staging Consultations), how it applies in this city.'
+        fields:
+          - { name: name, label: Service Name, widget: string }
+          - { name: note, label: Local Note, widget: text }
+      - name: neighborhoods
+        label: Neighborhoods Served
+        widget: list
+        field: { name: name, label: Neighborhood, widget: string }
+      - name: commonMistakes
+        label: Common Mistakes on Local Listings
+        widget: list
+        required: false
+        summary: '{{title}}'
+        hint: 'Optional. Specific mistakes sellers/agents in this city tend to make.'
+        fields:
+          - { name: title, label: Title, widget: string }
+          - { name: body, label: Body, widget: text }
+      - name: faqs
+        label: FAQs
+        widget: list
+        summary: '{{question | truncate(60)}}'
+        hint: 'Questions homeowners and agents ask. These also become the FAQ schema for Google rich results.'
+        fields:
+          - { name: question, label: Question, widget: string }
+          - { name: answer, label: Answer, widget: text }
+      - name: nearbyCitySlugs
+        label: Nearby Cities (slugs)
+        widget: list
+        hint: 'Slugs of 3 nearby cities to cross-link to at the bottom of the page. e.g. "home-staging-murrieta".'
+        field: { name: slug, label: Slug, widget: string }
+
+  # ==========================================================================
+  # Journal — blog posts at /journal/<slug>/
+  # ==========================================================================
+  - name: journal
+    label: Journal (Blog)
+    description: 'Blog posts. Each file generates a page at /journal/<slug>/ and shows on the /journal/ index. Used for SEO + long-form content.'
+    folder: aviara-site/src/content/journal
+    create: true
+    slug: '{{slug}}'
+    format: json
+    summary: '{{title}} ({{publishedAt}})'
+    editor: { preview: false }
+    sortable_fields: [publishedAt, title]
+    fields:
+      - { name: slug, label: URL Slug, widget: string, hint: 'Lowercase, dashes only. Becomes /journal/<slug>/.' }
+      - { name: title, label: Title, widget: string }
+      - { name: metaTitle, label: SEO Title, widget: string, required: false, hint: 'Defaults to the regular title if blank.' }
+      - { name: metaDescription, label: SEO Description, widget: text, hint: 'Shows in Google search results. ~150-160 chars.' }
+      - { name: publishedAt, label: Published Date, widget: date, format: 'YYYY-MM-DD' }
+      - { name: excerpt, label: Excerpt (shown on /journal/ index), widget: text }
+      - { name: coverImage, label: Cover Image (optional), widget: image, required: false, choose_url: false, media_library: { config: { multiple: false } } }
+      - name: blocks
+        label: Body
+        widget: list
+        types:
+          - name: p
+            label: Paragraph
+            fields:
+              - { name: type, label: Type, widget: hidden, default: 'p' }
+              - { name: text, label: Text, widget: text }
+          - name: h2
+            label: 'Section Heading (H2)'
+            fields:
+              - { name: type, label: Type, widget: hidden, default: 'h2' }
+              - { name: text, label: Text, widget: string }
+
+  # ==========================================================================
   # Process — the 4 process steps + the value proposition bullets
   # ==========================================================================
   - name: process

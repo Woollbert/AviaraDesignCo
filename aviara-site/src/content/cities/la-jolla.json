@@ -1,0 +1,91 @@
+{
+  "slug": "home-staging-la-jolla",
+  "city": "La Jolla",
+  "county": "San Diego County",
+  "metaTitle": "Home Staging in La Jolla, CA | Aviara Design Co.",
+  "metaDescription": "Home staging in La Jolla, CA. Family-owned studio staging luxury coastal homes across Muirlands, Bird Rock, La Jolla Shores, La Jolla Farms, and Mount Soledad.",
+  "h1": "Home Staging in La Jolla, CA",
+  "intro": "La Jolla is one of California's most recognizable coastal markets, and a place we love staging in. From the Muirlands and Mount Soledad view properties to the surf-culture beach homes of Bird Rock and the family-and-faculty neighborhoods of La Jolla Shores, our staging works with the specific character of each La Jolla sub-market.",
+  "marketContext": [
+    "La Jolla is a market of meaningful internal diversity. Pricing across the city ranges from the high $1.3Ms for entry-level condos and small homes into the $20M+ band for full ocean-view La Jolla Farms estates. Bird Rock, Muirlands, La Jolla Shores, La Jolla Village, La Jolla Mesa, and Mount Soledad each have distinct character, distinct buyers, and distinct staging needs.",
+    "The buyer mix is broad: long-tenured San Diego families, UCSD-adjacent faculty and biotech executives, second-home buyers from LA and the Bay Area, retirees with substantial wealth, and an active international buyer base. These buyers have seen the best homes globally, La Jolla listings compete against international second-home markets in their decision-making.",
+    "La Jolla holds an unusually wide range of buyer expectation inside the same city. A $1.6M Bird Rock cottage and a $9M La Jolla Farms estate require completely different staging approaches even though they share the same MLS. Successful La Jolla staging is made for the specific sub-market, the price band, and the specific buyer the listing is for."
+  ],
+  "whyStaging": [
+    "La Jolla buyers are sophisticated about presentation and have seen exceptional homes globally. The staging bar is high, and listings that meet it tend to perform better than the rest.",
+    "Each La Jolla sub-market has distinct character. Staging made for Muirlands views differs from staging made for Bird Rock beach cottages or La Jolla Farms estates.",
+    "Ocean views and indoor-outdoor flow are central to the value proposition. Staging that frames the view rather than competing with it lets the listing's strongest features carry the photos."
+  ],
+  "localProof": "We stage across La Jolla and the wider San Diego coastal market regularly. View our portfolio for representative work.",
+  "serviceNotes": [
+    {
+      "name": "Vacant Home Staging",
+      "note": "Our default service for empty La Jolla resale listings. Inventory made for the specific La Jolla sub-market: airy coastal-modern for Bird Rock and the Shores, refined view-framing for Muirlands and Mount Soledad, estate-scale luxury for La Jolla Farms."
+    },
+    {
+      "name": "Occupied Home Staging",
+      "note": "Common for established La Jolla homeowners with significant existing furnishings. We edit, supplement, and arrange the home so it photographs at full La Jolla price point, while leaving the seller comfortable in the home through the listing period."
+    },
+    {
+      "name": "Interior Design",
+      "note": "For La Jolla homeowners commissioning a designed home. Close collaboration with the local design vocabulary, coastal-luxury, view-framing, indoor-outdoor, and the architectural tradition of the specific neighborhood."
+    },
+    {
+      "name": "Staging Consultations",
+      "note": "A focused walkthrough for La Jolla listing agents and sellers. Especially valuable in a market this sub-market-diverse, where the right staging recommendations vary by neighborhood."
+    }
+  ],
+  "neighborhoods": [
+    "Muirlands",
+    "Bird Rock",
+    "La Jolla Shores",
+    "La Jolla Farms",
+    "La Jolla Village",
+    "La Jolla Mesa",
+    "Mount Soledad",
+    "Country Club",
+    "Hidden Valley",
+    "La Jolla Heights"
+  ],
+  "commonMistakes": [
+    {
+      "title": "Using a single 'luxury' staging template across all sub-markets",
+      "body": "A Bird Rock surf cottage and a La Jolla Farms estate require completely different staging approaches. Defaulting to a single luxury-coastal template across La Jolla price bands underperforms staging made for each specific sub-market's buyer expectations and aesthetic vocabulary."
+    },
+    {
+      "title": "Over-furnishing rooms with significant views",
+      "body": "La Jolla view properties suffer most when staged with tall furniture, large art, and busy accessory layering that competes with the windows. The best La Jolla view staging uses lower-profile pieces and restrained styling that points the eye outward."
+    },
+    {
+      "title": "Leaving primary suites and bathrooms under-styled",
+      "body": "At La Jolla price points, the primary suite and bathrooms are heavily photographed and heavily scrutinized. Under-styling these rooms, leaving the homeowner's existing toiletries, towels, and personal items, directly costs the listing in buyer perception."
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Do you stage ocean-view homes and bluff-top properties in La Jolla?",
+      "answer": "Yes, these are some of our favorite La Jolla projects. View properties need staging that frames the view rather than competing with it: lower-profile furniture, restrained palettes, considered window treatments, and styling that draws the eye outward."
+    },
+    {
+      "question": "How much does home staging cost in La Jolla?",
+      "answer": "La Jolla staging is made for the sub-market and price band of the listing. A Bird Rock cottage staging differs from a Muirlands view-home or a La Jolla Farms estate staging. We provide specific quotes after a walkthrough so the proposal matches the actual property and strategy."
+    },
+    {
+      "question": "Can you stage La Jolla Farms estates?",
+      "answer": "Yes. We have inventory and styling moves specifically suited to estate-scale homes, appropriately scaled furniture, considered art layering, and a planning approach for very large rooms and significant ceiling heights."
+    },
+    {
+      "question": "Can you work with our existing furniture and art collection?",
+      "answer": "Yes. Many La Jolla projects are occupied stagings where the homeowner has substantial furnishings, art, and collections. We edit, supplement, and arrange the home rather than starting from scratch."
+    },
+    {
+      "question": "How quickly can you stage a La Jolla listing?",
+      "answer": "Most La Jolla projects move from inquiry to install within one to two weeks. Estate-scale projects sometimes need two to three. We can sometimes accommodate faster timelines for time-sensitive listings, please ask when you reach out."
+    }
+  ],
+  "nearbyCitySlugs": [
+    "home-staging-del-mar",
+    "home-staging-carlsbad",
+    "home-staging-solana-beach"
+  ]
+}
