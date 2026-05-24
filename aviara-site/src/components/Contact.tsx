@@ -23,12 +23,48 @@ const roomOptions = [
 ];
 
 export default function Contact() {
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "ok" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-  function onSubmit(e: FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setSubmitted(true);
-    e.currentTarget.reset();
+    const form = e.currentTarget;
+    const fd = new FormData(form);
+
+    const payload = {
+      name: String(fd.get("name") ?? ""),
+      email: String(fd.get("email") ?? ""),
+      phone: String(fd.get("phone") ?? ""),
+      projectType: String(fd.get("projectType") ?? ""),
+      city: String(fd.get("city") ?? ""),
+      squareFootage: String(fd.get("squareFootage") ?? ""),
+      stagingDate: String(fd.get("stagingDate") ?? ""),
+      rooms: fd.getAll("rooms").map(String),
+      message: String(fd.get("message") ?? ""),
+      website: String(fd.get("website") ?? ""),
+    };
+
+    setStatus("sending");
+    setErrorMsg(null);
+
+    try {
+      const res = await fetch("/api/contact/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data?.error || `HTTP ${res.status}`);
+      }
+
+      setStatus("ok");
+      form.reset();
+    } catch (err) {
+      setStatus("error");
+      setErrorMsg(err instanceof Error ? err.message : "Something went wrong");
+    }
   }
 
   return (
@@ -122,23 +158,47 @@ export default function Contact() {
               <TextAreaField id="message" label="Tell us about your project" full />
             </div>
 
+            {/* honeypot: hidden from real users, bots fill it */}
+            <div aria-hidden="true" className="absolute -left-[10000px] top-auto w-px h-px overflow-hidden">
+              <label htmlFor="website">Website (leave blank)</label>
+              <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+            </div>
+
             <div className="mt-9 flex flex-wrap items-center justify-between gap-5">
               <p className="text-xs text-mute max-w-xs">
                 By submitting, you consent to be contacted about your project. We
                 never share your information.
               </p>
-              <button type="submit" className="btn btn-ink" data-testid="contact-submit">
-                Send Inquiry
+              <button
+                type="submit"
+                className="btn btn-ink disabled:opacity-60 disabled:cursor-not-allowed"
+                data-testid="contact-submit"
+                disabled={status === "sending"}
+              >
+                {status === "sending" ? "Sending…" : "Send Inquiry"}
               </button>
             </div>
 
-            {submitted && (
+            {status === "ok" && (
               <p
                 role="status"
                 className="mt-6 text-sm text-brass border-t border-line pt-5"
                 data-testid="contact-success"
               >
                 Thank you. Your inquiry is in and we'll reach out within one business day.
+              </p>
+            )}
+            {status === "error" && (
+              <p
+                role="alert"
+                className="mt-6 text-sm text-red-700 border-t border-line pt-5"
+                data-testid="contact-error"
+              >
+                Sorry — we couldn&apos;t send your message. Please email us directly at{" "}
+                <a href={`mailto:${site.email}`} className="underline">
+                  {site.email}
+                </a>
+                {errorMsg ? <span className="text-mute"> ({errorMsg})</span> : null}.
               </p>
             )}
           </form>
