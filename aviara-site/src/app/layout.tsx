@@ -1,9 +1,19 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { site } from "@/data/site";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+
+// Optional analytics + Search Console verification — env-driven so the build
+// works fine without either set. To turn them on, set in Vercel:
+//   NEXT_PUBLIC_GA_MEASUREMENT_ID  (e.g. G-XXXXXXXXXX from Google Analytics)
+//   NEXT_PUBLIC_GSC_VERIFICATION   (the token from Search Console's HTML-tag
+//                                   verification method, just the value not
+//                                   the whole meta tag)
+const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+const GSC_VERIFICATION = process.env.NEXT_PUBLIC_GSC_VERIFICATION;
 
 // LocalBusiness structured data — tells Google what kind of business this is
 // and where we operate. Without this, we can't appear in rich results / local
@@ -78,12 +88,28 @@ export const metadata: Metadata = {
     url: site.url,
     siteName: site.name,
     type: "website",
+    images: [
+      {
+        url: "/images/A7405944.jpeg",
+        width: 1200,
+        height: 630,
+        alt: "Fully staged living room by Aviara Design Co.",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: site.name,
     description: site.description,
+    images: ["/images/A7405944.jpeg"],
   },
+  // Google Search Console ownership verification. Set
+  // NEXT_PUBLIC_GSC_VERIFICATION to the token from Search Console (the value
+  // inside content="..." in their HTML-tag verification method) to render
+  // the meta tag.
+  ...(GSC_VERIFICATION
+    ? { verification: { google: GSC_VERIFICATION } }
+    : {}),
   // Adaptive favicons: cream-bg variant for light browser themes, ink-bg for
   // dark themes. Both versions are pre-rendered in public/ so the icon always
   // pops regardless of what background color the browser tab shows. /favicon.ico
@@ -131,6 +157,25 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        {/* Google Analytics 4 — only rendered if a measurement ID is set in
+            env (NEXT_PUBLIC_GA_MEASUREMENT_ID). 'afterInteractive' so the
+            tracking script doesn't block first paint. */}
+        {GA_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga-init" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_ID}', { anonymize_ip: true });
+              `}
+            </Script>
+          </>
+        )}
       </body>
     </html>
   );
