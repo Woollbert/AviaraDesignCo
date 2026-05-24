@@ -38,7 +38,7 @@ export default function Services() {
 
         <div className="mt-14 grid lg:grid-cols-12 gap-10 items-start">
           <Reveal className="lg:col-span-5">
-            <ul className="divide-y divide-line border-y border-line" data-testid="services-list">
+            <ul className="border-y border-line" data-testid="services-list">
               {services.map((s, i) => (
                 <li key={s.slug}>
                   <button
@@ -48,7 +48,10 @@ export default function Services() {
                     aria-pressed={active === i}
                     data-active={active === i}
                     data-testid={`service-${s.slug}`}
-                    className="group w-full flex items-center justify-between gap-6 py-7 text-left transition-colors"
+                    className={[
+                      "group w-full flex items-center justify-between gap-6 py-7 text-left transition-colors",
+                      i > 0 ? "border-t border-line" : "",
+                    ].join(" ")}
                   >
                     <div className="flex items-baseline gap-5">
                       <span className="font-sans text-xs tracking-widest text-mute w-8 shrink-0">
@@ -80,12 +83,11 @@ export default function Services() {
             <div className="grid sm:grid-cols-5 gap-6 items-stretch" data-testid="service-detail">
               <div className="sm:col-span-3 photo-frame relative aspect-[4/5] sm:aspect-auto bg-linen overflow-hidden min-h-[26rem]">
                 <Image
-                  key={current.slug}
                   src={current.imageUrl}
                   alt={current.imageAlt}
                   fill
                   sizes="(min-width: 1024px) 35vw, (min-width: 640px) 60vw, 100vw"
-                  className="object-cover animate-fadeUp"
+                  className="object-cover transition-opacity duration-300"
                 />
               </div>
               <div className="sm:col-span-2 bg-bone p-7 md:p-8 flex flex-col">
