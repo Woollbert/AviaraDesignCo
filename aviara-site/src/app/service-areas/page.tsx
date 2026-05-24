@@ -7,27 +7,30 @@ import { site } from "@/data/site";
 export const metadata: Metadata = {
   title: "Service Areas — Home Staging Across Southern California | Aviara Design Co.",
   description:
-    "Aviara Design Co. stages homes across Southern California — from Temecula and the San Jacinto Valley to coastal North County San Diego, inland North County, and the Big Bear mountain market.",
+    "Aviara Design Co. stages homes across Southern California, from Temecula and the San Jacinto Valley to coastal North County San Diego, inland North County, and the Big Bear mountain market.",
   alternates: { canonical: "/service-areas/" },
   openGraph: {
     title: "Service Areas — Home Staging Across Southern California | Aviara Design Co.",
     description:
-      "Aviara Design Co. stages homes across Southern California — from Temecula and the San Jacinto Valley to coastal North County San Diego, inland North County, and the Big Bear mountain market.",
+      "Aviara Design Co. stages homes across Southern California, from Temecula and the San Jacinto Valley to coastal North County San Diego, inland North County, and the Big Bear mountain market.",
     url: "/service-areas/",
   },
 };
 
 // Group the 14 city pages by region for scannability. Slugs reference
-// entries in src/data/cities.ts.
+// entries in src/data/cities.ts. `eyebrow` is the short label that appears
+// above the section heading (replaces a generic "Region 01" numbering).
 const regions: Array<{
+  eyebrow: string;
   title: string;
   blurb: string;
   citySlugs: string[];
 }> = [
   {
+    eyebrow: "Our Home Region",
     title: "Inland Riverside County",
     blurb:
-      "Our home base and the markets we know best — Temecula Valley, the San Jacinto Valley, and the I-15 / I-215 corridor.",
+      "Our home base and the markets we know best. Temecula Valley, the San Jacinto Valley, and the I-15 / I-215 corridor.",
     citySlugs: [
       "home-staging-temecula",
       "home-staging-murrieta",
@@ -36,6 +39,7 @@ const regions: Array<{
     ],
   },
   {
+    eyebrow: "Coastal Luxury",
     title: "Coastal North County San Diego",
     blurb:
       "Coastal-luxury staging from Carlsbad's bluffs and lagoons through the design-aware villages of Encinitas, Solana Beach, and Del Mar, into La Jolla and the inland estates of Rancho Santa Fe.",
@@ -49,6 +53,7 @@ const regions: Array<{
     ],
   },
   {
+    eyebrow: "Inland Estates",
     title: "Inland North County San Diego",
     blurb:
       "Estate, family-home, and luxury inland-coastal staging across Fallbrook's avocado country, San Marcos, and the older established neighborhoods of Escondido.",
@@ -59,7 +64,8 @@ const regions: Array<{
     ],
   },
   {
-    title: "Mountain Resort",
+    eyebrow: "Mountain Resort",
+    title: "Big Bear & the San Bernardino Mountains",
     blurb:
       "Mountain-luxury staging for cabins, lake homes, and vacation-rental properties in the Big Bear Valley.",
     citySlugs: ["home-staging-big-bear-lake"],
@@ -92,11 +98,11 @@ export default function Page() {
               <span className="italic text-brassSoft">Southern California.</span>
             </h1>
             <p className="mt-7 text-lg md:text-xl text-ivory/85 max-w-2xl leading-relaxed">
-              Aviara Design Co. stages homes from our Temecula home base out across
-              the Riverside County valleys, the full North County San Diego
-              coastline, the inland communities of Fallbrook through Escondido, and
-              up the mountain to Big Bear. Each market gets a dedicated landing
-              page with local context — choose yours below.
+              Aviara Design Co. stages homes from our Temecula home base out into
+              the Riverside County valleys, along the full North County San Diego
+              coastline, through the inland communities of Fallbrook to Escondido,
+              and up the mountain to Big Bear. Choose your area below to see how
+              we work there.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
               <a href="/#contact" className="btn btn-ink">
@@ -122,7 +128,7 @@ export default function Page() {
             <Reveal>
               <p className="eyebrow flex items-center gap-3">
                 <span className="gold-rule" />
-                Region {String(regionIndex + 1).padStart(2, "0")}
+                {region.eyebrow}
               </p>
               <h2 className="mt-4 font-display text-3xl md:text-4xl text-ink leading-tight">
                 {region.title}
@@ -173,7 +179,7 @@ export default function Page() {
             <p className="mt-6 text-lg text-ivory/85">
               We travel for the right project across Southern California. If your
               property is somewhere between Temecula and the coast, in North
-              County, or up at the mountain — we want to hear about it.
+              County, or up at the mountain, we want to hear about it.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <a href="/#contact" className="btn btn-ink">
