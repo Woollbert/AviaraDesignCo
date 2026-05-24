@@ -40,7 +40,7 @@ export default function Footer() {
                     href={`/${c.slug}/`}
                     className="text-base text-ink hover:text-brass transition-colors"
                   >
-                    Home Staging {c.city}
+                    {c.city}
                   </Link>
                 </li>
               ))}
