@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Reveal from "./Reveal";
 import { services } from "@/data/services";
@@ -10,6 +10,30 @@ export default function Services() {
   const [active, setActive] = useState(0);
   const current = services[active];
   const s = site.sections.services;
+
+  // Hover-intent: only commit a change after the cursor has lingered, so
+  // sweeping the cursor across the list doesn't ping-pong the detail panel.
+  const hoverTimer = useRef<number | null>(null);
+  useEffect(() => () => {
+    if (hoverTimer.current !== null) window.clearTimeout(hoverTimer.current);
+  }, []);
+  function scheduleActive(i: number) {
+    if (hoverTimer.current !== null) window.clearTimeout(hoverTimer.current);
+    hoverTimer.current = window.setTimeout(() => {
+      setActive(i);
+      hoverTimer.current = null;
+    }, 120);
+  }
+  function cancelSchedule() {
+    if (hoverTimer.current !== null) {
+      window.clearTimeout(hoverTimer.current);
+      hoverTimer.current = null;
+    }
+  }
+  function commitActive(i: number) {
+    cancelSchedule();
+    setActive(i);
+  }
 
   return (
     <section id="services" className="section relative overflow-hidden bg-ivory border-y border-line">
@@ -43,8 +67,10 @@ export default function Services() {
                 <li key={s.slug}>
                   <button
                     type="button"
-                    onClick={() => setActive(i)}
-                    onMouseEnter={() => setActive(i)}
+                    onClick={() => commitActive(i)}
+                    onMouseEnter={() => scheduleActive(i)}
+                    onMouseLeave={cancelSchedule}
+                    onFocus={() => commitActive(i)}
                     aria-pressed={active === i}
                     data-active={active === i}
                     data-testid={`service-${s.slug}`}
@@ -90,7 +116,7 @@ export default function Services() {
                   className="object-cover transition-opacity duration-300"
                 />
               </div>
-              <div className="sm:col-span-2 bg-bone p-7 md:p-8 flex flex-col">
+              <div className="sm:col-span-2 bg-bone p-7 md:p-8 flex flex-col min-h-[28rem]">
                 <p className="eyebrow">{`Service 0${active + 1}`}</p>
                 <h3 className="mt-3 font-display text-2xl md:text-3xl text-ink">
                   {current.name}
