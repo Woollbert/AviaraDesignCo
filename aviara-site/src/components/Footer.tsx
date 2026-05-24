@@ -28,13 +28,13 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* COL 2: Service Areas — internal links boost local SEO */}
+          {/* COL 2: Service Areas — top cities visible, full list on /service-areas/ */}
           <div className="md:border-l md:border-line md:pl-8 flex flex-col items-center md:items-start text-center md:text-left">
             <h4 className="font-sans text-base font-semibold tracking-[0.18em] uppercase text-ink">
               Service Areas
             </h4>
             <ul className="mt-6 space-y-3">
-              {cities.map((c) => (
+              {cities.slice(0, 5).map((c) => (
                 <li key={c.slug}>
                   <Link
                     href={`/${c.slug}/`}
@@ -44,6 +44,14 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
+              <li className="pt-2">
+                <Link
+                  href="/service-areas/"
+                  className="text-sm text-brass hover:text-ink transition-colors underline underline-offset-4 decoration-brass/40 hover:decoration-ink"
+                >
+                  View all service areas →
+                </Link>
+              </li>
             </ul>
           </div>
 

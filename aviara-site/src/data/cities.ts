@@ -327,99 +327,6 @@ export const cities: City[] = [
     nearbyCitySlugs: ["home-staging-murrieta", "home-staging-winchester", "home-staging-temecula"],
   },
   {
-    slug: "home-staging-fallbrook",
-    city: "Fallbrook",
-    county: "San Diego County",
-    metaTitle: "Home Staging in Fallbrook, CA | Aviara Design Co.",
-    metaDescription:
-      "Home staging in Fallbrook, CA. Aviara Design Co. — a family-owned studio specializing in luxury estate staging across Fallbrook's avocado country and gated communities.",
-    h1: "Home Staging in Fallbrook, CA",
-    intro:
-      "Aviara Design Co. brings livable-luxury staging to Fallbrook estates, custom homes, and avocado country properties. Fallbrook listings often require a more elevated staging approach — larger square footage, indoor-outdoor flow, and a buyer pool that's actively comparing your home to other luxury options across North County San Diego.",
-    marketContext: [
-      "Fallbrook is one of North County San Diego's most distinct real estate markets — rural-luxury, agriculturally rooted, and unmistakably its own thing. The bulk of the inventory worth staging falls between the low $1Ms and well into the $5M+ band for full estate properties on multiple acres, with avocado, citrus, and equestrian properties trading at premiums for the land and lifestyle they offer.",
-      "Buyer demographics skew significantly affluent: families relocating from coastal San Diego seeking acreage and privacy, second-home buyers from Los Angeles and Orange County, equestrians, hobby farmers, and retirees from across California looking for a quieter version of the Southern California dream. These buyers are typically comparing your Fallbrook estate against options in Rancho Santa Fe, Olivenhain, and even further afield. The bar for presentation is high and the buyer pool is small enough that every listing needs to be a real contender.",
-      "What makes Fallbrook distinct from other luxury markets is the importance of the land itself. Buyers aren't just buying a house — they're buying a vineyard, a citrus grove, a guest house, a barn, a view. Staging that ignores the outdoor living spaces, the gardens, and the supporting buildings misses the entire reason buyers are even looking at Fallbrook. The best Fallbrook listings stage the whole property as a single unified estate experience.",
-    ],
-    whyStaging: [
-      "Fallbrook's luxury and estate buyers expect homes that feel curated and intentional. Empty or underdressed homes can struggle to compete in this price band.",
-      "Larger Fallbrook homes need careful scale and proportion — generic staging often makes rooms feel smaller, not bigger. Our work emphasizes the architecture and views.",
-      "Indoor-outdoor flow is a major selling point in Fallbrook. We stage exterior living spaces alongside the interior to communicate the full lifestyle.",
-    ],
-    localProof:
-      "We've staged in Fallbrook including the Fallbrook Estate featured in our portfolio — a luxury install showcasing the home's full estate-living potential.",
-    serviceNotes: [
-      {
-        name: "Vacant Home Staging",
-        note: "Essential for vacant Fallbrook estate listings. Without staging, large custom homes can read as cavernous and unloved in photos. A full install with appropriately scaled furniture, layered art, and considered styling restores the human scale buyers need to imagine living in the property.",
-      },
-      {
-        name: "Occupied Home Staging",
-        note: "A frequent ask for long-tenured Fallbrook owners with character pieces, accumulated art, and meaningful collections. We respect what's already in the home, edit the volume, and supplement where the property needs more cohesion or contemporary balance.",
-      },
-      {
-        name: "Interior Design",
-        note: "For new Fallbrook residents personalizing an estate they've just acquired, or long-time owners ready to refresh. We work in close partnership with the architecture — Spanish revival, ranch, contemporary, modern farmhouse — and honor the property's bones while delivering livable luxury.",
-      },
-      {
-        name: "Staging Consultations",
-        note: "For Fallbrook listing agents who need a high-end playbook before the listing photographer arrives. A focused walkthrough produces room-by-room recommendations specific to the estate, the price point, and the comparable Fallbrook competition.",
-      },
-    ],
-    neighborhoods: [
-      "Champagne Crest",
-      "Saratoga Estates",
-      "Fallbrook Hills",
-      "Live Oak Park",
-      "Rancho Monserate",
-      "Gird Valley",
-      "Bonsall (adjacent)",
-      "De Luz (adjacent)",
-    ],
-    commonMistakes: [
-      {
-        title: "Furnishing large estate rooms with small-scale pieces",
-        body: "It's the single most common mistake we see in Fallbrook luxury listings: a 24-foot-ceiling great room staged with a standard-scale sofa and coffee table. The proportions broadcast 'this house is bigger than the furniture can fill,' which subconsciously tells buyers the home is too much. Estate-scale rooms need estate-scale staging.",
-      },
-      {
-        title: "Ignoring the pools, vineyards, and outdoor living areas",
-        body: "Fallbrook buyers are buying the lifestyle. An interior-only staging job in a property with a pool, vineyard, or significant outdoor entertaining area leaves the property's most distinctive selling features looking neglected in the listing photos. We stage these spaces alongside the interior so the listing tells one complete story.",
-      },
-      {
-        title: "Forcing a contemporary aesthetic onto a Spanish revival or rancher",
-        body: "Some Fallbrook homes are mid-century, some are Spanish, some are modern farmhouse, some are full Tuscan estates. Staging works best when it honors the architecture and the era of the home rather than trying to drag it into whatever's trendy on Instagram. We design staging that the home wants to wear, not staging that fights it.",
-      },
-    ],
-    faqs: [
-      {
-        question: "Do you stage estate homes in Fallbrook?",
-        answer:
-          "Yes — luxury and estate staging is one of our strongest specialties. We tailor inventory, scale, and styling to homes in the $1.5M+ band where presentation directly impacts both speed of sale and final offers.",
-      },
-      {
-        question: "Can you stage outdoor living areas?",
-        answer:
-          "Absolutely. Fallbrook properties often have pools, patios, vineyards, and entertaining areas that are central to the lifestyle. We stage these spaces alongside interiors to convey the full value of the home.",
-      },
-      {
-        question: "How long is a Fallbrook staging install live?",
-        answer:
-          "Staging is typically installed for the duration of your active listing, with monthly extensions if needed. Most Fallbrook listings sell well within the initial term — we'll discuss timing during the walkthrough.",
-      },
-      {
-        question: "Do you stage Fallbrook properties with acreage, vineyards, or working groves?",
-        answer:
-          "Yes. These properties are some of our favorite to stage because the land itself is a major part of the value. We work with you to identify which outdoor spaces to feature — entertaining patios, vineyards, mature gardens, guest houses — and stage them alongside the interior so the listing communicates the whole estate.",
-      },
-      {
-        question: "How do you handle staging for very large Fallbrook estates?",
-        answer:
-          "Estate-scale homes get estate-scale planning. We typically conduct a longer initial walkthrough, identify the rooms with the highest impact on buyer decisions (great room, primary suite, kitchen, entertaining areas, key outdoor spaces), and design the staging to feel cohesive across the whole property. Our inventory is sized for large rooms — appropriately scaled sofas, art, and accessories.",
-      },
-    ],
-    nearbyCitySlugs: ["home-staging-temecula", "home-staging-san-marcos", "home-staging-carlsbad"],
-  },
-  {
     slug: "home-staging-winchester",
     city: "Winchester",
     county: "Riverside County",
@@ -511,6 +418,99 @@ export const cities: City[] = [
       },
     ],
     nearbyCitySlugs: ["home-staging-menifee", "home-staging-murrieta", "home-staging-temecula"],
+  },
+  {
+    slug: "home-staging-fallbrook",
+    city: "Fallbrook",
+    county: "San Diego County",
+    metaTitle: "Home Staging in Fallbrook, CA | Aviara Design Co.",
+    metaDescription:
+      "Home staging in Fallbrook, CA. Aviara Design Co. — a family-owned studio specializing in luxury estate staging across Fallbrook's avocado country and gated communities.",
+    h1: "Home Staging in Fallbrook, CA",
+    intro:
+      "Aviara Design Co. brings livable-luxury staging to Fallbrook estates, custom homes, and avocado country properties. Fallbrook listings often require a more elevated staging approach — larger square footage, indoor-outdoor flow, and a buyer pool that's actively comparing your home to other luxury options across North County San Diego.",
+    marketContext: [
+      "Fallbrook is one of North County San Diego's most distinct real estate markets — rural-luxury, agriculturally rooted, and unmistakably its own thing. The bulk of the inventory worth staging falls between the low $1Ms and well into the $5M+ band for full estate properties on multiple acres, with avocado, citrus, and equestrian properties trading at premiums for the land and lifestyle they offer.",
+      "Buyer demographics skew significantly affluent: families relocating from coastal San Diego seeking acreage and privacy, second-home buyers from Los Angeles and Orange County, equestrians, hobby farmers, and retirees from across California looking for a quieter version of the Southern California dream. These buyers are typically comparing your Fallbrook estate against options in Rancho Santa Fe, Olivenhain, and even further afield. The bar for presentation is high and the buyer pool is small enough that every listing needs to be a real contender.",
+      "What makes Fallbrook distinct from other luxury markets is the importance of the land itself. Buyers aren't just buying a house — they're buying a vineyard, a citrus grove, a guest house, a barn, a view. Staging that ignores the outdoor living spaces, the gardens, and the supporting buildings misses the entire reason buyers are even looking at Fallbrook. The best Fallbrook listings stage the whole property as a single unified estate experience.",
+    ],
+    whyStaging: [
+      "Fallbrook's luxury and estate buyers expect homes that feel curated and intentional. Empty or underdressed homes can struggle to compete in this price band.",
+      "Larger Fallbrook homes need careful scale and proportion — generic staging often makes rooms feel smaller, not bigger. Our work emphasizes the architecture and views.",
+      "Indoor-outdoor flow is a major selling point in Fallbrook. We stage exterior living spaces alongside the interior to communicate the full lifestyle.",
+    ],
+    localProof:
+      "We've staged in Fallbrook including the Fallbrook Estate featured in our portfolio — a luxury install showcasing the home's full estate-living potential.",
+    serviceNotes: [
+      {
+        name: "Vacant Home Staging",
+        note: "Essential for vacant Fallbrook estate listings. Without staging, large custom homes can read as cavernous and unloved in photos. A full install with appropriately scaled furniture, layered art, and considered styling restores the human scale buyers need to imagine living in the property.",
+      },
+      {
+        name: "Occupied Home Staging",
+        note: "A frequent ask for long-tenured Fallbrook owners with character pieces, accumulated art, and meaningful collections. We respect what's already in the home, edit the volume, and supplement where the property needs more cohesion or contemporary balance.",
+      },
+      {
+        name: "Interior Design",
+        note: "For new Fallbrook residents personalizing an estate they've just acquired, or long-time owners ready to refresh. We work in close partnership with the architecture — Spanish revival, ranch, contemporary, modern farmhouse — and honor the property's bones while delivering livable luxury.",
+      },
+      {
+        name: "Staging Consultations",
+        note: "For Fallbrook listing agents who need a high-end playbook before the listing photographer arrives. A focused walkthrough produces room-by-room recommendations specific to the estate, the price point, and the comparable Fallbrook competition.",
+      },
+    ],
+    neighborhoods: [
+      "Champagne Crest",
+      "Saratoga Estates",
+      "Fallbrook Hills",
+      "Live Oak Park",
+      "Rancho Monserate",
+      "Gird Valley",
+      "Bonsall (adjacent)",
+      "De Luz (adjacent)",
+    ],
+    commonMistakes: [
+      {
+        title: "Furnishing large estate rooms with small-scale pieces",
+        body: "It's the single most common mistake we see in Fallbrook luxury listings: a 24-foot-ceiling great room staged with a standard-scale sofa and coffee table. The proportions broadcast 'this house is bigger than the furniture can fill,' which subconsciously tells buyers the home is too much. Estate-scale rooms need estate-scale staging.",
+      },
+      {
+        title: "Ignoring the pools, vineyards, and outdoor living areas",
+        body: "Fallbrook buyers are buying the lifestyle. An interior-only staging job in a property with a pool, vineyard, or significant outdoor entertaining area leaves the property's most distinctive selling features looking neglected in the listing photos. We stage these spaces alongside the interior so the listing tells one complete story.",
+      },
+      {
+        title: "Forcing a contemporary aesthetic onto a Spanish revival or rancher",
+        body: "Some Fallbrook homes are mid-century, some are Spanish, some are modern farmhouse, some are full Tuscan estates. Staging works best when it honors the architecture and the era of the home rather than trying to drag it into whatever's trendy on Instagram. We design staging that the home wants to wear, not staging that fights it.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Do you stage estate homes in Fallbrook?",
+        answer:
+          "Yes — luxury and estate staging is one of our strongest specialties. We tailor inventory, scale, and styling to homes in the $1.5M+ band where presentation directly impacts both speed of sale and final offers.",
+      },
+      {
+        question: "Can you stage outdoor living areas?",
+        answer:
+          "Absolutely. Fallbrook properties often have pools, patios, vineyards, and entertaining areas that are central to the lifestyle. We stage these spaces alongside interiors to convey the full value of the home.",
+      },
+      {
+        question: "How long is a Fallbrook staging install live?",
+        answer:
+          "Staging is typically installed for the duration of your active listing, with monthly extensions if needed. Most Fallbrook listings sell well within the initial term — we'll discuss timing during the walkthrough.",
+      },
+      {
+        question: "Do you stage Fallbrook properties with acreage, vineyards, or working groves?",
+        answer:
+          "Yes. These properties are some of our favorite to stage because the land itself is a major part of the value. We work with you to identify which outdoor spaces to feature — entertaining patios, vineyards, mature gardens, guest houses — and stage them alongside the interior so the listing communicates the whole estate.",
+      },
+      {
+        question: "How do you handle staging for very large Fallbrook estates?",
+        answer:
+          "Estate-scale homes get estate-scale planning. We typically conduct a longer initial walkthrough, identify the rooms with the highest impact on buyer decisions (great room, primary suite, kitchen, entertaining areas, key outdoor spaces), and design the staging to feel cohesive across the whole property. Our inventory is sized for large rooms — appropriately scaled sofas, art, and accessories.",
+      },
+    ],
+    nearbyCitySlugs: ["home-staging-temecula", "home-staging-san-marcos", "home-staging-carlsbad"],
   },
   {
     slug: "home-staging-carlsbad",
