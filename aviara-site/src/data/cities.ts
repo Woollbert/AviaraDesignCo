@@ -150,7 +150,7 @@ export const cities: City[] = [
     marketContext: [
       "Murrieta sits at the heart of the I-15 commuter corridor and has quietly become one of Southern California's strongest mid-tier family markets. Most of the resale inventory falls between the upper $500Ks and the low $1.2Ms, established four-bedroom homes in Greer Ranch and Copper Canyon, newer builds in Spencer's Crossing and the Mapleton corridor, and a luxury tier in Bear Creek that runs well above the median.",
       "Buyer demographics here are heavily families: young households moving up from townhomes in coastal San Diego or Orange County, two-income couples chasing the value-per-square-foot equation, and a growing number of remote-working families who've discovered they can have a yard, a pool, and a fourth bedroom in Murrieta for what a two-bedroom condo costs them in Irvine. Those buyers are decisive when they fall in love with a home, but they fall in love through the listing photos first.",
-      "Because so much of Murrieta is master-planned, your listing is often competing with three or four nearly identical floor plans on the same MLS update. Presentation is the entire differentiator. Staged Murrieta homes consistently outperform unstaged comps on time-on-market and final-to-list ratio, not because the staging changes the home, but because it changes how buyers feel about the home in the seven seconds it takes them to scroll past or stop and look.",
+      "Because so much of Murrieta is master-planned, your listing is often competing with three or four nearly identical floor plans on the same MLS update. Presentation is the entire differentiator. Staged Murrieta homes outperform unstaged comps on time-on-market and final-to-list ratio, not because the staging changes the home, but because it changes how buyers feel about the home in the seven seconds it takes them to scroll past or stop and look.",
     ],
     whyStaging: [
       "Murrieta's competitive listing market means buyers often see your home in photos first. Staged listings consistently get more saves and showings than unstaged ones.",
@@ -261,7 +261,7 @@ export const cities: City[] = [
       },
       {
         name: "Occupied Home Staging",
-        note: "Used regularly in older Menifee neighborhoods and 55+ communities where homeowners are still living in the home. We edit, re-arrange, and supplement with curated accessories so the property reads market-ready without disrupting the seller's daily life.",
+        note: "Used regularly in older Menifee neighborhoods and 55+ communities where homeowners are still living in the home. We edit, re-arrange, and supplement with the right accessories so the property reads market-ready without disrupting the seller's daily life.",
       },
       {
         name: "Interior Design",
@@ -286,7 +286,7 @@ export const cities: City[] = [
     commonMistakes: [
       {
         title: "Leaving the model-home builder furniture as inspiration",
-        body: "It's tempting to walk through the builder's model and try to copy what's there. The issue is buyers can immediately tell, model-home furniture is generic by design, scaled for a sales center, and reads as 'spec' rather than 'home.' A real staging install with curated, livable furnishings out-performs the model-home look every time.",
+        body: "It's tempting to walk through the builder's model and try to copy what's there. The issue is buyers can immediately tell, model-home furniture is generic by design, scaled for a sales center, and reads as 'spec' rather than 'home.' A real staging install with real, livable furnishings out-performs the model-home look every time.",
       },
       {
         title: "Not addressing builder-grade neutrals",
@@ -432,7 +432,7 @@ export const cities: City[] = [
     marketContext: [
       "Fallbrook is one of North County San Diego's most distinct real estate markets. It's rural-luxury, agriculturally rooted, and unmistakably its own thing. Most of the inventory worth staging falls between the low $1Ms and well into the $5M+ band for full estate properties on multiple acres, with avocado, citrus, and equestrian properties trading at premiums for the land and lifestyle they offer.",
       "Buyer demographics skew affluent: families relocating from coastal San Diego seeking acreage and privacy, second-home buyers from Los Angeles and Orange County, equestrians, hobby farmers, and retirees from across California looking for a quieter version of the Southern California dream. These buyers are typically comparing your Fallbrook estate against options in Rancho Santa Fe, Olivenhain, and even further afield. The bar for presentation is high and the buyer base is small enough that every listing needs to be a real contender.",
-      "What makes Fallbrook distinct from other luxury markets is the importance of the land itself. Buyers aren't just buying a house, they're buying a vineyard, a citrus grove, a guest house, a barn, a view. Staging that ignores the outdoor living spaces, the gardens, and the supporting buildings misses the entire reason buyers are even looking at Fallbrook. The best Fallbrook listings stage the whole property as a single unified estate experience.",
+      "Fallbrook is different from other luxury markets in one specific way: the land matters as much as the house. Buyers aren't just buying a house, they're buying a vineyard, a citrus grove, a guest house, a barn, a view. Staging that ignores the outdoor living spaces, the gardens, and the supporting buildings misses the entire reason buyers are even looking at Fallbrook. The best Fallbrook listings stage the whole property as a single unified estate experience.",
     ],
     whyStaging: [
       "Fallbrook's luxury and estate buyers expect homes that feel curated and intentional. Empty or underdressed homes can struggle to compete in this price band.",
@@ -452,7 +452,7 @@ export const cities: City[] = [
       },
       {
         name: "Interior Design",
-        note: "For new Fallbrook residents personalizing an estate they've just acquired, or long-time owners ready to refresh. We work in close partnership with the architecture, Spanish revival, ranch, contemporary, modern farmhouse, and honor the property's bones while delivering livable luxury.",
+        note: "For new Fallbrook residents personalizing an estate they've just acquired, or long-time owners ready to refresh. We work in close partnership with the architecture, Spanish revival, ranch, contemporary, modern farmhouse, and preserve the property's bones while delivering livable luxury.",
       },
       {
         name: "Staging Consultations",
@@ -480,7 +480,7 @@ export const cities: City[] = [
       },
       {
         title: "Forcing a contemporary aesthetic onto a Spanish revival or rancher",
-        body: "Some Fallbrook homes are mid-century, some are Spanish, some are modern farmhouse, some are full Tuscan estates. Staging works best when it honors the architecture and the era of the home rather than trying to drag it into whatever's trendy on Instagram. We design staging that the home wants to wear, not staging that fights it.",
+        body: "Some Fallbrook homes are mid-century, some are Spanish, some are modern farmhouse, some are full Tuscan estates. Staging works best when it matches the architecture and era of the home rather than trying to drag it into whatever's trendy on Instagram. We design staging that the home wants to wear, not staging that fights it.",
       },
     ],
     faqs: [
@@ -525,7 +525,7 @@ export const cities: City[] = [
     marketContext: [
       "Carlsbad is one of San Diego County's most distinct coastal markets, a working beach town that grew into a resort destination, with a price range that runs from the high $900Ks for entry-level condos and townhomes into the $5M+ band for full ocean-view estates on the bluffs. Most of the family resale inventory lives between the low $1.2Ms and the mid $2.5Ms across Aviara, La Costa, Bressi Ranch, and the Carlsbad Village periphery.",
       "Buyer demographics here are heavily affluent: families relocating from Los Angeles, Orange County, or the Bay Area, tech and biotech professionals working in the Carlsbad and Sorrento Valley corridors, and a steady flow of second-home and retirement buyers who've decided North County is the version of California they actually want to live in. These buyers are sophisticated about presentation, they're comparing your Carlsbad listing against Encinitas, Solana Beach, and La Jolla options at the same time.",
-      "What makes Carlsbad distinct is the range of buyers inside the same zip code: a $1.3M Aviara townhome buyer and a $4.5M La Costa Ridge estate buyer are looking at completely different homes with completely different staging needs. The same generic coastal-staging aesthetic that works at one price point reads as cheap at the other. Good staging here is made for the specific home, not pulled from a template.",
+      "Carlsbad packs an unusual range of buyers into the same zip code: a $1.3M Aviara townhome buyer and a $4.5M La Costa Ridge estate buyer are looking at completely different homes with completely different staging needs. The same generic coastal-staging aesthetic that works at one price point reads as cheap at the other. Good staging here is made for the specific home, not pulled from a template.",
     ],
     whyStaging: [
       "Carlsbad buyers are typically comparing your home against three or four other North County options in real time. The listing photos decide whether yours makes the short list.",
@@ -545,7 +545,7 @@ export const cities: City[] = [
       },
       {
         name: "Interior Design",
-        note: "For Carlsbad homeowners not yet listing, designing a new Aviara hillside home, refreshing a long-tenured La Costa property, or building out a coastal-modern Olde Carlsbad project. Livable luxury, executed in dialogue with the architecture and the ocean.",
+        note: "For Carlsbad homeowners not yet listing, designing a new Aviara hillside home, refreshing a long-tenured La Costa property, or building out a coastal-modern Olde Carlsbad project. Livable luxury, shaped by the architecture and the ocean.",
       },
       {
         name: "Staging Consultations",
@@ -616,11 +616,11 @@ export const cities: City[] = [
       "Home staging in Encinitas, CA. Family-owned studio staging coastal homes across Leucadia, Cardiff-by-the-Sea, Olivenhain, and New Encinitas.",
     h1: "Home Staging in Encinitas, CA",
     intro:
-      "Aviara Design Co. stages homes throughout Encinitas, from the surf-culture beach cottages of Leucadia and Cardiff-by-the-Sea to the rural-luxury estates of Olivenhain and the family neighborhoods of New Encinitas. Our staging respects what makes each Encinitas sub-market distinct rather than flattening them into a single coastal template.",
+      "Aviara Design Co. stages homes throughout Encinitas, from the surf-culture beach cottages of Leucadia and Cardiff-by-the-Sea to the rural-luxury estates of Olivenhain and the family neighborhoods of New Encinitas. Our staging adapts to what makes each Encinitas sub-market distinct rather than flattening them into a single coastal template.",
     marketContext: [
       "Encinitas is one of the most beloved coastal markets in San Diego County, and one of the most internally diverse. Pricing in Leucadia and Cardiff runs from the $1.2Ms for older cottages into the $3.5M+ range for renovated and contemporary builds. Olivenhain estates and view properties trade into the $4M-$6M band. New Encinitas family neighborhoods sit between $1.4M and $2.5M for most resale inventory.",
       "Buyer demographics skew affluent and design-aware: surfers and creatives in Leucadia, families with school-age kids in New Encinitas and Cardiff, ranch-and-acreage buyers in Olivenhain, and an increasing share of remote-working professionals from LA and Bay Area tech who've discovered the lifestyle. These buyers expect homes that photograph thoughtfully, they're scrolling listings against Solana Beach, Del Mar, and Carlsbad in the same browser session.",
-      "What makes Encinitas distinct is the strong sense of local aesthetic, there's a recognizable coastal-California design vibe that residents love and that out-of-area staging templates often miss. Successful Encinitas staging honors that aesthetic: natural materials, calm palettes, indoor-outdoor flow, an absence of the formal-traditional staging look that reads as out-of-place here.",
+      "Encinitas has a strong sense of local aesthetic, there's a recognizable coastal-California design vibe that residents love and that out-of-area staging templates often miss. Successful Encinitas staging honors that aesthetic: natural materials, calm palettes, indoor-outdoor flow, an absence of the formal-traditional staging look that reads as out-of-place here.",
     ],
     whyStaging: [
       "Encinitas buyers are sophisticated about design and immediately spot generic, transactional staging. Staging designed for the local coastal aesthetic outperforms templated installs.",
@@ -636,7 +636,7 @@ export const cities: City[] = [
       },
       {
         name: "Occupied Home Staging",
-        note: "Frequent in established Encinitas neighborhoods where families are still in the home. We edit existing furniture, re-arrange for flow, and add curated accessories so the listing photographs at its real price point without forcing the seller out.",
+        note: "Frequent in established Encinitas neighborhoods where families are still in the home. We edit existing furniture, re-arrange for flow, and add the right accessories so the listing photographs at its real price point without forcing the seller out.",
       },
       {
         name: "Interior Design",
@@ -696,7 +696,7 @@ export const cities: City[] = [
       {
         question: "Do you work with Encinitas listing agents directly?",
         answer:
-          "Regularly. We partner with Encinitas agents across all sub-markets and price bands. Agents appreciate our clear pricing, predictable schedule, and consistent quality, and that we honor the local aesthetic rather than fight it.",
+          "Regularly. We partner with Encinitas agents across all sub-markets and price bands. Agents appreciate our clear pricing, predictable schedule, and consistent quality, and that we match the local aesthetic rather than fight it.",
       },
     ],
     nearbyCitySlugs: ["home-staging-carlsbad", "home-staging-solana-beach", "home-staging-del-mar"],
@@ -714,19 +714,19 @@ export const cities: City[] = [
     marketContext: [
       "Solana Beach is small in footprint and tall in expectations. Tucked between Del Mar to the south and Encinitas to the north, the market typically prices between the high $1.4Ms for entry-level condos and townhomes near the train station and well into the $5M+ band for ocean-view homes and full Lomas Santa Fe estates. Beach-adjacent properties on the western side of I-5 trade at meaningful premiums.",
       "Buyer demographics skew affluent and design-aware in a way that's unusual even for North County: the Cedros Design District anchors a local creative class, design professionals live and work in the city, and the buyers who target Solana Beach often have stronger interior-design opinions than buyers in surrounding markets. This is not a market that responds well to formulaic or generic staging.",
-      "What makes Solana Beach distinct is this sophistication of buyer expectation. Listings that show up with thoughtful, current, locally-relevant staging routinely outperform comparable Encinitas and Del Mar listings on speed and offer strength. Listings that show up with templated furniture-rental staging often sit longer than the size and location alone would predict.",
+      "The buyer expectation here runs unusually high. Listings that show up with thoughtful, current, locally-relevant staging routinely outperform comparable Encinitas and Del Mar listings on speed and offer strength. Listings that show up with templated furniture-rental staging often sit longer than the size and location alone would predict.",
     ],
     whyStaging: [
       "Solana Beach buyers are unusually design-aware, Cedros Design District is local, and they immediately read whether staging has been considered or templated.",
       "Small-footprint city, small inventory at any given moment. Your listing is being studied closely by every active buyer in the price band. Presentation matters disproportionately.",
-      "Coastal-luxury aesthetic is the default. Staging that honors the local design vocabulary, calm palettes, natural materials, current furniture, outperforms traditional or out-of-area imports.",
+      "Coastal-luxury aesthetic is the default. Staging that matches the local design vocabulary, calm palettes, natural materials, current furniture, outperforms traditional or out-of-area imports.",
     ],
     localProof:
       "We stage regularly across Solana Beach, Del Mar, and Encinitas, and our work fits comfortably into the local design conversation. View our portfolio for recent installs.",
     serviceNotes: [
       {
         name: "Vacant Home Staging",
-        note: "Our default Solana Beach service for empty listings. Inventory made for coastal-luxury: lower-profile furniture, current shapes, refined accessories, art that holds its own without dominating the rooms. The staging respects the local design vocabulary.",
+        note: "Our default Solana Beach service for empty listings. Inventory made for coastal-luxury: lower-profile furniture, current shapes, refined accessories, art that holds its own without dominating the rooms. The staging works with the local design vocabulary.",
       },
       {
         name: "Occupied Home Staging",
@@ -761,14 +761,14 @@ export const cities: City[] = [
       },
       {
         title: "Treating the home like a single price-point staging job",
-        body: "A $1.7M Solana Beach condo and a $4.5M Lomas Santa Fe estate need very different staging. The inventory, the scale, the styling, all shift. Using the same approach across price bands underperforms in a market this size where buyer expectations are this calibrated.",
+        body: "A $1.7M Solana Beach condo and a $4.5M Lomas Santa Fe estate need very different staging. The inventory, the scale, the styling, all shift. Using the same approach across price bands underperforms in a market this small where buyer expectations are this specific.",
       },
     ],
     faqs: [
       {
         question: "Do you stage homes near the Cedros Design District and Old Solana Beach?",
         answer:
-          "Yes, this is the heart of the Solana Beach market and where many of our local projects are. We honor the design-district sensibility in our inventory and styling choices.",
+          "Yes, this is the heart of the Solana Beach market and where many of our local projects are. We lean into the design-district sensibility in our inventory and styling choices.",
       },
       {
         question: "How quickly can you stage a Solana Beach listing?",
@@ -802,11 +802,11 @@ export const cities: City[] = [
       "Home staging in Del Mar, CA. Family-owned studio staging luxury coastal homes across Del Mar Village, Beach Colony, Del Mar Heights, and Del Mar Mesa.",
     h1: "Home Staging in Del Mar, CA",
     intro:
-      "Aviara Design Co. stages homes throughout Del Mar, one of San Diego County's most exclusive coastal villages. From the Beach Colony and Old Del Mar Village to the inland views of Del Mar Heights and Del Mar Mesa, our staging respects the standard of presentation Del Mar buyers expect at this price point.",
+      "Aviara Design Co. stages homes throughout Del Mar, one of San Diego County's most exclusive coastal villages. From the Beach Colony and Old Del Mar Village to the inland views of Del Mar Heights and Del Mar Mesa, our staging meets the standard of presentation Del Mar buyers expect at this price point.",
     marketContext: [
       "Del Mar is small, exclusive, and expensive. Pricing across the village typically runs from the high $1.8Ms for entry-level condos and small homes into the $15M+ band for full ocean-view estates on the bluffs. The Beach Colony, the Old Del Mar Village, and Del Mar Heights each carry distinct character, and distinct buyer bases, even though they sit within a few miles of each other.",
       "Buyer demographics skew affluent: West Coast tech and finance professionals, second-home buyers from LA and the Bay Area, retirees with substantial wealth, and a long-standing community of multi-generational Del Mar families. These buyers have seen exceptional homes globally, Del Mar listings compete against properties in Aspen, Park City, the Hamptons, and Mediterranean coastal markets in their decision-making.",
-      "What makes Del Mar distinct is the bar for everything: the architecture, the materials, the views, and yes, the staging. Listings here that show up with anything less than first-rate staging will visibly underperform comparable Del Mar inventory. The market is small enough that every active buyer sees every active listing. There's no hiding a sloppy listing in a town this tight-knit.",
+      "Del Mar sets the bar for everything: the architecture, the materials, the views, and yes, the staging. Listings here that show up with anything less than first-rate staging will visibly underperform comparable Del Mar inventory. The market is small enough that every active buyer sees every active listing. There's no hiding a sloppy listing in a town this tight-knit.",
     ],
     whyStaging: [
       "Del Mar buyers expect exceptional staging at this price point. Anything less than first-rate execution costs the listing in time on market and final offer strength.",
@@ -854,14 +854,14 @@ export const cities: City[] = [
       },
       {
         title: "Forcing a single luxury aesthetic across all sub-markets",
-        body: "A Beach Colony cottage and a Del Mar Heights contemporary live in completely different aesthetic worlds even though they're a mile apart. Staging that ignores this, that defaults to a single 'luxury' look across price points and sub-markets, underperforms staging that honors the local character.",
+        body: "A Beach Colony cottage and a Del Mar Heights contemporary live in completely different aesthetic worlds even though they're a mile apart. Staging that ignores this, that defaults to a single 'luxury' look across price points and sub-markets, underperforms staging that matches the local character.",
       },
     ],
     faqs: [
       {
         question: "Do you stage homes in the Del Mar Beach Colony?",
         answer:
-          "Yes. The Beach Colony is one of our favorite Del Mar contexts, the homes have personality, the buyers know what they want, and staging that honors the casual-luxury vibe rather than fighting it consistently outperforms.",
+          "Yes. The Beach Colony is one of our favorite Del Mar contexts, the homes have personality, the buyers know what they want, and staging that works with the casual-luxury vibe rather than fighting it tends to outperform.",
       },
       {
         question: "How much does home staging cost in Del Mar?",
@@ -895,11 +895,11 @@ export const cities: City[] = [
       "Estate home staging in Rancho Santa Fe, CA. Family-owned studio specializing in luxury staging across the Covenant, Fairbanks Ranch, Crosby, and Cielo.",
     h1: "Home Staging in Rancho Santa Fe, CA",
     intro:
-      "Aviara Design Co. brings estate-scale, livable-luxury staging to Rancho Santa Fe, one of the most exclusive residential markets in California. From the Covenant's classic equestrian estates to the contemporary builds in Crosby, Cielo, and Fairbanks Ranch, our staging is made for a market that operates by different rules than the rest of San Diego County.",
+      "Aviara Design Co. brings estate-scale, livable-luxury staging to Rancho Santa Fe, one of the most exclusive residential markets in California. From the Covenant's classic equestrian estates to the contemporary builds in Crosby, Cielo, and Fairbanks Ranch, our staging is made for a market that has its own rules.",
     marketContext: [
-      "Rancho Santa Fe is in a category by itself. Pricing in the Covenant, the original Lilian Rice village core, typically runs from the low $3Ms for smaller homes into the $30M+ range for full multi-acre equestrian estates. Crosby, Cielo, and Fairbanks Ranch each carry distinct aesthetics and price bands. Across the broader Rancho Santa Fe market, listings under $2.5M are increasingly rare; the market's center of gravity lives in the $4M–$15M band.",
+      "Rancho Santa Fe doesn't look like the rest of San Diego County. Pricing in the Covenant, the original Lilian Rice village core, typically runs from the low $3Ms for smaller homes into the $30M+ range for full multi-acre equestrian estates. Crosby, Cielo, and Fairbanks Ranch each carry distinct aesthetics and price bands. Across the broader Rancho Santa Fe market, listings under $2.5M are increasingly rare; the market's center of gravity lives in the $4M–$15M band.",
       "Buyer demographics here include some of the wealthiest households in California: tech and finance principals, entertainment industry buyers, multi-generational families, equestrians, and a meaningful share of international buyers. They've seen the world's best homes and they're not impressed easily. The presentation expectation is exceptional.",
-      "What makes Rancho Santa Fe distinct from other San Diego luxury markets is the importance of the land. Buyers aren't just buying a house, they're buying acreage, equestrian facilities, vineyards, guest houses, and a sense of seclusion that doesn't exist anywhere else in coastal San Diego. Staging that ignores the property, that focuses only on the interior rooms, leaves the strongest selling features of a Rancho Santa Fe listing undertold.",
+      "Rancho Santa Fe is different from other San Diego luxury markets in one specific way: the land is as much of the value as the house. Buyers aren't just buying a house, they're buying acreage, equestrian facilities, vineyards, guest houses, and a sense of seclusion that doesn't exist anywhere else in coastal San Diego. Staging that ignores the property, that focuses only on the interior rooms, leaves the strongest selling features of a Rancho Santa Fe listing undertold.",
     ],
     whyStaging: [
       "Rancho Santa Fe buyers expect exceptional everything, including staging. Anything less than estate-grade execution costs the listing.",
@@ -947,7 +947,7 @@ export const cities: City[] = [
       },
       {
         title: "Imposing a contemporary aesthetic on classical architecture",
-        body: "Many Rancho Santa Fe homes are intentional period pieces, Spanish revival, Lilian Rice originals, Tuscan estates, ranch-modern. Staging that ignores the architectural tradition and imposes a generic contemporary look fights the home rather than supporting it. Successful staging honors the home's aesthetic vocabulary.",
+        body: "Many Rancho Santa Fe homes are intentional period pieces, Spanish revival, Lilian Rice originals, Tuscan estates, ranch-modern. Staging that ignores the architectural tradition and imposes a generic contemporary look fights the home rather than supporting it. Successful staging fits the home's aesthetic.",
       },
     ],
     faqs: [
@@ -988,14 +988,14 @@ export const cities: City[] = [
       "Home staging in La Jolla, CA. Family-owned studio staging luxury coastal homes across Muirlands, Bird Rock, La Jolla Shores, La Jolla Farms, and Mount Soledad.",
     h1: "Home Staging in La Jolla, CA",
     intro:
-      "Aviara Design Co. brings refined, coastal-luxury staging to La Jolla, one of California's most recognizable coastal markets. From the Muirlands and Mount Soledad view properties to the surf-culture beach homes of Bird Rock and the family-and-faculty neighborhoods of La Jolla Shores, our staging respects the specific character of each La Jolla sub-market.",
+      "Aviara Design Co. brings refined, coastal-luxury staging to La Jolla, one of California's most recognizable coastal markets. From the Muirlands and Mount Soledad view properties to the surf-culture beach homes of Bird Rock and the family-and-faculty neighborhoods of La Jolla Shores, our staging works with the specific character of each La Jolla sub-market.",
     marketContext: [
       "La Jolla is a market of meaningful internal diversity. Pricing across the city ranges from the high $1.3Ms for entry-level condos and small homes into the $20M+ band for full ocean-view La Jolla Farms estates. Bird Rock, Muirlands, La Jolla Shores, La Jolla Village, La Jolla Mesa, and Mount Soledad each have distinct character, distinct buyers, and distinct staging needs.",
       "Buyer demographics include a mix of long-tenured San Diego families, UCSD-adjacent faculty and biotech executives, second-home buyers from LA and the Bay Area, retirees with substantial wealth, and an active international buyer base. These buyers have seen the best homes globally, La Jolla listings compete against international second-home markets in their decision-making.",
-      "What makes La Jolla distinct is the breadth of buyer expectation inside the same city. A $1.6M Bird Rock cottage and a $9M La Jolla Farms estate require completely different staging approaches even though they share the same MLS. Successful La Jolla staging is made for the specific sub-market, the price band, and the specific buyer the listing is for.",
+      "La Jolla holds an unusually wide range of buyer expectation inside the same city. A $1.6M Bird Rock cottage and a $9M La Jolla Farms estate require completely different staging approaches even though they share the same MLS. Successful La Jolla staging is made for the specific sub-market, the price band, and the specific buyer the listing is for.",
     ],
     whyStaging: [
-      "La Jolla buyers are sophisticated about presentation and have seen exceptional homes globally. The staging bar is high, and listings that meet it consistently outperform.",
+      "La Jolla buyers are sophisticated about presentation and have seen exceptional homes globally. The staging bar is high, and listings that meet it tend to perform better than the rest.",
       "Each La Jolla sub-market has distinct character. Staging made for Muirlands views differs from staging made for Bird Rock beach cottages or La Jolla Farms estates.",
       "Ocean views and indoor-outdoor flow are central to the value proposition. Staging that frames the view rather than competing with it lets the listing's strongest features carry the photos.",
     ],
@@ -1087,7 +1087,7 @@ export const cities: City[] = [
     marketContext: [
       "San Marcos is one of inland North County's most internally diverse markets. Pricing across the city typically runs from the upper $600Ks for entry-level townhomes and condos into the $1.5M+ band for newer San Elijo Hills view homes and the larger lake-adjacent properties at Lake San Marcos. Most of the family resale inventory sits between $800K and $1.3M across the established neighborhoods.",
       "Buyer demographics are heavily families: young households moving up from coastal North County rentals, two-income couples looking for value-per-square-foot, university-adjacent buyers tied to CSUSM, and a growing remote-working contingent who want the North County lifestyle without the coastal price tag. The Lake San Marcos and San Elijo Hills sub-markets attract a more affluent, second-home and move-up buyer.",
-      "What makes San Marcos distinct is the breadth: a $750K family townhome in Discovery Hills and a $1.4M view home in San Elijo Hills are listed on the same MLS the same week and require completely different staging approaches. Listings that show up with sub-market-aware staging consistently outperform listings that get the generic-North-County treatment.",
+      "San Marcos has serious internal breadth: a $750K family townhome in Discovery Hills and a $1.4M view home in San Elijo Hills are listed on the same MLS the same week and require completely different staging approaches. Listings that show up with sub-market-aware staging tend to outperform listings that get the generic-North-County treatment.",
     ],
     whyStaging: [
       "San Marcos is heavily master-planned. Your listing is often competing with three or four nearly identical floor plans listed the same week. Staging is the cleanest differentiator.",
@@ -1103,7 +1103,7 @@ export const cities: City[] = [
       },
       {
         name: "Occupied Home Staging",
-        note: "Common for established San Marcos neighborhoods where families are still living in the home. We edit existing furniture, re-arrange for flow, and add curated accessories so the home photographs polished without forcing a full move-out.",
+        note: "Common for established San Marcos neighborhoods where families are still living in the home. We edit existing furniture, re-arrange for flow, and add the right accessories so the home photographs polished without forcing a full move-out.",
       },
       {
         name: "Interior Design",
@@ -1181,7 +1181,7 @@ export const cities: City[] = [
     marketContext: [
       "Escondido is the geographic and demographic heart of inland North County. Pricing across the city runs from the high $500Ks for older entry-level homes near the urban core into the $1.5M+ band for the Hidden Meadows custom homes and the Rancho San Pasqual estates. Most of the resale inventory sits between $700K and $1.2M across the established neighborhoods.",
       "Buyer demographics are heavily families and retirees: young households priced out of coastal North County, two-income couples looking for value, retirees relocating from elsewhere in California, and a growing share of remote-working professionals who've discovered they can have a four-bedroom Escondido home for what a two-bedroom coastal condo costs them. The Hidden Meadows and Rancho San Pasqual sub-markets attract a more affluent, move-up buyer.",
-      "What makes Escondido distinct is the depth of inventory and the meaningful variation in housing stock. The city includes Spanish revivals from the 1920s, ranch homes from the postwar era, suburban floor plans from the '80s and '90s, and newer master-planned subdivisions, each with its own staging needs. Listings that show up with staging made for the home's actual character and era outperform listings that get the generic-North-County treatment.",
+      "Escondido has unusually deep inventory and unusually varied housing stock. The city includes Spanish revivals from the 1920s, ranch homes from the postwar era, suburban floor plans from the '80s and '90s, and newer master-planned subdivisions, each with its own staging needs. Listings that show up with staging made for the home's actual character and era outperform listings that get the generic-North-County treatment.",
     ],
     whyStaging: [
       "Escondido inventory is heavily varied in age, style, and price point. Staging made for the specific home's character and era photographs better than templated installs.",
@@ -1201,7 +1201,7 @@ export const cities: City[] = [
       },
       {
         name: "Interior Design",
-        note: "For Escondido homeowners renovating or refreshing established homes. We honor the architectural tradition of the specific property, Spanish revival, ranch, modern farmhouse, and design interiors that the home actually wants to wear.",
+        note: "For Escondido homeowners renovating or refreshing established homes. We work with the architectural tradition of the specific property, Spanish revival, ranch, modern farmhouse, and design interiors that the home actually wants to wear.",
       },
       {
         name: "Staging Consultations",
@@ -1223,7 +1223,7 @@ export const cities: City[] = [
     commonMistakes: [
       {
         title: "Fighting the home's actual architectural era",
-        body: "Many Escondido homes have real architectural personality, Spanish revivals, mid-century ranches, custom builds, that gets ignored when sellers default to a generic contemporary staging look. Staging that honors the home's era and tradition consistently outperforms staging that fights it.",
+        body: "Many Escondido homes have real architectural personality, Spanish revivals, mid-century ranches, custom builds, that gets ignored when sellers default to a generic contemporary staging look. Staging that matches the home's era and tradition tends to outperform staging that fights it.",
       },
       {
         title: "Under-investing in older home presentation",
@@ -1238,7 +1238,7 @@ export const cities: City[] = [
       {
         question: "Do you stage older Escondido homes?",
         answer:
-          "Yes, and well-staged older Escondido homes are among our most rewarding projects. We honor the home's architectural era and use staging that signals 'cared-for' rather than 'dated.' This consistently outperforms generic staging on older inventory.",
+          "Yes, and well-staged older Escondido homes are among our most rewarding projects. We match the home's architectural era and use staging that signals 'cared-for' rather than 'dated.' This usually outperforms generic staging on older inventory.",
       },
       {
         question: "Can you stage homes in Hidden Meadows and Rancho San Pasqual?",
@@ -1272,11 +1272,11 @@ export const cities: City[] = [
       "Home staging in Big Bear Lake, CA. Mountain-luxury staging for cabins, lake homes, and vacation rentals across Boulder Bay, Moonridge, Fawnskin, and Sugarloaf.",
     h1: "Home Staging in Big Bear Lake, CA",
     intro:
-      "Aviara Design Co. stages homes throughout the Big Bear Valley, from the rustic cabins of Sugarloaf and Fawnskin to the lake-front estates of Boulder Bay and the family vacation properties of Moonridge. Mountain-luxury staging is a distinct discipline, and our work respects the rules of the market: warm materials, mountain palette, and the kind of staging that photographs the lifestyle as much as the home.",
+      "Aviara Design Co. stages homes throughout the Big Bear Valley, from the rustic cabins of Sugarloaf and Fawnskin to the lake-front estates of Boulder Bay and the family vacation properties of Moonridge. Mountain-luxury staging is a distinct discipline, and our work follows the rules of the market: warm materials, mountain palette, and the kind of staging that photographs the lifestyle as much as the home.",
     marketContext: [
       "Big Bear Lake is one of Southern California's most distinct real-estate markets, a true mountain resort town with year-round residency, a heavy second-home buyer base, and a meaningful vacation-rental investor share. Pricing across the valley typically runs from the low $400Ks for smaller cabins and condos into the $3M+ band for full lake-front estates and custom luxury homes. Most of the trade-able inventory lives between $600K and $1.4M across the established neighborhoods.",
       "Buyer demographics here are dominated by Southern California second-home buyers, from Los Angeles, Orange County, the Inland Empire, and San Diego, looking for a weekend mountain retreat, a vacation-rental investment, or a full retirement home. Year-round resident buyers are a smaller but meaningful share. These buyers are emotional about Big Bear in a way that's unusual for resale markets: they're buying a lifestyle and a memory, not just a structure.",
-      "What makes Big Bear staging distinct is that the photographs need to sell the entire experience, the snow days, the lake days, the fire in the stone fireplace, the deer outside the window. Staging that works in coastal North County doesn't translate to Big Bear. Mountain palettes, warm woods, layered textiles, real cabin character, these are the photographs that move buyers from 'maybe' to 'we want it before someone else does.'",
+      "Big Bear staging has to do something other markets don't demand: the photographs need to sell the entire experience, the snow days, the lake days, the fire in the stone fireplace, the deer outside the window. Staging that works in coastal North County doesn't translate to Big Bear. Mountain palettes, warm woods, layered textiles, real cabin character, these are the photographs that move buyers from 'maybe' to 'we want it before someone else does.'",
     ],
     whyStaging: [
       "Big Bear buyers are typically purchasing an experience and a memory, not just a home. Staging that captures the mountain lifestyle in photographs moves buyers from interest to action.",
@@ -1296,7 +1296,7 @@ export const cities: City[] = [
       },
       {
         name: "Interior Design",
-        note: "For Big Bear owners commissioning a mountain home or renovating an existing cabin. We honor the mountain aesthetic vocabulary, warm woods, layered textiles, considered stone, and deliver interiors that work both for owners and for the property's vacation-rental potential.",
+        note: "For Big Bear owners commissioning a mountain home or renovating an existing cabin. We lean into the mountain aesthetic, warm woods, layered textiles, considered stone, and deliver interiors that work both for owners and for the property's vacation-rental potential.",
       },
       {
         name: "Staging Consultations",
