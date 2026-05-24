@@ -86,8 +86,33 @@ export default function CityPage({ city }: Props) {
         </div>
       </section>
 
+      {/* Market context — long-form local market commentary */}
+      {city.marketContext && city.marketContext.length > 0 && (
+        <section className="section border-t border-line bg-ivory">
+          <div className="container-wide max-w-4xl">
+            <Reveal>
+              <p className="eyebrow flex items-center gap-3">
+                <span className="gold-rule" />
+                The {city.city} Market
+              </p>
+              <h2 className="mt-4 font-display text-3xl md:text-4xl text-ink leading-tight">
+                Understanding what makes the {city.city}{" "}
+                <span className="italic text-brass">market distinct.</span>
+              </h2>
+            </Reveal>
+            <div className="mt-10 space-y-6">
+              {city.marketContext.map((p, i) => (
+                <Reveal key={i} delay={i * 60}>
+                  <p className="text-lg text-slate leading-relaxed">{p}</p>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Local proof */}
-      <section className="section border-t border-line bg-ivory">
+      <section className="section border-t border-line">
         <div className="container-wide max-w-5xl">
           <Reveal>
             <p className="eyebrow flex items-center gap-3">
@@ -104,6 +129,34 @@ export default function CityPage({ city }: Props) {
           </Reveal>
         </div>
       </section>
+
+      {/* Per-service local notes */}
+      {city.serviceNotes && city.serviceNotes.length > 0 && (
+        <section className="section border-t border-line bg-ivory">
+          <div className="container-wide max-w-5xl">
+            <Reveal>
+              <p className="eyebrow flex items-center gap-3">
+                <span className="gold-rule" />
+                Our Services in {city.city}
+              </p>
+              <h2 className="mt-4 font-display text-3xl md:text-4xl text-ink leading-tight">
+                How each service fits the{" "}
+                <span className="italic text-brass">{city.city} market.</span>
+              </h2>
+            </Reveal>
+            <div className="mt-10 grid md:grid-cols-2 gap-x-10 gap-y-10">
+              {city.serviceNotes.map((sn, i) => (
+                <Reveal key={sn.name} delay={i * 60}>
+                  <div className="border-t border-line pt-6">
+                    <h3 className="font-display text-2xl text-ink">{sn.name}</h3>
+                    <p className="mt-3 text-slate leading-relaxed">{sn.note}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Neighborhoods served */}
       <section className="section border-t border-line">
@@ -129,8 +182,36 @@ export default function CityPage({ city }: Props) {
         </div>
       </section>
 
+      {/* Common mistakes sellers in this city make */}
+      {city.commonMistakes && city.commonMistakes.length > 0 && (
+        <section className="section border-t border-line bg-ivory">
+          <div className="container-wide max-w-4xl">
+            <Reveal>
+              <p className="eyebrow flex items-center gap-3">
+                <span className="gold-rule" />
+                What we see go wrong
+              </p>
+              <h2 className="mt-4 font-display text-3xl md:text-4xl text-ink leading-tight">
+                Common staging mistakes on {city.city}{" "}
+                <span className="italic text-brass">listings.</span>
+              </h2>
+            </Reveal>
+            <div className="mt-10 space-y-10">
+              {city.commonMistakes.map((m, i) => (
+                <Reveal key={m.title} delay={i * 60}>
+                  <div className="border-t border-line pt-6">
+                    <h3 className="font-display text-xl md:text-2xl text-ink">{m.title}</h3>
+                    <p className="mt-3 text-slate leading-relaxed">{m.body}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* FAQs */}
-      <section className="section border-t border-line bg-ivory">
+      <section className="section border-t border-line">
         <div className="container-wide max-w-4xl">
           <Reveal>
             <p className="eyebrow flex items-center gap-3">
@@ -156,7 +237,7 @@ export default function CityPage({ city }: Props) {
       </section>
 
       {/* Cross-link nearby cities */}
-      <section className="section border-t border-line">
+      <section className="section border-t border-line bg-ivory">
         <div className="container-wide max-w-5xl">
           <Reveal>
             <p className="eyebrow flex items-center gap-3">
