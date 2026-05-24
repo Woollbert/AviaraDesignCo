@@ -6,13 +6,16 @@ import { site } from "@/data/site";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-// Optional analytics + Search Console verification — env-driven so the build
-// works fine without either set. To turn them on, set in Vercel:
-//   NEXT_PUBLIC_GA_MEASUREMENT_ID  (e.g. G-XXXXXXXXXX from Google Analytics)
-//   NEXT_PUBLIC_GSC_VERIFICATION   (the token from Search Console's HTML-tag
-//                                   verification method, just the value not
-//                                   the whole meta tag)
-const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+// Google Analytics 4 measurement ID. Public by design (renders inside a
+// <script> tag every visitor sees). Hardcoded so analytics fire without any
+// Vercel env config; can be overridden via NEXT_PUBLIC_GA_MEASUREMENT_ID if a
+// different property is wanted (e.g. for a staging environment).
+const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-51L35JRHSL";
+
+// Google Search Console ownership verification — env-driven. Set
+// NEXT_PUBLIC_GSC_VERIFICATION in Vercel to the token from Search Console's
+// HTML-tag verification method (just the value inside content="...", not the
+// whole meta tag).
 const GSC_VERIFICATION = process.env.NEXT_PUBLIC_GSC_VERIFICATION;
 
 // LocalBusiness structured data — tells Google what kind of business this is
