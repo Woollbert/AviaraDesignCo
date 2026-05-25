@@ -217,15 +217,18 @@
     font-family: var(--font-display), serif;
     color: var(--color-ink);
     opacity: 0.035;
-    font-size: clamp(5rem, 26vw, 26rem);
+    /* Two-tier scale: smaller cap on phones so the full word fits within the
+       section (the parent has overflow-hidden) instead of rendering as broken
+       letter fragments at the edge. Desktop keeps the original huge display
+       face. */
+    font-size: clamp(3rem, 16vw, 7rem);
     line-height: 0.85;
     letter-spacing: -0.04em;
     z-index: 0;
     white-space: nowrap;
-    display: none;
   }
   @media (min-width: 768px) {
-    .watermark { display: block; }
+    .watermark { font-size: clamp(7rem, 22vw, 26rem); }
   }
   .watermark--light { color: var(--color-ivory); opacity: 0.05; }
 

@@ -14,6 +14,20 @@
     NO inline body styles — those conflict with Decap's own layout CSS and cause
     the top nav to overlap form fields. Keep this file as bare as possible.
   -->
+
+  <!--
+    Pre-upload image pipeline. Runs BEFORE decap-cms loads so its handler is
+    already registered when Decap mounts its file inputs. Does two things:
+      1. HEIC/HEIF → JPEG (iPhone photos render broken otherwise — browsers
+         can't decode HEIC, so the preview shows a broken-image icon and the
+         live site does the same).
+      2. Any image > 1MB → resize to max 2400px wide and re-encode JPEG at
+         quality 0.82. Keeps the gateway upload fast and the repo lean while
+         next/image further downsizes per-device at request time.
+  -->
+  <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
+  <script src="/admin/image-pipeline.js"></script>
+
   <script src="https://unpkg.com/decap-cms@^3.8.3/dist/decap-cms.js"></script>
 </body>
 </html>
