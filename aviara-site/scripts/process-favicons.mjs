@@ -38,7 +38,52 @@ const meta = await sharp(buf).metadata();
 console.log(`source: ${meta.width}x${meta.height} (${(buf.length / 1024).toFixed(1)} KB)`);
 
 // Trim outer whitespace so the logo mark fills its square cleanly.
-const trimmed = await sharp(buf).trim().toBuffer();
+// Then pad to a square canvas where the LOGO'S CENTER-OF-MASS — not its
+// bounding-box center — sits at the geometric center. The AD mark's "D" is a
+// heavy solid shape; the "A" is a thin curling stroke that extends far to the
+// upper-left. Without this correction, gravity:center anchors the bbox center,
+// which leaves the visual weight noticeably right of disc center.
+async function centerOfMassSquare(srcBuf) {
+  const trimmedBuf = await sharp(srcBuf).trim().toBuffer();
+  const { data, info } = await sharp(trimmedBuf)
+    .ensureAlpha()
+    .raw()
+    .toBuffer({ resolveWithObject: true });
+  // Treat a pixel as "logo" if it is opaque AND visually dark — that excludes
+  // the cream background of the source PNG and keeps the dark monogram only.
+  let sumX = 0, sumY = 0, count = 0;
+  for (let y = 0; y < info.height; y++) {
+    for (let x = 0; x < info.width; x++) {
+      const i = (y * info.width + x) * info.channels;
+      const a = data[i + 3];
+      if (a < 200) continue;
+      const r = data[i], g = data[i + 1], b = data[i + 2];
+      if ((r + g + b) / 3 > 180) continue;
+      sumX += x;
+      sumY += y;
+      count++;
+    }
+  }
+  const comX = sumX / count;
+  const comY = sumY / count;
+  // Pad to a square whose center coincides with the center-of-mass.
+  const side = Math.ceil(2 * Math.max(comX, comY, info.width - comX, info.height - comY));
+  const left = Math.round(side / 2 - comX);
+  const top = Math.round(side / 2 - comY);
+  const padded = await sharp(trimmedBuf)
+    .ensureAlpha()
+    .extend({
+      top,
+      bottom: side - info.height - top,
+      left,
+      right: side - info.width - left,
+      background: { r: 0, g: 0, b: 0, alpha: 0 },
+    })
+    .toBuffer();
+  return padded;
+}
+
+const trimmed = await centerOfMassSquare(buf);
 
 // === Transparent logo at common sizes (for in-page use, e.g. Navbar/Footer) ===
 for (const size of [256, 512]) {
@@ -58,7 +103,10 @@ const trimmedInverted = await sharp(trimmed)
 
 // === Adaptive favicons at 16/32/48/192 — dark logo on circular cream + cream logo on circular ink ===
 for (const size of [16, 32, 48, 192]) {
-  const innerSize = Math.round(size * 0.7); // inset so the logo sits comfortably inside the disc
+  // The center-of-mass padding above already adds clear-space around the
+  // monogram, so the resize can fill almost the full disc diameter without
+  // looking cramped against the edge.
+  const innerSize = Math.round(size * 0.92);
   const mask = circleMask(size);
 
   // LIGHT variant: dark logo composited onto a circular cream disc
@@ -100,7 +148,7 @@ for (const size of [16, 32, 48, 192]) {
 // monogram centered. iOS auto-rounds the corners on the home screen, so we
 // keep the canvas square (not masked) for clean cream edges all the way out. ===
 const appleSize = 180;
-const appleInner = Math.round(appleSize * 0.7);
+const appleInner = Math.round(appleSize * 0.8);
 const appleLogo = await sharp(trimmed)
   .resize({ width: appleInner, height: appleInner, fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
   .png()
