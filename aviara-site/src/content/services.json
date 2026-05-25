@@ -40,19 +40,6 @@
       "imageAlt": "Designed primary bedroom with brass mirror, sage accent wall, and refined linens"
     },
     {
-      "slug": "consultations",
-      "name": "Staging Consultations",
-      "short": "A one-visit walkthrough with a clear, room-by-room playbook to get a home buyer-ready.",
-      "description": "For agents and sellers preparing to list, we walk the home and leave you with a prioritized list of moves: what to keep, edit, repair, repaint, and add. Fast.",
-      "features": [
-        "90-minute walkthrough",
-        "Room-by-room playbook",
-        "Trade & vendor referrals"
-      ],
-      "imageUrl": "/images/img_4999.jpeg",
-      "imageAlt": "Styled vignette with fluted candle bowl and curated accessories"
-    },
-    {
       "name": "Commercial Interior Design & Styling",
       "slug": "commercial-interior-design",
       "short": "Thoughtfully designed commercial interiors that elevate your brand, enhance the client experience, and create spaces that feel both polished and welcoming.",
@@ -64,6 +51,19 @@
       ],
       "imageAlt": "Modern luxury salon interior with warm neutral décor and boutique styling",
       "imageUrl": "/images/a62ab1e7-ab77-4794-b354-2b5e5198b328.jpg"
+    },
+    {
+      "slug": "consultations",
+      "name": "Staging Consultations",
+      "short": "A one-visit walkthrough with a clear, room-by-room playbook to get a home buyer-ready.",
+      "description": "For agents and sellers preparing to list, we walk the home and leave you with a prioritized list of moves: what to keep, edit, repair, repaint, and add. Fast.",
+      "features": [
+        "90-minute walkthrough",
+        "Room-by-room playbook",
+        "Trade & vendor referrals"
+      ],
+      "imageUrl": "/images/img_4999.jpeg",
+      "imageAlt": "Styled vignette with fluted candle bowl and curated accessories"
     }
   ],
   "stats": [
