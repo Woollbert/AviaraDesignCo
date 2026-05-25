@@ -91,7 +91,7 @@ export type Site = {
   phoneTel: string;
   email: string;
   smsHref: string;
-  social: { instagram: string; facebook: string; yelp: string };
+  social: { instagram: string; facebook: string; yelp: string; linkedin?: string };
   address: { city: string; region: string };
   serviceAreas: string[];
   hours: SiteHours[];

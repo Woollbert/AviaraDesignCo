@@ -48,7 +48,7 @@ const localBusinessJsonLd = {
     "@type": "City",
     name: area,
   })),
-  sameAs: [site.social.instagram, site.social.facebook].filter(Boolean),
+  sameAs: [site.social.instagram, site.social.facebook, site.social.linkedin].filter(Boolean),
   openingHoursSpecification: [
     {
       "@type": "OpeningHoursSpecification",
