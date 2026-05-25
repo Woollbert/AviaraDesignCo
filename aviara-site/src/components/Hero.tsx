@@ -1,10 +1,39 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useRef } from "react";
 import { site } from "@/data/site";
 
 export default function Hero() {
   const hero = site.hero;
+  const sectionRef = useRef<HTMLElement | null>(null);
+
+  // Lock the Hero height to the viewport height measured on first paint, then
+  // never update it. iOS Safari nominally honors `100svh` (the static "small
+  // viewport" unit), but the URL bar retraction on first scroll still causes
+  // an ~80–100px viewport reflow that visibly resizes the section and the
+  // object-cover image inside it ("stretching"). Pinning the height to a real
+  // pixel value sidesteps the issue entirely. We intentionally do NOT update
+  // on resize / orientation — accept that rotating the device won't refit;
+  // worth the trade for no scroll-jerk on the most common interaction.
+  useEffect(() => {
+    if (!sectionRef.current) return;
+    sectionRef.current.style.height = `${window.innerHeight}px`;
+    // Re-lock once on orientation change — that's the one resize that should
+    // actually refit. Skip plain window resize so iOS URL bar shows/hides
+    // never touch the Hero height.
+    const onOrient = () => {
+      if (sectionRef.current) {
+        sectionRef.current.style.height = `${window.innerHeight}px`;
+      }
+    };
+    window.addEventListener("orientationchange", onOrient);
+    return () => window.removeEventListener("orientationchange", onOrient);
+  }, []);
+
   return (
     <section
+      ref={sectionRef}
       id="top"
       className="relative h-[100svh] min-h-[560px] sm:min-h-[640px] w-full overflow-hidden bg-ink text-ivory"
       aria-label="Welcome to Aviara Design Co."
