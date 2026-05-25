@@ -4,11 +4,9 @@ import { useState } from "react";
 import Image from "next/image";
 import Lightbox from "yet-another-react-lightbox";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
-import Captions from "yet-another-react-lightbox/plugins/captions";
 import Counter from "yet-another-react-lightbox/plugins/counter";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import "yet-another-react-lightbox/styles.css";
-import "yet-another-react-lightbox/plugins/captions.css";
 import "yet-another-react-lightbox/plugins/counter.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 import type { ProjectPhoto } from "@/data/portfolio";
@@ -58,14 +56,15 @@ export default function ProjectGallery({ photos, projectTitle }: Props) {
 
   const { ulClass, itemClass, aspect } = gridShape(photos);
 
-  // Lightbox slides — title only. Description was bleeding into the title
-  // row and rendering as overlapping text; alt text already lives on the
-  // image element for screen readers, so we don't need it in the caption.
-  const slides = photos.map((p) => ({
-    src: p.url,
-    alt: p.alt,
-    title: p.room || projectTitle,
-  }));
+  // Lightbox slides — bare image only. The Captions plugin rendered all
+  // slide titles into off-screen container elements at once and they
+  // visually bled into the active title at the top-left corner ("Living"
+  // looked like double-struck text in Brooklyn's screenshot). We render
+  // the active room name ourselves below as a fixed overlay, so only one
+  // title is in the DOM at a time and it can't overlap with sibling
+  // carousel slides.
+  const slides = photos.map((p) => ({ src: p.url, alt: p.alt }));
+  const activeRoom = photos[index]?.room;
 
   return (
     <>
@@ -117,12 +116,11 @@ export default function ProjectGallery({ photos, projectTitle }: Props) {
         close={() => setOpen(false)}
         index={index}
         slides={slides}
-        plugins={[Zoom, Captions, Counter, Thumbnails]}
+        plugins={[Zoom, Counter, Thumbnails]}
         carousel={{ finite: false }}
         animation={{ fade: 300, swipe: 300 }}
         zoom={{ maxZoomPixelRatio: 3, scrollToZoom: true }}
         thumbnails={{ position: "bottom", border: 0, gap: 8, imageFit: "cover" }}
-        captions={{ showToggle: false, descriptionTextAlign: "center" }}
         controller={{ closeOnBackdropClick: true }}
         styles={{
           container: { backgroundColor: "rgba(28,24,21,0.96)" },
@@ -137,6 +135,20 @@ export default function ProjectGallery({ photos, projectTitle }: Props) {
           Close: `Close ${projectTitle} gallery`,
         }}
       />
+
+      {/* Custom active-slide room label. Sits inside the lightbox z-index
+          when open, in a fixed top-left position that doesn't clash with
+          the lightbox toolbar (close + zoom on the right). Only one DOM
+          element, no per-slide duplicates, no possible overlap. */}
+      {open && activeRoom && (
+        <div
+          aria-hidden="true"
+          className="fixed top-4 left-4 z-[100000] text-[0.7rem] uppercase tracking-widest font-medium text-ivory bg-ink/65 backdrop-blur px-3 py-1.5 pointer-events-none"
+          style={{ textShadow: "0 1px 4px rgba(0,0,0,0.7)" }}
+        >
+          {activeRoom}
+        </div>
+      )}
     </>
   );
 }
