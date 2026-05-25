@@ -1,15 +1,15 @@
 // One-off: take Aviara's source logo and emit adaptive favicon variants.
 //
 // Produces:
-//   - favicon-{16,32,48,192}-light.png  (dark logo on cream bg — for light browser themes)
-//   - favicon-{16,32,48,192}-dark.png   (light logo on ink bg  — for dark browser themes)
+//   - favicon-{16,32,48,192}-light.png  (dark logo on circular cream bg — for light browser themes)
+//   - favicon-{16,32,48,192}-dark.png   (light logo on circular ink bg  — for dark browser themes)
 //   - apple-touch-icon.png              (180x180, ink bg)
 //   - favicon.ico                       (multi-size, used by Google/Bing search results)
 //   - logo-256.png / logo-512.png       (transparent for in-site use)
 //
-// The dark-on-cream and light-on-ink pairing means the favicon always
-// has high contrast against whatever browser-tab background the user is
-// looking at (including DJ's dark Edge theme).
+// All favicon variants are circular (cream/ink disc with the AD monogram
+// centered) so the icon reads as a polished brand mark regardless of the
+// browser-tab background.
 //
 // Run: node scripts/process-favicons.mjs
 
@@ -23,6 +23,15 @@ const OUT = path.resolve('public');
 // Aviara brand colors (must match globals.css)
 const INK = { r: 28, g: 24, b: 21, alpha: 1 };       // --color-ink   #1c1815
 const BONE = { r: 244, g: 239, b: 232, alpha: 1 };   // --color-bone  #f4efe8
+
+// Build a circular mask of the given size. Sharp composites with `dest-in`
+// keep only pixels under the white area, producing a clean disc.
+function circleMask(size) {
+  const r = size / 2;
+  return Buffer.from(
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}"><circle cx="${r}" cy="${r}" r="${r}" fill="white"/></svg>`
+  );
+}
 
 const buf = await fs.readFile(SRC);
 const meta = await sharp(buf).metadata();
@@ -47,11 +56,12 @@ const trimmedInverted = await sharp(trimmed)
   .negate({ alpha: false })
   .toBuffer();
 
-// === Adaptive favicons at 16/32/48/192 — dark logo on cream + cream logo on ink ===
+// === Adaptive favicons at 16/32/48/192 — dark logo on circular cream + cream logo on circular ink ===
 for (const size of [16, 32, 48, 192]) {
-  const innerSize = Math.round(size * 0.86); // slight inset so the logo doesn't touch the edges
+  const innerSize = Math.round(size * 0.7); // inset so the logo sits comfortably inside the disc
+  const mask = circleMask(size);
 
-  // LIGHT variant: dark logo composited onto cream canvas
+  // LIGHT variant: dark logo composited onto a circular cream disc
   const darkLogo = await sharp(trimmed)
     .resize({ width: innerSize, height: innerSize, fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
     .png()
@@ -59,13 +69,16 @@ for (const size of [16, 32, 48, 192]) {
   const light = await sharp({
     create: { width: size, height: size, channels: 4, background: BONE },
   })
-    .composite([{ input: darkLogo, gravity: 'center' }])
+    .composite([
+      { input: darkLogo, gravity: 'center' },
+      { input: mask, blend: 'dest-in' },
+    ])
     .png()
     .toBuffer();
   await fs.writeFile(path.join(OUT, `favicon-${size}-light.png`), light);
   console.log(`✓ public/favicon-${size}-light.png (${(light.length / 1024).toFixed(1)} KB)`);
 
-  // DARK variant: cream/inverted logo composited onto ink canvas
+  // DARK variant: cream/inverted logo composited onto a circular ink disc
   const lightLogo = await sharp(trimmedInverted)
     .resize({ width: innerSize, height: innerSize, fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
     .png()
@@ -73,23 +86,27 @@ for (const size of [16, 32, 48, 192]) {
   const dark = await sharp({
     create: { width: size, height: size, channels: 4, background: INK },
   })
-    .composite([{ input: lightLogo, gravity: 'center' }])
+    .composite([
+      { input: lightLogo, gravity: 'center' },
+      { input: mask, blend: 'dest-in' },
+    ])
     .png()
     .toBuffer();
   await fs.writeFile(path.join(OUT, `favicon-${size}-dark.png`), dark);
   console.log(`✓ public/favicon-${size}-dark.png (${(dark.length / 1024).toFixed(1)} KB)`);
 }
 
-// === Apple touch icon (180x180) — use the dark/ink variant (always shown on
-// home-screen launchers, where contrast against the wallpaper matters most). ===
+// === Apple touch icon (180x180) — full-bleed cream square with the dark
+// monogram centered. iOS auto-rounds the corners on the home screen, so we
+// keep the canvas square (not masked) for clean cream edges all the way out. ===
 const appleSize = 180;
-const appleInner = Math.round(appleSize * 0.78);
-const appleLogo = await sharp(trimmedInverted)
+const appleInner = Math.round(appleSize * 0.7);
+const appleLogo = await sharp(trimmed)
   .resize({ width: appleInner, height: appleInner, fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
   .png()
   .toBuffer();
 const apple = await sharp({
-  create: { width: appleSize, height: appleSize, channels: 4, background: INK },
+  create: { width: appleSize, height: appleSize, channels: 4, background: BONE },
 })
   .composite([{ input: appleLogo, gravity: 'center' }])
   .png()
@@ -98,10 +115,11 @@ await fs.writeFile(path.join(OUT, 'apple-touch-icon.png'), apple);
 console.log(`✓ public/apple-touch-icon.png (${(apple.length / 1024).toFixed(1)} KB)`);
 
 // === favicon.ico — Google/Bing fetch this URL directly when picking the icon
-// for search results. Pack 16/32/48 dark-bg PNGs so contrast pops on white
-// search result pages. Built inline (no extra deps) by writing the ICO header.
+// for search results. Pack the circular cream variant so the icon reads as the
+// brand mark on white search-result pages. Built inline (no extra deps) by
+// writing the ICO header.
 async function pngBufForFavicon(size) {
-  return await fs.readFile(path.join(OUT, `favicon-${size}-dark.png`));
+  return await fs.readFile(path.join(OUT, `favicon-${size}-light.png`));
 }
 const icoSizes = [16, 32, 48];
 const pngs = await Promise.all(icoSizes.map(pngBufForFavicon));

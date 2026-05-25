@@ -29,8 +29,24 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
+    // rAF-throttle the scroll handler. Without this, every wheel tick fires a
+    // React state update + re-render, which adds frame-time during scrolling
+    // and makes the page feel jittery on lower-refresh-rate displays.
+    let ticking = false;
+    let lastScrolled = window.scrollY > 24;
+    setScrolled(lastScrolled);
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const next = window.scrollY > 24;
+        if (next !== lastScrolled) {
+          lastScrolled = next;
+          setScrolled(next);
+        }
+        ticking = false;
+      });
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -42,6 +58,24 @@ export default function Navbar() {
       document.body.style.overflow = "";
     };
   }, [open]);
+
+  // Closing the drawer flips `body.overflow:hidden` off (via the effect above)
+  // so the browser's default in-page anchor jump can scroll. Without this
+  // bridge, the tap closes the drawer but the page stays put on iOS.
+  function handleMenuLinkClick(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
+    if (!href.startsWith("#") || pathname !== "/") {
+      setOpen(false);
+      return;
+    }
+    e.preventDefault();
+    setOpen(false);
+    const id = href.slice(1);
+    requestAnimationFrame(() => {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      history.replaceState(null, "", href);
+    });
+  }
 
   // When at top, the navbar floats over the dark hero, so use light treatment.
   // After the user scrolls (or the mobile drawer is open) swap to the cream
@@ -57,8 +91,10 @@ export default function Navbar() {
       data-menu-open={open}
       className={[
         "fixed top-0 inset-x-0 z-40 transition-[background-color,border-color] duration-300",
+        // No backdrop-filter: it forces compositor work on every scroll frame
+        // and makes wheel scrolling feel jittery. Bone is opaque enough.
         onLight
-          ? "bg-bone/95 backdrop-blur-md border-b border-line/60"
+          ? "bg-bone border-b border-line/60"
           : "bg-transparent",
       ].join(" ")}
     >
@@ -142,7 +178,7 @@ export default function Navbar() {
           <a
             key={l.href}
             href={resolveNavHref(l.href, pathname)}
-            onClick={() => setOpen(false)}
+            onClick={(e) => handleMenuLinkClick(e, l.href)}
             className="font-display text-3xl text-ink"
           >
             {l.label}
@@ -150,7 +186,7 @@ export default function Navbar() {
         ))}
         <a
           href={resolveNavHref("#contact", pathname)}
-          onClick={() => setOpen(false)}
+          onClick={(e) => handleMenuLinkClick(e, "#contact")}
           className="btn btn-ink mt-4 self-start"
         >
           Inquire

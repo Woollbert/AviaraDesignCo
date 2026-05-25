@@ -6,7 +6,7 @@ export default function Hero() {
   return (
     <section
       id="top"
-      className="relative h-[100svh] min-h-[640px] w-full overflow-hidden bg-ink text-ivory"
+      className="relative h-[100svh] min-h-[560px] sm:min-h-[640px] w-full overflow-hidden bg-ink text-ivory"
       aria-label="Welcome to Aviara Design Co."
     >
       <div className="absolute inset-0 z-0" data-testid="hero-poster">
@@ -38,7 +38,7 @@ export default function Hero() {
       </div>
 
       <div className="relative z-10 container-wide h-full flex flex-col">
-        <div className="flex-1 flex flex-col justify-center pt-24 max-w-3xl">
+        <div className="flex-1 flex flex-col justify-center pt-20 sm:pt-24 max-w-3xl">
           <p
             className="eyebrow !text-ivory flex items-center gap-3"
             data-testid="hero-eyebrow"
@@ -77,14 +77,17 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="pb-12 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-8 border-t border-ivory/15 pt-8">
-          <div className="flex items-center gap-3 text-[0.7rem] uppercase tracking-widest text-ivory/70">
+        <div
+          className="pb-6 sm:pb-12 flex flex-row items-center justify-between sm:justify-between gap-4 sm:gap-8 border-t border-ivory/15 pt-5 sm:pt-8 sm:items-end"
+          style={{ paddingBottom: "max(1.5rem, env(safe-area-inset-bottom))" }}
+        >
+          <div className="hidden sm:flex items-center gap-3 text-[0.7rem] uppercase tracking-widest text-ivory/70">
             <span className="inline-block w-8 h-px bg-brassSoft" />
             {hero.footerLabel}
           </div>
           <a
             href="#about"
-            className="group inline-flex items-center gap-3 text-[0.7rem] uppercase tracking-widest text-ivory/80 hover:text-brassSoft transition-colors"
+            className="group inline-flex items-center gap-3 text-[0.7rem] uppercase tracking-widest text-ivory/80 hover:text-brassSoft transition-colors sm:ml-auto"
             aria-label="Scroll to about section"
             data-testid="hero-scroll"
           >

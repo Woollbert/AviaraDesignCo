@@ -36,6 +36,8 @@
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     scroll-behavior: smooth;
+    /* Anchor jumps land below the sticky navbar instead of under it. */
+    scroll-padding-top: 5rem;
   }
   body {
     background-color: var(--color-bone);
@@ -200,10 +202,15 @@
     font-family: var(--font-display), serif;
     color: var(--color-ink);
     opacity: 0.035;
-    font-size: clamp(10rem, 26vw, 26rem);
+    font-size: clamp(5rem, 26vw, 26rem);
     line-height: 0.85;
     letter-spacing: -0.04em;
     z-index: 0;
+    white-space: nowrap;
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .watermark { display: block; }
   }
   .watermark--light { color: var(--color-ivory); opacity: 0.05; }
 
