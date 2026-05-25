@@ -62,7 +62,7 @@ export default function PortfolioIndexPage() {
       {/* Category quick-links — anchor scroll to grouped sections */}
       <nav
         aria-label="Filter portfolio by category"
-        className="sticky top-0 z-30 backdrop-blur-md bg-bone/85 border-b border-line"
+        className="sticky top-0 z-30 bg-bone border-b border-line"
       >
         <div className="container-wide flex flex-wrap items-center gap-6 py-4 text-[0.7rem] uppercase tracking-widest">
           {CATEGORIES.map((cat) => (
