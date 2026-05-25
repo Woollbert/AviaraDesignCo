@@ -1,21 +1,53 @@
 {
-  "slug": "fallbrook-estate",
-  "title": "Fallbrook Estate",
-  "location": "Fallbrook, CA",
-  "category": "Vacant Staging",
-  "order": 1,
   "shortDescription": "An empty California estate fully imagined — staged for the listing camera and the open-house walkthrough alike.",
   "longDescription": "A sprawling vacant home in Fallbrook hills, dressed top to bottom with a warm, livable luxury palette tuned to attract buyers in the upper segment. Brass pendants, neutral textiles, layered art, and a tight three-week inventory rolling rental kept the home camera-ready through the entire listing window.",
+  "photos": [
+    {
+      "url": "/images/A7405914.jpeg",
+      "alt": "Open-concept kitchen, dining, and living room staged with brass and warm neutrals",
+      "room": "Living"
+    },
+    {
+      "url": "/images/A7405929.jpeg",
+      "alt": "Fully staged open-concept kitchen and dining room with brass pendants",
+      "room": "Kitchen"
+    },
+    {
+      "url": "/images/A7405944.jpeg",
+      "alt": "Fully staged living room with neutral palette, brass accents, and natural light",
+      "room": "Living"
+    },
+    {
+      "url": "/images/A7405949.jpeg",
+      "alt": "Living room detail with layered textiles and warm wood furniture",
+      "room": "Living"
+    },
+    {
+      "url": "/images/A7405954.jpeg",
+      "alt": "Dining vignette with white pottery, brass flatware, and linen runner",
+      "room": "Dining"
+    },
+    {
+      "url": "/images/A7405959.jpeg",
+      "alt": "Primary bedroom staged with crisp linens, walnut bed frame, and soft layered lighting",
+      "room": "Bedroom"
+    },
+    {
+      "url": "/images/A7406034.jpeg",
+      "alt": "Office or den styled with reading chair, layered rugs, and refined accessories",
+      "room": "Office"
+    },
+    {
+      "url": "/images/A7406059.jpeg",
+      "alt": "Designed primary bedroom with brass mirror, sage accent wall, and refined linens",
+      "room": "Bedroom"
+    }
+  ],
   "coverImage": "/images/A7405914.jpeg",
   "coverImageAlt": "Open-concept kitchen, dining, and living room staged with brass and warm neutrals",
-  "photos": [
-    { "url": "/images/A7405914.jpeg", "alt": "Open-concept kitchen, dining, and living room staged with brass and warm neutrals", "room": "Living" },
-    { "url": "/images/A7405929.jpeg", "alt": "Fully staged open-concept kitchen and dining room with brass pendants", "room": "Kitchen" },
-    { "url": "/images/A7405944.jpeg", "alt": "Fully staged living room with neutral palette, brass accents, and natural light", "room": "Living" },
-    { "url": "/images/A7405949.jpeg", "alt": "Living room detail with layered textiles and warm wood furniture", "room": "Living" },
-    { "url": "/images/A7405954.jpeg", "alt": "Dining vignette with white pottery, brass flatware, and linen runner", "room": "Dining" },
-    { "url": "/images/A7405959.jpeg", "alt": "Primary bedroom staged with crisp linens, walnut bed frame, and soft layered lighting", "room": "Bedroom" },
-    { "url": "/images/A7406034.jpeg", "alt": "Office or den styled with reading chair, layered rugs, and refined accessories", "room": "Office" },
-    { "url": "/images/A7406059.jpeg", "alt": "Designed primary bedroom with brass mirror, sage accent wall, and refined linens", "room": "Bedroom" }
-  ]
+  "slug": "fallbrook-estate",
+  "order": 3,
+  "location": "Fallbrook, CA",
+  "title": "Fallbrook Estate",
+  "category": "Vacant Staging"
 }
