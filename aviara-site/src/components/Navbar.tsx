@@ -90,7 +90,7 @@ export default function Navbar() {
       data-scrolled={scrolled}
       data-menu-open={open}
       className={[
-        "fixed top-0 inset-x-0 z-40 transition-[background-color,border-color] duration-300",
+        "fixed top-0 inset-x-0 z-40 transition-[background-color,border-color] duration-200",
         // No backdrop-filter: it forces compositor work on every scroll frame
         // and makes wheel scrolling feel jittery. Bone is opaque enough.
         onLight
