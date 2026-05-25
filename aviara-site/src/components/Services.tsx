@@ -37,7 +37,7 @@ export default function Services() {
 
   return (
     <section id="services" className="section relative overflow-hidden bg-ivory border-y border-line">
-      <div aria-hidden="true" className="watermark bottom-[-4rem] -left-12">
+      <div aria-hidden="true" className="watermark bottom-[-1rem] -left-4 md:bottom-[-4rem] md:-left-12">
         Services
       </div>
 

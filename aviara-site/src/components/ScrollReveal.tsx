@@ -6,8 +6,36 @@ import Image from "next/image";
 export default function ScrollReveal() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const [progress, setProgress] = useState(0);
+  // On touch devices we skip the scroll-driven translate+scale on the photo —
+  // the compositor work on every frame reads as the image visibly expanding
+  // mid-scroll on iOS Safari and is the single biggest scroll-jank source in
+  // the homepage. Desktop keeps the full effect.
+  const [scrollDriven, setScrollDriven] = useState(true);
+  const [textInView, setTextInView] = useState(false);
 
   useEffect(() => {
+    const isDesktop = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    setScrollDriven(isDesktop);
+    if (!isDesktop) {
+      // Use an IntersectionObserver for the headline fade instead of a
+      // scroll listener — single fire, no per-frame compositor cost.
+      const node = sectionRef.current;
+      if (!node) return;
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              setTextInView(true);
+              io.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.25 }
+      );
+      io.observe(node);
+      return () => io.disconnect();
+    }
+
     let raf = 0;
     const compute = () => {
       const node = sectionRef.current;
@@ -35,11 +63,13 @@ export default function ScrollReveal() {
 
   const revealPct = Math.round(progress * 100);
   // Headline fades in across the early portion of scroll, stays visible
-  const textOpacity = Math.max(0, Math.min(1, (progress - 0.1) / 0.4));
+  const textOpacity = scrollDriven
+    ? Math.max(0, Math.min(1, (progress - 0.1) / 0.4))
+    : (textInView ? 1 : 0);
   const textShift = (1 - textOpacity) * 24;
   // Subtle parallax: photo drifts slightly to add depth, never leaves frame
-  const parallaxY = (progress - 0.5) * 70;
-  const photoScale = 1.08 + progress * 0.05;
+  const parallaxY = scrollDriven ? (progress - 0.5) * 70 : 0;
+  const photoScale = scrollDriven ? 1.08 + progress * 0.05 : 1.1;
 
   return (
     <section

@@ -8,7 +8,7 @@ export default function About() {
   const s = site.sections.about;
   return (
     <section id="about" className="section relative overflow-hidden bg-bone">
-      <div aria-hidden="true" className="watermark top-[-3rem] -left-12">
+      <div aria-hidden="true" className="watermark top-[-1rem] -left-4 md:top-[-3rem] md:-left-12">
         Aviara
       </div>
 
