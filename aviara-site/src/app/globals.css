@@ -43,6 +43,10 @@
     background-color: var(--color-bone);
     font-family: var(--font-sans), system-ui, sans-serif;
     color: var(--color-slate);
+    /* Stop iOS pull-to-refresh and overscroll glow from competing with normal
+       scroll, especially when the user changes scroll direction near the top
+       or bottom of the page. */
+    overscroll-behavior-y: contain;
   }
   h1, h2, h3, h4, h5 {
     font-family: var(--font-display), Georgia, serif;
@@ -186,13 +190,24 @@
 
   .reveal {
     opacity: 0;
-    transform: translateY(28px);
-    transition: opacity 900ms cubic-bezier(.2,.65,.2,1), transform 900ms cubic-bezier(.2,.65,.2,1);
-    will-change: opacity, transform;
+    transform: translateY(20px);
+    transition: opacity 700ms cubic-bezier(.2,.65,.2,1), transform 700ms cubic-bezier(.2,.65,.2,1);
+    /* Intentionally omit `will-change`. The page renders many Reveal blocks;
+       holding a permanent GPU layer for each one bloats compositor memory and
+       slows scroll on mobile. Modern engines optimize opacity+transform fine
+       without the hint, and we drop the class after the animation lands. */
   }
   .reveal.is-visible {
     opacity: 1;
     transform: translateY(0);
+  }
+  @media (max-width: 768px) {
+    /* Snappier reveals on phones so the first scroll doesn't have many
+       900ms transitions racing the user. */
+    .reveal {
+      transition-duration: 450ms;
+      transform: translateY(14px);
+    }
   }
 
   .watermark {
@@ -227,4 +242,13 @@
     animation-duration: 0.001ms !important;
   }
   .reveal { opacity: 1; transform: none; }
+}
+
+/* On phones, freeze the Ken Burns scale animation. It runs forever via
+   transform on the Hero, About, and Testimonials images, and the compositor
+   work competes with scroll — visible as a stutter on the first wheel/touch
+   from the landing page. Keep the slight scale value so the image still
+   fills its container. */
+@media (max-width: 768px) {
+  .animate-kenburns { animation: none !important; }
 }

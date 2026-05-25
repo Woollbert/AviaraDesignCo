@@ -63,49 +63,113 @@ export default function Services() {
         <div className="mt-14 grid lg:grid-cols-12 gap-10 items-start">
           <Reveal className="lg:col-span-5">
             <ul className="border-y border-line" data-testid="services-list">
-              {services.map((s, i) => (
-                <li key={s.slug}>
-                  <button
-                    type="button"
-                    onClick={() => commitActive(i)}
-                    onMouseEnter={() => scheduleActive(i)}
-                    onMouseLeave={cancelSchedule}
-                    onFocus={() => commitActive(i)}
-                    aria-pressed={active === i}
-                    data-active={active === i}
-                    data-testid={`service-${s.slug}`}
-                    className={[
-                      "group w-full flex items-center justify-between gap-6 py-7 text-left transition-colors",
-                      i > 0 ? "border-t border-line" : "",
-                    ].join(" ")}
-                  >
-                    <div className="flex items-baseline gap-5">
-                      <span className="font-sans text-xs tracking-widest text-mute w-8 shrink-0">
-                        0{i + 1}
-                      </span>
-                      <span
-                        className={[
-                          "font-display text-2xl md:text-3xl transition-colors",
-                          active === i ? "text-brass" : "text-ink group-hover:text-brass",
-                        ].join(" ")}
-                      >
-                        {s.name}
-                      </span>
-                    </div>
-                    <span
-                      aria-hidden="true"
+              {services.map((svc, i) => {
+                const expanded = active === i;
+                return (
+                  <li key={svc.slug}>
+                    <button
+                      type="button"
+                      onClick={() => commitActive(i)}
+                      onMouseEnter={() => scheduleActive(i)}
+                      onMouseLeave={cancelSchedule}
+                      onFocus={() => commitActive(i)}
+                      aria-pressed={expanded}
+                      aria-expanded={expanded}
+                      aria-controls={`service-detail-${svc.slug}`}
+                      data-active={expanded}
+                      data-testid={`service-${svc.slug}`}
                       className={[
-                        "h-px transition-all duration-500",
-                        active === i ? "w-12 bg-brass" : "w-6 bg-line group-hover:w-10 group-hover:bg-brass",
+                        "group w-full flex items-center justify-between gap-6 py-7 text-left transition-colors",
+                        i > 0 ? "border-t border-line" : "",
                       ].join(" ")}
-                    />
-                  </button>
-                </li>
-              ))}
+                    >
+                      <div className="flex items-baseline gap-5">
+                        <span className="font-sans text-xs tracking-widest text-mute w-8 shrink-0">
+                          0{i + 1}
+                        </span>
+                        <span
+                          className={[
+                            "font-display text-2xl md:text-3xl transition-colors",
+                            expanded ? "text-brass" : "text-ink group-hover:text-brass",
+                          ].join(" ")}
+                        >
+                          {svc.name}
+                        </span>
+                      </div>
+                      <span
+                        aria-hidden="true"
+                        className={[
+                          "h-px transition-all duration-500 hidden sm:inline-block",
+                          expanded ? "w-12 bg-brass" : "w-6 bg-line group-hover:w-10 group-hover:bg-brass",
+                        ].join(" ")}
+                      />
+                      {/* Mobile chevron — visual hint that the row expands. */}
+                      <svg
+                        aria-hidden="true"
+                        viewBox="0 0 24 24"
+                        className={[
+                          "sm:hidden w-4 h-4 shrink-0 transition-transform duration-300",
+                          expanded ? "rotate-180 text-brass" : "text-mute",
+                        ].join(" ")}
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <polyline points="6 9 12 15 18 9" />
+                      </svg>
+                    </button>
+
+                    {/* Mobile-only inline detail. Collapsed: grid-rows-[0fr];
+                        expanded: grid-rows-[1fr]. The inner `<div>` is the
+                        animated row, with overflow:hidden so its content is
+                        clipped while the row resizes. This pattern avoids
+                        measuring max-height manually. */}
+                    <div
+                      id={`service-detail-${svc.slug}`}
+                      className={[
+                        "lg:hidden grid transition-[grid-template-rows] duration-400 ease-out",
+                        expanded ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
+                      ].join(" ")}
+                    >
+                      <div className="overflow-hidden">
+                        <div className="pb-7 pt-1">
+                          <div className="photo-frame relative aspect-[4/5] sm:aspect-[3/2] bg-linen overflow-hidden">
+                            <Image
+                              src={svc.imageUrl}
+                              alt={svc.imageAlt}
+                              fill
+                              sizes="(min-width: 640px) 80vw, 100vw"
+                              className="object-cover"
+                            />
+                          </div>
+                          <p className="mt-5 text-sm md:text-base text-mute leading-relaxed">
+                            {svc.description}
+                          </p>
+                          <ul className="mt-5 space-y-3 text-sm text-slate">
+                            {svc.features.map((f) => (
+                              <li key={f} className="flex items-start gap-3">
+                                <span className="mt-2 inline-block w-2 h-px bg-brass shrink-0" aria-hidden="true" />
+                                {f}
+                              </li>
+                            ))}
+                          </ul>
+                          <a href={s.inquireCtaHref} className="btn btn-outline mt-6 self-start">
+                            {s.inquireCtaLabel}
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                );
+              })}
             </ul>
           </Reveal>
 
-          <Reveal delay={100} className="lg:col-span-7">
+          {/* Desktop side detail panel — hidden on mobile, where each row
+              expands inline above. */}
+          <Reveal delay={100} className="hidden lg:block lg:col-span-7">
             <div className="grid sm:grid-cols-5 gap-6 items-stretch" data-testid="service-detail">
               <div className="sm:col-span-3 photo-frame relative aspect-[4/5] sm:aspect-auto bg-linen overflow-hidden min-h-[26rem]">
                 <Image
