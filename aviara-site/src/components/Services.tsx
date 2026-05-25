@@ -176,8 +176,8 @@ export default function Services() {
                 via items-stretch + h-full. INQUIRE pins to the bottom via
                 mt-auto so trailing whitespace lives between the features list
                 and the button, never below it. */}
-            <div className="grid sm:grid-cols-5 gap-6 items-stretch lg:h-[34rem]" data-testid="service-detail">
-              <div className="sm:col-span-3 photo-frame relative aspect-[4/5] sm:aspect-auto bg-linen overflow-hidden h-full">
+            <div className="grid sm:grid-cols-2 gap-6 items-stretch lg:h-[34rem]" data-testid="service-detail">
+              <div className="photo-frame relative aspect-[4/5] sm:aspect-auto bg-linen overflow-hidden h-full">
                 {/* Render every service image stacked and crossfade via opacity
                     so clicking a different service doesn't flash blank while
                     next/image loads the new src. One-time first-paint cost,
@@ -197,7 +197,7 @@ export default function Services() {
                   />
                 ))}
               </div>
-              <div className="sm:col-span-2 bg-bone p-7 md:p-8 flex flex-col h-full">
+              <div className="bg-bone p-7 md:p-8 flex flex-col h-full">
                 <p className="eyebrow">{`Service 0${active + 1}`}</p>
                 <h3 className="mt-3 font-display text-2xl md:text-3xl text-ink">
                   {current.name}
