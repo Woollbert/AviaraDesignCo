@@ -2,6 +2,16 @@ import type { Config } from "tailwindcss";
 
 const config: Config = {
   content: ["./src/**/*.{ts,tsx,mdx}"],
+  // Wrap every `hover:*` utility in `@media (hover: hover)` so iOS Safari
+  // doesn't fire hover styles briefly during a tap. Without this, the
+  // group-hover:scale-105 transforms on portfolio / team cards run their
+  // long zoom animations every time the user grazes a card while scrolling,
+  // and the in-flight transform competes with scroll for compositor work —
+  // looking like the image is stretching mid-scroll. (Becomes the default
+  // in Tailwind v3.5+; opting in here for our v3.4 install.)
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
   theme: {
     extend: {
       colors: {
