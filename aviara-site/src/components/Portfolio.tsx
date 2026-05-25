@@ -7,7 +7,7 @@ export default function Portfolio() {
   const s = site.sections.portfolio;
   return (
     <section id="portfolio" className="section relative bg-bone overflow-hidden">
-      <div aria-hidden="true" className="watermark bottom-[-6rem] -right-12">
+      <div aria-hidden="true" className="watermark bottom-[-1rem] -right-4 md:bottom-[-6rem] md:-right-12">
         Portfolio
       </div>
 
