@@ -159,14 +159,21 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Bottom strip: tagline left, copyright right */}
+      {/* Bottom strip: tagline left, copyright + privacy right */}
       <div className="border-t border-line">
         <div className="container-wide py-5 flex flex-col md:flex-row md:items-center md:justify-between gap-2 text-xs text-mute">
           <p>
             {site.name} · Serving {site.address.city} & all of Southern California
           </p>
-          <p>
-            © {year} {site.name} All rights reserved.
+          <p className="flex items-center gap-3">
+            <Link
+              href="/privacy/"
+              className="hover:text-brass transition-colors"
+            >
+              Privacy
+            </Link>
+            <span className="opacity-40">·</span>
+            <span>© {year} {site.name} All rights reserved.</span>
           </p>
         </div>
       </div>

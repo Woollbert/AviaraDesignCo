@@ -43,19 +43,36 @@ export default async function JournalPostPage({
   if (!post) notFound();
 
   const baseUrl = site.url.replace(/\/$/, "");
+  // BlogPosting is a sub-type of Article — slightly stronger signal for
+  // Google that this is a journal/blog entry. The image field is what makes
+  // the post eligible for the visual rich-result treatment in search.
+  const articleImage = post.coverImage
+    ? `${baseUrl}${post.coverImage.startsWith("/") ? "" : "/"}${post.coverImage}`
+    : `${baseUrl}/images/A7405944.jpeg`;
   const articleJsonLd = {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "BlogPosting",
     headline: post.title,
     description: post.metaDescription,
+    image: [articleImage],
     datePublished: post.publishedAt,
-    author: { "@type": "Organization", name: site.name },
+    dateModified: post.publishedAt,
+    author: {
+      "@type": "Organization",
+      name: site.name,
+      url: baseUrl,
+    },
     publisher: {
       "@type": "Organization",
       name: site.name,
       logo: { "@type": "ImageObject", url: `${baseUrl}/logo-512.png` },
     },
-    mainEntityOfPage: `${baseUrl}/journal/${post.slug}/`,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${baseUrl}/journal/${post.slug}/`,
+    },
+    articleSection: "Home Staging",
+    inLanguage: "en-US",
   };
 
   return (
