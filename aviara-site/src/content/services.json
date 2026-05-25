@@ -27,8 +27,8 @@
       "imageAlt": "Refined occupied living room with sectional, crystal chandelier, and cowhide rug"
     },
     {
-      "slug": "interior-design",
-      "name": "Interior Design",
+      "slug": "residential-interior-design",
+      "name": "Residential Interior Design",
       "short": "Spaces designed to be lived in. Quiet luxury that holds up to a real Southern California life.",
       "description": "Full-service interior design for homeowners who want a thoughtfully composed space, from material palettes to custom furnishings, tailored to the way you actually live.",
       "features": [
@@ -51,6 +51,18 @@
       ],
       "imageUrl": "/images/img_4999.jpeg",
       "imageAlt": "Styled vignette with fluted candle bowl and curated accessories"
+    },
+    {
+      "name": "Commercial Interior Design & Styling",
+      "slug": "commercial-interior-design",
+      "short": "Thoughtfully designed commercial interiors that elevate your brand, enhance the client experience, and create spaces that feel both polished and welcoming.",
+      "description": "Aviara Design Co. offers commercial interior design and styling services for boutique businesses, offices, salons, hospitality spaces, model units, and client-facing environments throughout Temecula, San Diego, Orange County, Riverside County, and the Inland Empire. Our approach blends modern luxury aesthetics with functional, experience-driven design to create spaces that reflect your brand and leave a lasting impression on clients and guests.\n\nFrom furniture and décor sourcing to space planning, styling, and finishing details, we curate interiors that feel elevated, cohesive, and intentionally designed. Whether you’re refreshing a salon, designing a boutique office, staging a commercial property, or creating a hospitality-inspired environment, our team focuses on creating warm, inviting spaces that photograph beautifully and function seamlessly for everyday use.",
+      "features": [
+        "Hospitality-Inspired Business Interiors",
+        "Boutique Offices, Salons & Client-Facing Spaces",
+        "Curated Styling & Space Transformation"
+      ],
+      "imageAlt": "Modern luxury salon interior with warm neutral décor and boutique styling"
     }
   ],
   "stats": [
