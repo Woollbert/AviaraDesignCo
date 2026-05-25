@@ -68,11 +68,11 @@
   "hours": [
     {
       "day": "Mon to Fri",
-      "time": "By appointment"
+      "time": "9am-6pm"
     },
     {
       "day": "Sat",
-      "time": "By appointment"
+      "time": "8am-8pm"
     },
     {
       "day": "Sun",
