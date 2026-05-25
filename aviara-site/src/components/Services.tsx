@@ -170,17 +170,34 @@ export default function Services() {
           {/* Desktop side detail panel — hidden on mobile, where each row
               expands inline above. */}
           <Reveal delay={100} className="hidden lg:block lg:col-span-7">
-            <div className="grid sm:grid-cols-5 gap-6 items-stretch" data-testid="service-detail">
-              <div className="sm:col-span-3 photo-frame relative aspect-[4/5] sm:aspect-auto bg-linen overflow-hidden min-h-[26rem]">
-                <Image
-                  src={current.imageUrl}
-                  alt={current.imageAlt}
-                  fill
-                  sizes="(min-width: 1024px) 35vw, (min-width: 640px) 60vw, 100vw"
-                  className="object-cover transition-opacity duration-300"
-                />
+            {/* Lock the grid row to a fixed height at lg+ so switching between
+                services (varying description length, varying image ratios)
+                doesn't reflow the page. Both columns inherit the row height
+                via items-stretch + h-full. INQUIRE pins to the bottom via
+                mt-auto so trailing whitespace lives between the features list
+                and the button, never below it. */}
+            <div className="grid sm:grid-cols-5 gap-6 items-stretch lg:h-[34rem]" data-testid="service-detail">
+              <div className="sm:col-span-3 photo-frame relative aspect-[4/5] sm:aspect-auto bg-linen overflow-hidden h-full">
+                {/* Render every service image stacked and crossfade via opacity
+                    so clicking a different service doesn't flash blank while
+                    next/image loads the new src. One-time first-paint cost,
+                    instant tab switches after. */}
+                {services.map((svc, i) => (
+                  <Image
+                    key={svc.slug}
+                    src={svc.imageUrl}
+                    alt={svc.imageAlt}
+                    fill
+                    sizes="(min-width: 1024px) 35vw, (min-width: 640px) 60vw, 100vw"
+                    className={[
+                      "object-cover transition-opacity duration-300",
+                      i === active ? "opacity-100" : "opacity-0",
+                    ].join(" ")}
+                    priority={i === 0}
+                  />
+                ))}
               </div>
-              <div className="sm:col-span-2 bg-bone p-7 md:p-8 flex flex-col min-h-[28rem]">
+              <div className="sm:col-span-2 bg-bone p-7 md:p-8 flex flex-col h-full">
                 <p className="eyebrow">{`Service 0${active + 1}`}</p>
                 <h3 className="mt-3 font-display text-2xl md:text-3xl text-ink">
                   {current.name}
@@ -196,7 +213,7 @@ export default function Services() {
                     </li>
                   ))}
                 </ul>
-                <a href={s.inquireCtaHref} className="btn btn-outline mt-8 self-start">
+                <a href={s.inquireCtaHref} className="btn btn-outline mt-auto self-start">
                   {s.inquireCtaLabel}
                 </a>
               </div>
