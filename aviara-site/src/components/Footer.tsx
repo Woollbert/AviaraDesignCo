@@ -9,8 +9,8 @@ export default function Footer() {
     <footer className="bg-bone border-t border-line text-slate">
       <div className="container-wide py-16 md:py-20">
         <div className="grid md:grid-cols-4 gap-12 md:gap-10 items-start">
-          {/* COL 1: brand mark */}
-          <div className="flex flex-col items-center md:items-start text-center md:text-left">
+          {/* COL 1: brand mark — always centered under the logo at every breakpoint */}
+          <div className="flex flex-col items-center text-center">
             <span className="relative inline-block w-[140px] h-[140px] md:w-[160px] md:h-[160px]">
               <Image
                 src="/images/aviara-monogram.png"
@@ -20,8 +20,8 @@ export default function Footer() {
                 className="object-contain"
               />
             </span>
-            <p className="mt-3 font-display text-3xl md:text-4xl text-ink tracking-wide">
-              Aviara
+            <p className="mt-3 font-display text-3xl text-ink tracking-wide whitespace-nowrap">
+              Aviara Design Co.
             </p>
             <p className="mt-1 text-[0.72rem] uppercase tracking-[0.32em] text-mute">
               Home Staging + Interiors
