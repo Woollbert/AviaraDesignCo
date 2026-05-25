@@ -79,6 +79,7 @@ collections:
               - { name: instagram, label: Instagram URL, widget: string }
               - { name: facebook, label: Facebook URL, widget: string }
               - { name: yelp, label: Yelp URL, widget: string }
+              - { name: linkedin, label: LinkedIn URL, widget: string, required: false }
           - name: address
             label: Address
             widget: object
