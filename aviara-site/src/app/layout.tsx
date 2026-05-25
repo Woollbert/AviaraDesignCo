@@ -12,11 +12,13 @@ import Footer from "@/components/Footer";
 // different property is wanted (e.g. for a staging environment).
 const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-51L35JRHSL";
 
-// Google Search Console ownership verification — env-driven. Set
-// NEXT_PUBLIC_GSC_VERIFICATION in Vercel to the token from Search Console's
-// HTML-tag verification method (just the value inside content="...", not the
-// whole meta tag).
-const GSC_VERIFICATION = process.env.NEXT_PUBLIC_GSC_VERIFICATION;
+// Google Search Console ownership verification. Public by design (renders as
+// a <meta> tag every visitor sees). Hardcoded so verification works without
+// any Vercel env config; can be overridden via NEXT_PUBLIC_GSC_VERIFICATION
+// if a different property is ever added.
+const GSC_VERIFICATION =
+  process.env.NEXT_PUBLIC_GSC_VERIFICATION ||
+  "rpUlunC6E9WoAPy0f9Gf774aZ8qKCFr5SBj5QLgqAA4";
 
 // LocalBusiness structured data — tells Google what kind of business this is
 // and where we operate. Without this, we can't appear in rich results / local
