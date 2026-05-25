@@ -1,19 +1,43 @@
 {
-  "slug": "temeku-hills-golf-estate",
-  "title": "Temeku Hills Golf Estate",
-  "location": "Temecula, CA",
-  "category": "Occupied Staging",
-  "order": 3,
   "shortDescription": "An occupied home in Temecula's Temeku Hills, edited and elevated for the listing without disrupting the family's daily routine.",
   "longDescription": "A discreet occupied-staging project on a fairway-facing lot, working with the homeowner's existing furniture and adding curated accessories, art, and styling layers to translate the home cleanly to the listing photography. Black dining surfaces, brass details, and seasonal florals tied the spaces together while staying respectful of the family's daily flow.",
+  "photos": [
+    {
+      "url": "/images/IMG_9465.jpeg",
+      "alt": "Black dining table styled with brass flatware and a vase of deep red hydrangeas",
+      "room": "Dining"
+    },
+    {
+      "url": "/images/IMG_9463.jpeg",
+      "alt": "A signature Aviara styled vignette: black candle on a marble side table",
+      "room": "Detail"
+    },
+    {
+      "url": "/images/IMG_9482.jpeg",
+      "alt": "Styled vignette with fluted candle bowl and curated accessories",
+      "room": "Detail"
+    },
+    {
+      "url": "/images/IMG_9165.jpeg",
+      "alt": "Occupied living-room edit blending homeowner furniture with curated styling layers",
+      "room": "Living"
+    },
+    {
+      "url": "/images/IMG_2926.jpeg",
+      "alt": "Bedroom edited and styled for the listing camera with crisp linens",
+      "room": "Bedroom"
+    },
+    {
+      "url": "/images/IMG_2955.jpeg",
+      "alt": "Outdoor-facing room styled to maximize the golf-course view",
+      "room": "Outdoor"
+    }
+  ],
   "coverImage": "/images/IMG_9465.jpeg",
   "coverImageAlt": "Black dining table styled with brass flatware and a vase of deep red hydrangeas",
-  "photos": [
-    { "url": "/images/IMG_9465.jpeg", "alt": "Black dining table styled with brass flatware and a vase of deep red hydrangeas", "room": "Dining" },
-    { "url": "/images/IMG_9463.jpeg", "alt": "A signature Aviara styled vignette: black candle on a marble side table", "room": "Detail" },
-    { "url": "/images/IMG_9482.jpeg", "alt": "Styled vignette with fluted candle bowl and curated accessories", "room": "Detail" },
-    { "url": "/images/IMG_9165.jpeg", "alt": "Occupied living-room edit blending homeowner furniture with curated styling layers", "room": "Living" },
-    { "url": "/images/IMG_2926.jpeg", "alt": "Bedroom edited and styled for the listing camera with crisp linens", "room": "Bedroom" },
-    { "url": "/images/IMG_2955.jpeg", "alt": "Outdoor-facing room styled to maximize the golf-course view", "room": "Outdoor" }
-  ]
+  "slug": "temeku-hills-golf-estate",
+  "order": 2,
+  "location": "Temecula, CA",
+  "title": "Temeku Hills Golf Estate",
+  "category": "Occupied Staging"
 }
