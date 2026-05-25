@@ -35,7 +35,7 @@ export default function Portfolio() {
           className="mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
           data-testid="portfolio-grid"
         >
-          {projects.map((p, i) => (
+          {projects.slice(0, 3).map((p, i) => (
             <Reveal key={p.slug} as="li" delay={i * 100}>
               <a
                 href={`/portfolio/${p.slug}/`}
