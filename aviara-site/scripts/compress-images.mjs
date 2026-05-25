@@ -35,8 +35,13 @@ async function processFile(name) {
   if (before <= MAX_SIZE) return null;
 
   const buf = await readFile(path);
-  const img = sharp(buf, { failOn: "none" });
-  const meta = await img.metadata();
+  // .rotate() with no args auto-applies EXIF orientation and strips the tag,
+  // so the saved pixels are already right-side-up. Without this the script
+  // strips EXIF but leaves pixels in sensor orientation — exactly how a
+  // bunch of iPhone landscape photos ended up rendering sideways on the
+  // portfolio pages.
+  const img = sharp(buf, { failOn: "none" }).rotate();
+  const meta = await sharp(buf).rotate().metadata();
   const longEdge = Math.max(meta.width || 0, meta.height || 0);
   const resize = longEdge > MAX_DIMENSION
     ? img.resize({ width: meta.width >= meta.height ? MAX_DIMENSION : null,
