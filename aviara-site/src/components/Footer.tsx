@@ -159,7 +159,7 @@ export default function Footer() {
                   href={site.social.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Brooklyn James on LinkedIn"
+                  aria-label="Aviara Design Co. on LinkedIn"
                   className="text-ink hover:text-brass transition-colors"
                 >
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
