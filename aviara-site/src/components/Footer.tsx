@@ -9,8 +9,9 @@ export default function Footer() {
     <footer className="bg-bone border-t border-line text-slate">
       <div className="container-wide py-16 md:py-20">
         <div className="grid md:grid-cols-4 gap-12 md:gap-10 items-start">
-          {/* COL 1: brand mark — always centered under the logo at every breakpoint */}
-          <div className="flex flex-col items-center text-center">
+          {/* COL 1: brand mark — centered between the screen's left edge and
+              the Service Areas divider (see .footer-brand-center) */}
+          <div className="footer-brand-center flex flex-col items-center text-center">
             <span className="relative inline-block w-[140px] h-[140px] md:w-[160px] md:h-[160px]">
               <Image
                 src="/images/aviara-monogram.png"

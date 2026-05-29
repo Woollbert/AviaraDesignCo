@@ -71,6 +71,21 @@
     margin-inline: auto;
     padding-inline: clamp(1.25rem, 4vw, 2.5rem);
   }
+  /* Footer brand block: center it between the viewport's LEFT edge and the
+     Service Areas divider, not merely within its own grid column. On screens
+     wider than the 82rem container, the centered container's auto side-margin
+     pushes the column right of that true midpoint. We translate the block by
+     half the signed (gap − viewport-margin − container-padding) difference to
+     recenter it across the full left band. Only at md+, where the 4-column
+     layout and the divider exist; on mobile the block stays centered in its
+     full-width column. */
+  @media (min-width: 768px) {
+    .footer-brand-center {
+      transform: translateX(
+        calc((2.5rem - max(0px, (100vw - 82rem) / 2) - clamp(1.25rem, 4vw, 2.5rem)) / 2)
+      );
+    }
+  }
   .container-narrow {
     max-width: 64rem;
     margin-inline: auto;
