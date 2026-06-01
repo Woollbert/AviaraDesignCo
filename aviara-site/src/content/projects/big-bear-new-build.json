@@ -4,55 +4,68 @@
   "photos": [
     {
       "url": "/images/img_4966-1-.jpeg",
-      "alt": "A modern mountain kitchen in Big Bear featuring warm wood tones, organic textures, and elevated neutral styling."
+      "alt": "A modern mountain kitchen in Big Bear featuring warm wood tones, organic textures, and elevated neutral styling.",
+      "room": "Kitchen"
     },
     {
       "url": "/images/beautifulnewmodernkitchen_mountainliving_aviaradesignco.jpeg",
-      "alt": "Contemporary mountain kitchen with clean lines, premium finishes, a large center island, and thoughtfully styled décor that highlights the home's modern design and inviting atmosphere."
+      "alt": "Contemporary mountain kitchen with clean lines, premium finishes, a large center island, and thoughtfully styled décor that highlights the home's modern design and inviting atmosphere.",
+      "room": "Kitchen"
     },
     {
       "url": "/images/kitchendetails_homestaging_bigbearlake_aviaradesignco.jpeg",
-      "alt": "Professionally styled kitchen staging details in a luxury Big Bear home featuring curated décor, organic textures, and thoughtfully placed accessories that enhance the home's market appeal."
+      "alt": "Professionally styled kitchen staging details in a luxury Big Bear home featuring curated décor, organic textures, and thoughtfully placed accessories that enhance the home's market appeal.",
+      "room": "Kitchen"
     },
     {
       "url": "/images/gorgeousmodernkitchen_bigbearcabin_homestaging_aviaradesignco.jpeg",
-      "alt": "Bright and inviting open-concept living space combining a modern kitchen and living room with clean lines, premium finishes, curated furnishings, and large windows that showcase the home's contemporary mountain design and spacious layout."
+      "alt": "Bright and inviting open-concept living space combining a modern kitchen and living room with clean lines, premium finishes, curated furnishings, and large windows that showcase the home's contemporary mountain design and spacious layout.",
+      "room": "Kitchen"
     },
     {
       "url": "/images/openconceptlivingspace_modernbigbearcabin_aviaradesignco_homestaging.jpeg",
-      "alt": "Professionally staged open-concept kitchen and living room in a luxury Big Bear home featuring a spacious island, designer furnishings, contemporary finishes, and seamless indoor-outdoor mountain living."
+      "alt": "Professionally staged open-concept kitchen and living room in a luxury Big Bear home featuring a spacious island, designer furnishings, contemporary finishes, and seamless indoor-outdoor mountain living.",
+      "room": "Kitchen"
     },
     {
       "url": "/images/livingroomdesign_vacantstaging_bigbearlake.jpeg",
-      "alt": "Spacious modern mountain living room with curated furnishings, layered textiles, warm wood tones, and floor-to-ceiling windows that create an inviting space for relaxation and entertaining."
+      "alt": "Spacious modern mountain living room with curated furnishings, layered textiles, warm wood tones, and floor-to-ceiling windows that create an inviting space for relaxation and entertaining.",
+      "room": "Living"
     },
     {
       "url": "/images/luxurylivingroom_aviaradesignco_southerncaliforniapropertystaging.jpeg",
-      "alt": "Modern living room with comfortable seating, warm wood accents, layered textures, and large windows showcasing natural light and mountain views."
+      "alt": "Modern living room with comfortable seating, warm wood accents, layered textures, and large windows showcasing natural light and mountain views.",
+      "room": "Living"
     },
     {
       "url": "/images/modernlivingroomstaging_aviaradesignco_luxurymountainhome.jpeg",
-      "alt": "Professionally staged luxury living room in a modern Big Bear home featuring designer furnishings, contemporary styling, natural materials, and expansive mountain-view windows."
+      "alt": "Professionally staged luxury living room in a modern Big Bear home featuring designer furnishings, contemporary styling, natural materials, and expansive mountain-view windows.",
+      "room": "Living"
     },
     {
       "url": "/images/gorgeousmoderndiningroom_aviaradesignco_propertystaging.jpeg",
-      "alt": "Professionally staged dining room in a luxury Big Bear home featuring a black dining table, modern dining chairs, designer lighting, and contemporary mountain-inspired design."
+      "alt": "Professionally staged dining room in a luxury Big Bear home featuring a black dining table, modern dining chairs, designer lighting, and contemporary mountain-inspired design.",
+      "room": "Dining"
     },
     {
       "url": "/images/moderndiningspace_bigbearnewbuild_aviaradesignco.jpeg",
-      "alt": "Elegant dining space with a black dining table, modern chairs, warm natural textures, and expansive windows that create a bright and sophisticated setting for gathering and entertaining."
+      "alt": "Elegant dining space with a black dining table, modern chairs, warm natural textures, and expansive windows that create a bright and sophisticated setting for gathering and entertaining.",
+      "room": "Dining"
     },
     {
       "url": "/images/consoletable_modernhomestaging_aviaradesignco_southerncalifornia.jpeg",
-      "alt": "Professionally styled console table in a luxury Big Bear home featuring curated décor, layered textures, and designer accessories that enhance the home's modern mountain aesthetic."
+      "alt": "Professionally styled console table in a luxury Big Bear home featuring curated décor, layered textures, and designer accessories that enhance the home's modern mountain aesthetic.",
+      "room": "Entry"
     },
     {
       "url": "/images/bigbear_aviaradesignco_dreamybedroomstaging.jpeg",
-      "alt": "Professionally staged primary bedroom in a modern Big Bear home with luxury furnishings, neutral décor, layered textiles, wood accents, and a warm mountain-inspired design."
+      "alt": "Professionally staged primary bedroom in a modern Big Bear home with luxury furnishings, neutral décor, layered textiles, wood accents, and a warm mountain-inspired design.",
+      "room": "Bedroom"
     },
     {
       "url": "/images/guestbathroom_stagedlisting_aviaradesignco.jpeg",
-      "alt": "Modern guest bathroom with a floating vanity, sleek fixtures, clean lines, and neutral finishes designed to create a bright and welcoming space."
+      "alt": "Modern guest bathroom with a floating vanity, sleek fixtures, clean lines, and neutral finishes designed to create a bright and welcoming space.",
+      "room": "Bathroom"
     },
     {
       "url": "/images/modernofficespace_bigbearlake_aviaradesignco.jpeg",
@@ -60,7 +73,8 @@
     },
     {
       "url": "/images/officespace_modernbigbearhome_aviaradesignco_staging.jpeg",
-      "alt": "Contemporary office space in a modern mountain home with a streamlined desk, stylish seating, warm wood finishes, neutral tones, and large windows creating a bright and productive workspace."
+      "alt": "Contemporary office space in a modern mountain home with a streamlined desk, stylish seating, warm wood finishes, neutral tones, and large windows creating a bright and productive workspace.",
+      "room": "Office"
     }
   ],
   "coverImage": "/images/img_4966-1-.jpeg",
