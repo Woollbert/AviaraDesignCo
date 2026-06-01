@@ -5,22 +5,22 @@
     {
       "url": "/images/IMG_9465.jpeg",
       "alt": "Black dining table styled with brass flatware and a vase of deep red hydrangeas",
-      "room": "Dining"
+      "room": null
     },
     {
       "url": "/images/IMG_9463.jpeg",
       "alt": "A signature Aviara styled vignette: black candle on a marble side table",
-      "room": "Detail"
+      "room": null
     },
     {
       "url": "/images/IMG_9482.jpeg",
       "alt": "Styled vignette with fluted candle bowl and curated accessories",
-      "room": "Detail"
+      "room": null
     },
     {
       "url": "/images/IMG_9165.jpeg",
       "alt": "Occupied living-room edit blending homeowner furniture with curated styling layers",
-      "room": "Living"
+      "room": null
     }
   ],
   "coverImage": "/images/IMG_9465.jpeg",
