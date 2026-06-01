@@ -5,22 +5,22 @@
     {
       "url": "/images/IMG_9822.jpeg",
       "alt": "Cream sectional with chocolate throw, marble side table, and warm plank flooring",
-      "room": "Living"
+      "room": null
     },
     {
       "url": "/images/IMG_9826.jpeg",
       "alt": "Living room view from the entryway, layered lighting and curated accessories",
-      "room": "Living"
+      "room": null
     },
     {
       "url": "/images/IMG_9828.jpeg",
       "alt": "Refined living room composition with curated coffee-table styling",
-      "room": "Living"
+      "room": null
     },
     {
       "url": "/images/IMG_9842.jpeg",
       "alt": "A signature Aviara styled vignette: white pottery vase with deep red blooms",
-      "room": "Detail"
+      "room": null
     }
   ],
   "coverImage": "/images/IMG_9822.jpeg",
