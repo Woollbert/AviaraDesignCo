@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { site } from "@/data/site";
 import { cities, type City } from "@/data/cities";
+import { serviceCityCombos } from "@/data/serviceCities";
 import Reveal from "@/components/Reveal";
 
 // Renders a city-specific home staging landing page. Data comes from
@@ -157,14 +158,45 @@ export default function CityPage({ city }: Props) {
               </h2>
             </Reveal>
             <div className="mt-10 grid md:grid-cols-2 gap-x-10 gap-y-10">
-              {city.serviceNotes.map((sn, i) => (
-                <Reveal key={sn.name} delay={i * 60}>
-                  <div className="border-t border-line pt-6">
-                    <h3 className="font-display text-2xl text-ink">{sn.name}</h3>
-                    <p className="mt-3 text-slate leading-relaxed">{sn.note}</p>
-                  </div>
-                </Reveal>
-              ))}
+              {city.serviceNotes.map((sn, i) => {
+                // If a dedicated service × city landing page exists for this
+                // note, link the heading to it so the page becomes a
+                // crawl-discoverable child of this city hub.
+                const combo = serviceCityCombos.find(
+                  (c) => c.city.slug === city.slug && c.serviceNote.name === sn.name,
+                );
+                return (
+                  <Reveal key={sn.name} delay={i * 60}>
+                    <div className="border-t border-line pt-6">
+                      <h3 className="font-display text-2xl text-ink">
+                        {combo ? (
+                          <Link
+                            href={`/${combo.slug}/`}
+                            className="hover:text-brass transition-colors"
+                          >
+                            {sn.name}
+                          </Link>
+                        ) : (
+                          sn.name
+                        )}
+                      </h3>
+                      <p className="mt-3 text-slate leading-relaxed">{sn.note}</p>
+                      {combo && (
+                        <Link
+                          href={`/${combo.slug}/`}
+                          className="mt-3 inline-block text-sm text-brass hover:text-ink transition-colors underline underline-offset-4 decoration-brass/40 hover:decoration-ink"
+                          data-track="cta_click"
+                          data-track-surface="city_service_note"
+                          data-track-service={combo.service.slug}
+                          data-track-city={city.slug}
+                        >
+                          {sn.name} in {city.city} →
+                        </Link>
+                      )}
+                    </div>
+                  </Reveal>
+                );
+              })}
             </div>
           </div>
         </section>

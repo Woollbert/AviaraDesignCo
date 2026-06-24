@@ -3,6 +3,7 @@ import { site } from "@/data/site";
 import { projects } from "@/data/portfolio";
 import { cities } from "@/data/cities";
 import { journalPosts } from "@/data/journal";
+import { serviceCityCombos } from "@/data/serviceCities";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = site.url.replace(/\/$/, "");
@@ -28,6 +29,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "monthly" as const,
       priority: 0.9,
+    })),
+    ...serviceCityCombos.map((sc) => ({
+      url: `${base}/${sc.slug}/`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.85,
     })),
     ...projects.map((p) => ({
       url: `${base}/portfolio/${p.slug}/`,
