@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { site } from "@/data/site";
+import { track } from "@/lib/track";
 
 export default function Hero() {
   const hero = site.hero;
@@ -95,12 +96,18 @@ export default function Hero() {
           <div className="mt-10 flex flex-wrap gap-4">
             <a
               href={hero.ctaPrimaryHref}
+              onClick={() => track("cta_click", { surface: "hero_primary", label: hero.ctaPrimaryLabel })}
               className="btn bg-ivory text-ink hover:bg-brassSoft hover:text-ink border border-ivory"
               data-testid="hero-cta-primary"
             >
               {hero.ctaPrimaryLabel}
             </a>
-            <a href={hero.ctaSecondaryHref} className="btn btn-ghost-light" data-testid="hero-cta-secondary">
+            <a
+              href={hero.ctaSecondaryHref}
+              onClick={() => track("cta_click", { surface: "hero_secondary", label: hero.ctaSecondaryLabel })}
+              className="btn btn-ghost-light"
+              data-testid="hero-cta-secondary"
+            >
               {hero.ctaSecondaryLabel}
             </a>
           </div>

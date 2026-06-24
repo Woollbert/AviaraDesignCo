@@ -1,7 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { site } from "@/data/site";
 import { cities } from "@/data/cities";
+import { track } from "@/lib/track";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -115,6 +118,7 @@ export default function Footer() {
               <li>
                 <a
                   href={`tel:${site.phoneTel}`}
+                  onClick={() => track("phone_click", { surface: "footer" })}
                   className="text-base text-ink hover:text-brass transition-colors underline underline-offset-4 decoration-line hover:decoration-brass"
                 >
                   {site.phone}
@@ -123,6 +127,7 @@ export default function Footer() {
               <li>
                 <a
                   href={`mailto:${site.email}`}
+                  onClick={() => track("email_click", { surface: "footer" })}
                   className="text-base text-ink hover:text-brass transition-colors underline underline-offset-4 decoration-line hover:decoration-brass break-all"
                 >
                   {site.email}
