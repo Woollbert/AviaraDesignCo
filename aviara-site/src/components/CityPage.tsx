@@ -49,10 +49,22 @@ export default function CityPage({ city }: Props) {
               {city.intro}
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
-              <a href="/#contact" className="btn btn-ink">
+              <a
+                href="/#contact"
+                className="btn btn-ink"
+                data-track="cta_click"
+                data-track-surface="city_hero"
+                data-track-city={city.slug}
+              >
                 Begin a Project
               </a>
-              <a href="/portfolio/" className="btn btn-ghost-light">
+              <a
+                href="/portfolio/"
+                className="btn btn-ghost-light"
+                data-track="cta_click"
+                data-track-surface="city_hero_portfolio"
+                data-track-city={city.slug}
+              >
                 View the Work
               </a>
             </div>
@@ -281,10 +293,22 @@ export default function CityPage({ city }: Props) {
               Tell us about the property, your timeline, and how you'd like buyers to feel when they walk through the front door. We'll be in touch within one business day.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <a href="/#contact" className="btn btn-ink">
+              <a
+                href="/#contact"
+                className="btn btn-ink"
+                data-track="cta_click"
+                data-track-surface="city_footer"
+                data-track-city={city.slug}
+              >
                 Begin a Project
               </a>
-              <a href={`tel:${site.phoneTel}`} className="btn btn-ghost-light">
+              <a
+                href={`tel:${site.phoneTel}`}
+                className="btn btn-ghost-light"
+                data-track="phone_click"
+                data-track-surface="city_footer"
+                data-track-city={city.slug}
+              >
                 {site.phone}
               </a>
             </div>

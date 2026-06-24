@@ -3,6 +3,7 @@
 import { useState, FormEvent } from "react";
 import Reveal from "./Reveal";
 import { site } from "@/data/site";
+import { track } from "@/lib/track";
 
 const projectTypes = [
   "Vacant Staging",
@@ -61,6 +62,11 @@ export default function Contact() {
 
       setStatus("ok");
       form.reset();
+      track("form_submit", {
+        surface: "contact_form",
+        project_type: payload.projectType || "",
+        city: payload.city || "",
+      });
     } catch (err) {
       setStatus("error");
       setErrorMsg(err instanceof Error ? err.message : "Something went wrong");
@@ -96,6 +102,7 @@ export default function Contact() {
               <dd className="mt-2">
                 <a
                   href={`tel:${site.phoneTel}`}
+                  onClick={() => track("phone_click", { surface: "contact_section" })}
                   className="font-display text-2xl text-ink hover:text-brass transition-colors"
                   data-testid="contact-phone"
                 >
@@ -108,6 +115,7 @@ export default function Contact() {
               <dd className="mt-2">
                 <a
                   href={`mailto:${site.email}`}
+                  onClick={() => track("email_click", { surface: "contact_section" })}
                   className="font-display text-2xl text-ink hover:text-brass transition-colors break-all"
                   data-testid="contact-email"
                 >
