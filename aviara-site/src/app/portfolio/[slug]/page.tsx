@@ -24,10 +24,12 @@ export async function generateMetadata({
   return {
     title: project.title,
     description: project.shortDescription,
+    alternates: { canonical: `/portfolio/${project.slug}/` },
     openGraph: {
       title: `${project.title} | ${site.name}`,
       description: project.shortDescription,
-      images: [{ url: project.coverImage }],
+      url: `/portfolio/${project.slug}/`,
+      images: [{ url: project.coverImage, width: 1200, height: 630 }],
     },
   };
 }

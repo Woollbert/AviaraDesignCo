@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     description:
       "Aviara Design Co. stages homes across Southern California, from Temecula and the San Jacinto Valley to coastal North County San Diego, inland North County, and the Big Bear mountain market.",
     url: "/service-areas/",
+    images: [{ url: "/images/A7405944.jpeg", width: 1200, height: 630 }],
   },
 };
 

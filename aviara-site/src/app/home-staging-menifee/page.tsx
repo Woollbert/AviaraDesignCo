@@ -6,13 +6,14 @@ import { notFound } from "next/navigation";
 const city = findCity("home-staging-menifee");
 
 export const metadata: Metadata = {
-  title: city?.metaTitle ?? "Home Staging in Menifee, CA",
+  title: { absolute: city?.metaTitle ?? "Home Staging in Menifee, CA" },
   description: city?.metaDescription,
   alternates: { canonical: "/home-staging-menifee/" },
   openGraph: {
     title: city?.metaTitle,
     description: city?.metaDescription,
     url: "/home-staging-menifee/",
+    images: [{ url: "/images/A7405944.jpeg", width: 1200, height: 630 }],
   },
 };
 

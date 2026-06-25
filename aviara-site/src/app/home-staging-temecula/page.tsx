@@ -6,13 +6,14 @@ import { notFound } from "next/navigation";
 const city = findCity("home-staging-temecula");
 
 export const metadata: Metadata = {
-  title: city?.metaTitle ?? "Home Staging in Temecula, CA",
+  title: { absolute: city?.metaTitle ?? "Home Staging in Temecula, CA" },
   description: city?.metaDescription,
   alternates: { canonical: "/home-staging-temecula/" },
   openGraph: {
     title: city?.metaTitle,
     description: city?.metaDescription,
     url: "/home-staging-temecula/",
+    images: [{ url: "/images/A7405944.jpeg", width: 1200, height: 630 }],
   },
 };
 

@@ -6,13 +6,14 @@ import { notFound } from "next/navigation";
 const city = findCity("home-staging-la-jolla");
 
 export const metadata: Metadata = {
-  title: city?.metaTitle ?? "Home Staging in La Jolla, CA",
+  title: { absolute: city?.metaTitle ?? "Home Staging in La Jolla, CA" },
   description: city?.metaDescription,
   alternates: { canonical: "/home-staging-la-jolla/" },
   openGraph: {
     title: city?.metaTitle,
     description: city?.metaDescription,
     url: "/home-staging-la-jolla/",
+    images: [{ url: "/images/A7405944.jpeg", width: 1200, height: 630 }],
   },
 };
 
