@@ -114,6 +114,34 @@ const localBusinessJsonLd = {
   ],
 };
 
+// WebSite + Organization schemas — distinct from LocalBusiness above. Google
+// uses WebSite to identify the canonical site entity (and offers a sitelinks
+// search box for branded queries), and Organization to disambiguate the
+// company across non-local contexts (e.g. press, partner sites, citations).
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${baseUrl}/#website`,
+  url: baseUrl,
+  name: site.name,
+  alternateName: site.shortName,
+  publisher: { "@id": `${baseUrl}/#business` },
+  inLanguage: "en-US",
+};
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": `${baseUrl}/#organization`,
+  name: site.name,
+  alternateName: site.shortName,
+  url: baseUrl,
+  logo: `${baseUrl}/logo-512.png`,
+  email: site.email,
+  telephone: site.phoneTel,
+  sameAs: [site.social.instagram, site.social.facebook, site.social.linkedin, site.social.yelp].filter(Boolean),
+};
+
 
 const display = Cormorant_Garamond({
   subsets: ["latin"],
@@ -214,6 +242,14 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
         <a
           href="#main"
