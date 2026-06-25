@@ -66,7 +66,7 @@ const localBusinessJsonLd = {
     "@type": "City",
     name: area,
   })),
-  sameAs: [site.social.instagram, site.social.facebook, site.social.linkedin].filter(Boolean),
+  sameAs: [site.social.instagram, site.social.facebook, site.social.linkedin, site.social.yelp].filter(Boolean),
   // Reviews — fed from src/content/testimonials.json. Helps Google show
   // star-rated rich results in the local pack. The "X stars" suffix in the
   // role line is parsed to derive each individual rating; if none parses we
