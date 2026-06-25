@@ -6,13 +6,14 @@ import { notFound } from "next/navigation";
 const city = findCity("home-staging-fallbrook");
 
 export const metadata: Metadata = {
-  title: city?.metaTitle ?? "Home Staging in Fallbrook, CA",
+  title: { absolute: city?.metaTitle ?? "Home Staging in Fallbrook, CA" },
   description: city?.metaDescription,
   alternates: { canonical: "/home-staging-fallbrook/" },
   openGraph: {
     title: city?.metaTitle,
     description: city?.metaDescription,
     url: "/home-staging-fallbrook/",
+    images: [{ url: "/images/A7405944.jpeg", width: 1200, height: 630 }],
   },
 };
 

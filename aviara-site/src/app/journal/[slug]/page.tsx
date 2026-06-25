@@ -29,6 +29,7 @@ export async function generateMetadata({
       url: `/journal/${post.slug}/`,
       type: "article",
       publishedTime: post.publishedAt,
+      images: [{ url: post.coverImage ?? "/images/A7405944.jpeg", width: 1200, height: 630 }],
     },
   };
 }

@@ -47,5 +47,38 @@ export default async function Page({
   const { serviceCity } = await params;
   const combo = findServiceCity(serviceCity);
   if (!combo) notFound();
-  return <ServiceCityPage combo={combo} />;
+
+  // Breadcrumb JSON-LD — gives Google the parent path so search results
+  // can show "Aviara › <City> › <Service>" instead of a bare URL, which
+  // boosts CTR and locks the page into its city cluster.
+  const base = site.url.replace(/\/$/, "");
+  const breadcrumb = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: `${base}/` },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: `Home staging in ${combo.city.city}`,
+        item: `${base}/${combo.city.slug}/`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: `${combo.service.name} in ${combo.city.city}`,
+        item: `${base}/${combo.slug}/`,
+      },
+    ],
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
+      />
+      <ServiceCityPage combo={combo} />
+    </>
+  );
 }

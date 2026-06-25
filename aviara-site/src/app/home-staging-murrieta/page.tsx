@@ -6,13 +6,14 @@ import { notFound } from "next/navigation";
 const city = findCity("home-staging-murrieta");
 
 export const metadata: Metadata = {
-  title: city?.metaTitle ?? "Home Staging in Murrieta, CA",
+  title: { absolute: city?.metaTitle ?? "Home Staging in Murrieta, CA" },
   description: city?.metaDescription,
   alternates: { canonical: "/home-staging-murrieta/" },
   openGraph: {
     title: city?.metaTitle,
     description: city?.metaDescription,
     url: "/home-staging-murrieta/",
+    images: [{ url: "/images/A7405944.jpeg", width: 1200, height: 630 }],
   },
 };
 

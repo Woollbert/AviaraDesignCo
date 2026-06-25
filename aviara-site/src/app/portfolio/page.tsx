@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Portfolio",
   description:
     "Recent home staging and interior design projects from Aviara Design Co. across Temecula, San Diego, Orange County, and the Inland Empire.",
+  alternates: { canonical: "/portfolio/" },
 };
 
 const CATEGORIES = ["All", "Vacant Staging", "Occupied Staging", "Interior Design"] as const;

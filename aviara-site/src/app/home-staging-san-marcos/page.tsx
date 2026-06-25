@@ -6,13 +6,14 @@ import { notFound } from "next/navigation";
 const city = findCity("home-staging-san-marcos");
 
 export const metadata: Metadata = {
-  title: city?.metaTitle ?? "Home Staging in San Marcos, CA",
+  title: { absolute: city?.metaTitle ?? "Home Staging in San Marcos, CA" },
   description: city?.metaDescription,
   alternates: { canonical: "/home-staging-san-marcos/" },
   openGraph: {
     title: city?.metaTitle,
     description: city?.metaDescription,
     url: "/home-staging-san-marcos/",
+    images: [{ url: "/images/A7405944.jpeg", width: 1200, height: 630 }],
   },
 };
 

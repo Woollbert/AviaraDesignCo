@@ -6,13 +6,14 @@ import { notFound } from "next/navigation";
 const city = findCity("home-staging-del-mar");
 
 export const metadata: Metadata = {
-  title: city?.metaTitle ?? "Home Staging in Del Mar, CA",
+  title: { absolute: city?.metaTitle ?? "Home Staging in Del Mar, CA" },
   description: city?.metaDescription,
   alternates: { canonical: "/home-staging-del-mar/" },
   openGraph: {
     title: city?.metaTitle,
     description: city?.metaDescription,
     url: "/home-staging-del-mar/",
+    images: [{ url: "/images/A7405944.jpeg", width: 1200, height: 630 }],
   },
 };
 
