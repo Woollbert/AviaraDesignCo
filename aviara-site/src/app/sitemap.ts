@@ -67,17 +67,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.85,
       };
     }),
+    // Projects — declare every gallery image in the image sitemap so Google
+    // Image Search can index the staging photos. Image Search drives serious
+    // traffic for visual-first businesses; without this most photos never get
+    // surfaced.
     ...projects.map((p) => ({
       url: `${base}/portfolio/${p.slug}/`,
       lastModified: mtime(`src/content/projects/${p.slug}.json`, now),
       changeFrequency: "monthly" as const,
       priority: 0.6,
+      images: [
+        p.coverImage,
+        ...(p.photos || []).map((ph) => ph.url),
+      ]
+        .filter(Boolean)
+        .map((u) => `${base}${u.startsWith("/") ? u : "/" + u}`),
     })),
     ...journalPosts.map((post) => ({
       url: `${base}/journal/${post.slug}/`,
       lastModified: post.publishedAt ? new Date(post.publishedAt) : mtime(`src/content/journal/${post.slug}.json`, now),
       changeFrequency: "yearly" as const,
       priority: 0.5,
+      images: post.coverImage ? [`${base}${post.coverImage}`] : undefined,
     })),
   ];
 }
