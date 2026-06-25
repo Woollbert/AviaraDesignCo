@@ -136,6 +136,21 @@ export const metadata: Metadata = {
     template: `%s | ${site.name}`,
   },
   description: site.description,
+  // Tell Google we want LARGE image previews in search results (the default
+  // is "standard", which limits to a small thumbnail). For an image-driven
+  // staging business this can dramatically lift CTR on the SERP — the
+  // before/after photos are the whole pitch.
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
     title: site.name,
     description: site.description,
