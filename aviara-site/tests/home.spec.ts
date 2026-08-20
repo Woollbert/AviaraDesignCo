@@ -131,6 +131,15 @@ test.describe("Testimonials", () => {
 
 test.describe("Contact form", () => {
   test("rejects empty submit and accepts valid input with success message", async ({ page }) => {
+    // Stub the endpoint. This test drives the real form, so without this it
+    // files a genuine inquiry and emails the studio on every run.
+    await page.route("**/api/contact", (route) =>
+      route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({ ok: true }),
+      }),
+    );
     await gotoHome(page);
     await page.locator("#contact").scrollIntoViewIfNeeded();
 

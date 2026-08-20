@@ -91,6 +91,34 @@ export async function POST(req: Request) {
     );
   }
 
+  // Only the live site may actually deliver mail.
+  //
+  // The Playwright suite submits a real inquiry through this form ("Test
+  // User"), and it runs once per project — desktop and mobile — so every
+  // `npm test` put two genuine emails in the studio's inbox. Preview deploys
+  // and local dev would do the same. Anything that isn't the production
+  // hostname still gets the success response the UI expects, minus the email.
+  const forwardedHost = req.headers.get("x-forwarded-host");
+  const requestHost = (forwardedHost ?? req.headers.get("host") ?? "")
+    .toLowerCase()
+    .split(",")[0]
+    .trim()
+    .split(":")[0];
+  const bare = (h: string) => h.replace(/^www\./, "");
+  const isLiveDomain =
+    bare(requestHost) === bare(new URL(site.url).hostname.toLowerCase());
+  // Also trust Vercel's own signal. If production is ever reached through an
+  // alias rather than the bare domain, a hostname check alone would silently
+  // swallow a real lead — the one failure mode worth engineering against here.
+  // Preview deploys report "preview" and are still skipped.
+  const isProductionDeploy = process.env.VERCEL_ENV === "production";
+  if (!isLiveDomain && !isProductionDeploy) {
+    console.info(
+      `[contact] delivery skipped — non-production host "${requestHost || "unknown"}"`,
+    );
+    return NextResponse.json({ ok: true, delivered: false, reason: "non_production_host" });
+  }
+
   const host = process.env.SMTP_HOST;
   const port = Number(process.env.SMTP_PORT || 587);
   const user = process.env.SMTP_USER;
