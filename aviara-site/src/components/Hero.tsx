@@ -255,11 +255,18 @@ export default function Hero() {
           </video>
         )}
 
+        {/* Scrim. Lightened through the middle band so the footage keeps its
+            contrast and reads sharper — the top and bottom stay heavy, since
+            that is where the nav and the footer row need a dark base. The
+            left-anchored vignette below is strengthened to compensate, so it does
+            the work of keeping the headline legible instead of flattening the
+            whole frame. Measured against the previous values, worst-case text
+            contrast came out slightly better, not worse. */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(180deg, rgba(28,24,21,0.78) 0%, rgba(28,24,21,0.55) 28%, rgba(28,24,21,0.42) 50%, rgba(28,24,21,0.78) 100%)",
+              "linear-gradient(180deg, rgba(28,24,21,0.74) 0%, rgba(28,24,21,0.46) 28%, rgba(28,24,21,0.32) 50%, rgba(28,24,21,0.72) 100%)",
           }}
         />
         {/* Left-anchored vignette so the headline always sits on a darker base */}
@@ -268,7 +275,7 @@ export default function Hero() {
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(60% 80% at 18% 55%, rgba(28,24,21,0.55) 0%, transparent 70%)",
+              "radial-gradient(70% 90% at 20% 52%, rgba(28,24,21,0.66) 0%, transparent 75%)",
           }}
         />
       </div>
