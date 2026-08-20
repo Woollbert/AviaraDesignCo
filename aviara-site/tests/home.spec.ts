@@ -133,7 +133,11 @@ test.describe("Contact form", () => {
   test("rejects empty submit and accepts valid input with success message", async ({ page }) => {
     // Stub the endpoint. This test drives the real form, so without this it
     // files a genuine inquiry and emails the studio on every run.
-    await page.route("**/api/contact", (route) =>
+    // Regex, not a glob: the form posts to "/api/contact/" *with* a trailing
+    // slash (next.config sets trailingSlash), and "**/api/contact" does not
+    // match that. Getting this wrong means the request sails through to the
+    // real route and mails the studio, which is exactly what happened.
+    await page.route(/\/api\/contact\/?$/, (route) =>
       route.fulfill({
         status: 200,
         contentType: "application/json",
