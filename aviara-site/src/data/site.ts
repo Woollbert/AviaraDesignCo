@@ -3,8 +3,13 @@ import siteJson from "@/content/site.json";
 export type SiteHours = { day: string; time: string };
 
 export type Hero = {
+  /** Poster still shown immediately; also the fallback when video can't play. */
   bgImageUrl: string;
   bgImageAlt: string;
+  /** Optional background video. Omit to fall back to the poster still alone. */
+  bgVideoUrl?: string;
+  /** Smaller encode served to phones; falls back to bgVideoUrl if unset. */
+  bgVideoUrlMobile?: string;
   headlineLine1: string;
   headlineLine2: string;
   subhead: string;
