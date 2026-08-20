@@ -11,6 +11,23 @@ const nextConfig = {
       { protocol: "https", hostname: "plus.unsplash.com" },
     ],
   },
+  // The hero clip is the single heaviest asset on the site. Vercel serves
+  // files from public/ as `max-age=0, must-revalidate` by default, so every
+  // repeat visit re-validates several megabytes. These filenames carry a
+  // version suffix (-v2) precisely so they can be cached forever — if you
+  // swap the clip, bump the suffix rather than overwriting the file, or
+  // returning visitors will keep the old one.
+  async headers() {
+    return [
+      {
+        source: "/videos/:path*",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+        ],
+      },
+    ];
+  },
+
   // 301 redirects from the old WordPress URL structure. Preserves backlink
   // equity and prevents 404s on indexed Google results. Keep these forever —
   // even if traffic drops to zero, leaving them in place costs nothing.
