@@ -47,13 +47,11 @@ export default function Hero() {
   // Fade the video in only once frames are actually on screen. The poster is
   // frame one of the clip, so the handoff is invisible; if autoplay is refused
   // (iOS Low Power Mode, data saver) the still simply stays.
-  const [videoReady, setVideoReady] = useState(false);
-  // Which buffer is on screen.
-  const [activeIdx, setActiveIdx] = useState(0);
-  // The reveal is a 400ms fade; every handover after it must be instant, or
-  // we would crossfade a frozen last frame against a moving first one and
-  // reintroduce the ghosting the reveal was designed to avoid.
-  const [instantSwap, setInstantSwap] = useState(false);
+  // Opacity is driven imperatively from here on, never through React state.
+  // A setState swap is applied on a later tick, so the outgoing buffer stayed
+  // on screen frozen while the incoming one had already started playing —
+  // the handover landed on frame 1 or 2 instead of frame 0. That freeze plus
+  // skip was the residual stutter at the loop point.
 
   // Lock the Hero height to the viewport height measured on first paint, then
   // never update it. iOS Safari nominally honors `100svh` (the static "small
@@ -135,9 +133,15 @@ export default function Hero() {
           const idleReady =
             idle && idle.readyState >= 3 && idle.currentTime < 0.05;
           if (idleReady) {
+            // All of this in one synchronous block, so the browser composites
+            // a single consistent state: the idle buffer is sitting decoded on
+            // frame zero, so revealing it *before* starting playback puts
+            // frame zero on screen for exactly one frame period, and the pan
+            // continues from there without a freeze or a skipped frame.
+            idle.style.opacity = "1";
+            cur.style.opacity = "0";
             idle.play().catch(() => {});
             active = idle;
-            setActiveIdx((i) => 1 - i);
             cur.pause();
             cur.currentTime = 0; // the costly seek, now off screen
             watch(idle, cur);
@@ -185,7 +189,10 @@ export default function Hero() {
       // 10 unique frames against 30/sec afterwards.
       a.playbackRate = 1;
       a.play().catch(() => {});
-      setInstantSwap(true);
+      // Handovers must be cuts, not fades: a fade would blend a frozen last
+      // frame against a moving first one.
+      a.style.transitionDuration = "0ms";
+      if (b) b.style.transitionDuration = "0ms";
       primeIdle();
       watch(a, b);
     };
@@ -214,7 +221,8 @@ export default function Hero() {
       a.pause();
       const show = () => {
         if (cancelled) return;
-        setVideoReady(true);
+        a.style.transitionDuration = `${FADE_MS}ms`;
+        a.style.opacity = "1";
         holdTimer = setTimeout(armPan, HOLD_MS);
       };
       if (a.currentTime > 0.02) {
@@ -300,15 +308,14 @@ export default function Hero() {
               tabIndex={-1}
               disablePictureInPicture
               data-testid={i === 0 ? "hero-video" : "hero-video-buffer"}
+              // opacity-0 is only the starting state; the effect takes over
+              // imperatively, and inline styles win over the class. No style
+              // prop here on purpose, so a React re-render can never clobber
+              // the opacity mid-loop.
               className={
-                "absolute inset-0 h-full w-full transition-opacity ease-out " +
-                FRAME_CLASS +
-                (videoReady && activeIdx === i ? " opacity-100" : " opacity-0")
+                "absolute inset-0 h-full w-full transition-opacity ease-out opacity-0 " +
+                FRAME_CLASS
               }
-              // Inline rather than a `duration-[…]` class: Tailwind only sees
-              // arbitrary values it can read literally in the source, and this
-              // one has to stay tied to the FADE_MS the effect times off.
-              style={{ transitionDuration: instantSwap ? "0ms" : `${FADE_MS}ms` }}
             >
               <source
                 media="(max-width: 767px)"
