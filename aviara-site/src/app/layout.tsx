@@ -187,10 +187,10 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/A7405944.jpeg",
+        url: "/images/stagedlivingroom_stonefireplace_aviaradesignco_homestaging-og.jpg",
         width: 1200,
         height: 630,
-        alt: "Fully staged living room by Aviara Design Co.",
+        alt: "Staged great room with a stone fireplace, linen seating, and a marble dining table by Aviara Design Co.",
       },
     ],
   },
@@ -198,7 +198,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: site.name,
     description: site.description,
-    images: ["/images/A7405944.jpeg"],
+    images: ["/images/stagedlivingroom_stonefireplace_aviaradesignco_homestaging-og.jpg"],
   },
   // Google Search Console ownership verification. Set
   // NEXT_PUBLIC_GSC_VERIFICATION to the token from Search Console (the value

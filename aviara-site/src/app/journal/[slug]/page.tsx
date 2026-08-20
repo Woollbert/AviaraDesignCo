@@ -29,7 +29,7 @@ export async function generateMetadata({
       url: `/journal/${post.slug}/`,
       type: "article",
       publishedTime: post.publishedAt,
-      images: [{ url: post.coverImage ?? "/images/A7405944.jpeg", width: 1200, height: 630 }],
+      images: [{ url: post.coverImage ?? "/images/stagedlivingroom_stonefireplace_aviaradesignco_homestaging-og.jpg", width: 1200, height: 630 }],
     },
   };
 }
@@ -49,7 +49,7 @@ export default async function JournalPostPage({
   // the post eligible for the visual rich-result treatment in search.
   const articleImage = post.coverImage
     ? `${baseUrl}${post.coverImage.startsWith("/") ? "" : "/"}${post.coverImage}`
-    : `${baseUrl}/images/A7405944.jpeg`;
+    : `${baseUrl}/images/stagedlivingroom_stonefireplace_aviaradesignco_homestaging-og.jpg`;
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
