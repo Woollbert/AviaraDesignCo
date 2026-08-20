@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: city?.metaTitle,
     description: city?.metaDescription,
     url: "/home-staging-escondido/",
-    images: [{ url: "/images/A7405944.jpeg", width: 1200, height: 630 }],
+    images: [{ url: "/images/stagedlivingroom_stonefireplace_aviaradesignco_homestaging-og.jpg", width: 1200, height: 630 }],
   },
 };
 
