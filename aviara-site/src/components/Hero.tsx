@@ -25,15 +25,21 @@ const FRAME_CLASS =
 // then ease the pan up to speed. Numbers in ms.
 const FADE_MS = 400;
 const HOLD_MS = 500;
-const RAMP_MS = 900;
-const RAMP_FROM = 0.35;
 // Cap on how long we'll wait for the clip to buffer before panning anyway.
 const BUFFER_WAIT_MS = 4000;
+// Hand over to the second buffer this far from the end (~2 frames at 30fps).
+const HANDOVER_LEAD_S = 0.06;
 
 export default function Hero() {
   const hero = site.hero;
   const sectionRef = useRef<HTMLElement | null>(null);
-  const videoRef = useRef<HTMLVideoElement | null>(null);
+  // Two video elements, not one. `loop` makes the browser seek back to zero,
+  // and that seek stalls the decoder — measured at 116ms, three and a half
+  // frames' worth of freeze, on every wrap. So a second buffer sits primed on
+  // frame one, we cut to it at the end, and the expensive rewind happens on
+  // the element that just went invisible.
+  const videoARef = useRef<HTMLVideoElement | null>(null);
+  const videoBRef = useRef<HTMLVideoElement | null>(null);
   // Mount the video only after we've checked the client can sensibly play it,
   // so the initial HTML carries just the poster still and nothing competes
   // with the LCP image for bandwidth.
@@ -42,6 +48,12 @@ export default function Hero() {
   // frame one of the clip, so the handoff is invisible; if autoplay is refused
   // (iOS Low Power Mode, data saver) the still simply stays.
   const [videoReady, setVideoReady] = useState(false);
+  // Which buffer is on screen.
+  const [activeIdx, setActiveIdx] = useState(0);
+  // The reveal is a 400ms fade; every handover after it must be instant, or
+  // we would crossfade a frozen last frame against a moving first one and
+  // reintroduce the ghosting the reveal was designed to avoid.
+  const [instantSwap, setInstantSwap] = useState(false);
 
   // Lock the Hero height to the viewport height measured on first paint, then
   // never update it. iOS Safari nominally honors `100svh` (the static "small
@@ -88,44 +100,94 @@ export default function Hero() {
   // poster is frozen on frame one while the video is already half a second
   // into its pan. Dissolving between them ghosts two misaligned copies of the
   // same room. So instead: hold the video paused on frame one (pixel-identical
-  // to the poster), fade that in, then start moving. The fade has nothing to
-  // give away, and motion begins from a still image rather than cutting in
-  // mid-pan.
+  // to the poster), fade that in, then start moving.
   useEffect(() => {
-    const video = videoRef.current;
+    const a = videoARef.current;
+    const b = videoBRef.current;
     const section = sectionRef.current;
-    if (!video) return;
-    video.muted = true;
+    if (!a) return;
+    a.muted = true;
+    if (b) b.muted = true;
 
     let cancelled = false;
     let revealed = false;
     let panning = false;
     let inView = true;
+    let active = a;
     let holdTimer: ReturnType<typeof setTimeout> | undefined;
     let bufferTimer: ReturnType<typeof setTimeout> | undefined;
-    let frame = 0;
 
-    // Ease the pan up from a near standstill. Cutting straight to 1× reads as
-    // a jolt when the viewer has been looking at a still image.
+    const canFrameStep = typeof a.requestVideoFrameCallback === "function";
+    // Without requestVideoFrameCallback there's no reliable way to catch the
+    // last frame, so fall back to the browser's own loop — hitch and all.
+    if (!canFrameStep) a.loop = true;
+
+    // Watch the playing buffer and cut to the idle one as it reaches the end.
+    // Both ends of the clip are the same frame by construction (the encode
+    // crossfades its tail into its head), so the cut lands on identical
+    // pixels and is invisible.
+    const watch = (cur: HTMLVideoElement, idle: HTMLVideoElement | null) => {
+      if (cancelled || !canFrameStep) return;
+      const step = (_now: number, meta: { mediaTime: number }) => {
+        if (cancelled) return;
+        const end = cur.duration;
+        if (end && meta.mediaTime >= end - HANDOVER_LEAD_S) {
+          const idleReady =
+            idle && idle.readyState >= 3 && idle.currentTime < 0.05;
+          if (idleReady) {
+            idle.play().catch(() => {});
+            active = idle;
+            setActiveIdx((i) => 1 - i);
+            cur.pause();
+            cur.currentTime = 0; // the costly seek, now off screen
+            watch(idle, cur);
+            return;
+          }
+          // Second buffer isn't ready — do what `loop` would have done.
+          cur.currentTime = 0;
+          cur.play().catch(() => {});
+        }
+        cur.requestVideoFrameCallback(step);
+      };
+      cur.requestVideoFrameCallback(step);
+    };
+
+    // Load the second buffer only once the first is comfortably buffered, so
+    // the two elements don't race for the same several megabytes on a cold
+    // visit. By then the file is in the HTTP cache (it's served immutable),
+    // so this is a cache read rather than a second download.
+    const primeIdle = () => {
+      if (cancelled || !b || b.readyState >= 2) return;
+      b.load();
+      b.addEventListener(
+        "loadeddata",
+        () => {
+          if (cancelled) return;
+          b.pause();
+          if (b.currentTime > 0.02) b.currentTime = 0;
+        },
+        { once: true },
+      );
+    };
+
     const startPan = () => {
       if (cancelled || panning) return;
       // Scrolled past already — the observer starts us if the Hero returns.
       if (!inView) return;
       panning = true;
       clearTimeout(bufferTimer);
-      video.removeEventListener("canplaythrough", startPan);
-      const t0 = performance.now();
-      video.playbackRate = RAMP_FROM;
-      video.play().catch(() => {});
-      const step = (now: number) => {
-        if (cancelled) return;
-        const k = Math.min(1, (now - t0) / RAMP_MS);
-        // ease-out: quick off the mark, gentle as it settles into full speed
-        video.playbackRate = RAMP_FROM + (1 - RAMP_FROM) * k * (2 - k);
-        if (k < 1) frame = requestAnimationFrame(step);
-        else video.playbackRate = 1;
-      };
-      frame = requestAnimationFrame(step);
+      a.removeEventListener("canplaythrough", startPan);
+      // Exactly 1×, never anything else. An earlier version eased the
+      // playbackRate up from 0.35× to soften the moment motion begins, which
+      // backfired: slowing a video doesn't slow the motion captured inside
+      // each frame, it just holds each frame on screen longer, so a
+      // continuous pan visibly steps. Measured, that first second presented
+      // 10 unique frames against 30/sec afterwards.
+      a.playbackRate = 1;
+      a.play().catch(() => {});
+      setInstantSwap(true);
+      primeIdle();
+      watch(a, b);
     };
 
     // Hold the still until the clip can play through without stalling. One
@@ -134,11 +196,11 @@ export default function Hero() {
     // freeze — worse than a still that simply starts moving a moment later.
     const armPan = () => {
       if (cancelled) return;
-      if (video.readyState >= 4) {
+      if (a.readyState >= 4) {
         startPan();
         return;
       }
-      video.addEventListener("canplaythrough", startPan, { once: true });
+      a.addEventListener("canplaythrough", startPan, { once: true });
       bufferTimer = setTimeout(startPan, BUFFER_WAIT_MS);
     };
 
@@ -149,28 +211,28 @@ export default function Hero() {
     const reveal = () => {
       if (cancelled || revealed) return;
       revealed = true;
-      video.pause();
+      a.pause();
       const show = () => {
         if (cancelled) return;
         setVideoReady(true);
         holdTimer = setTimeout(armPan, HOLD_MS);
       };
-      if (video.currentTime > 0.02) {
-        video.addEventListener("seeked", show, { once: true });
-        video.currentTime = 0;
+      if (a.currentTime > 0.02) {
+        a.addEventListener("seeked", show, { once: true });
+        a.currentTime = 0;
       } else {
         show();
       }
     };
 
-    if (video.readyState >= 2) {
+    if (a.readyState >= 2) {
       reveal();
     } else {
-      video.addEventListener("loadeddata", reveal, { once: true });
+      a.addEventListener("loadeddata", reveal, { once: true });
       // Some browsers (notably iOS Safari) won't fetch the media until
       // playback is actually requested, so ask — `reveal` pauses and rewinds
       // the moment there's a frame to show, all of it behind opacity 0.
-      video.play().catch(() => {
+      a.play().catch(() => {
         /* autoplay refused — the poster still carries the Hero */
       });
     }
@@ -184,9 +246,9 @@ export default function Hero() {
           inView = entry.isIntersecting;
           if (!revealed) return;
           if (!inView) {
-            video.pause();
+            active.pause();
           } else if (panning) {
-            video.play().catch(() => {});
+            active.play().catch(() => {});
           } else {
             startPan();
           }
@@ -200,9 +262,8 @@ export default function Hero() {
       cancelled = true;
       clearTimeout(holdTimer);
       clearTimeout(bufferTimer);
-      cancelAnimationFrame(frame);
-      video.removeEventListener("loadeddata", reveal);
-      video.removeEventListener("canplaythrough", startPan);
+      a.removeEventListener("loadeddata", reveal);
+      a.removeEventListener("canplaythrough", startPan);
       observer?.disconnect();
     };
   }, [showVideo]);
@@ -224,36 +285,39 @@ export default function Hero() {
           className={FRAME_CLASS + (showVideo ? "" : " scale-[1.05] animate-kenburns")}
         />
 
-        {showVideo && hero.bgVideoUrl && (
-          <video
-            ref={videoRef}
-            muted
-            loop
-            playsInline
-            preload="auto"
-            aria-hidden="true"
-            tabIndex={-1}
-            disablePictureInPicture
-            data-testid="hero-video"
-            onPlaying={() => setVideoReady(true)}
-            className={
-              "absolute inset-0 h-full w-full transition-opacity ease-out " +
-              FRAME_CLASS +
-              (videoReady ? " opacity-100" : " opacity-0")
-            }
-            // Inline rather than a `duration-[…]` class: Tailwind only sees
-            // arbitrary values it can read literally in the source, and this
-            // one has to stay tied to the FADE_MS the effect above times off.
-            style={{ transitionDuration: `${FADE_MS}ms` }}
-          >
-            <source
-              media="(max-width: 767px)"
-              src={hero.bgVideoUrlMobile ?? hero.bgVideoUrl}
-              type="video/mp4"
-            />
-            <source src={hero.bgVideoUrl} type="video/mp4" />
-          </video>
-        )}
+        {showVideo &&
+          hero.bgVideoUrl &&
+          ([videoARef, videoBRef] as const).map((ref, i) => (
+            <video
+              key={i}
+              ref={ref}
+              muted
+              playsInline
+              // The second buffer stays unfetched until the first is ready,
+              // so a cold visit downloads the clip once rather than twice.
+              preload={i === 0 ? "auto" : "none"}
+              aria-hidden="true"
+              tabIndex={-1}
+              disablePictureInPicture
+              data-testid={i === 0 ? "hero-video" : "hero-video-buffer"}
+              className={
+                "absolute inset-0 h-full w-full transition-opacity ease-out " +
+                FRAME_CLASS +
+                (videoReady && activeIdx === i ? " opacity-100" : " opacity-0")
+              }
+              // Inline rather than a `duration-[…]` class: Tailwind only sees
+              // arbitrary values it can read literally in the source, and this
+              // one has to stay tied to the FADE_MS the effect times off.
+              style={{ transitionDuration: instantSwap ? "0ms" : `${FADE_MS}ms` }}
+            >
+              <source
+                media="(max-width: 767px)"
+                src={hero.bgVideoUrlMobile ?? hero.bgVideoUrl}
+                type="video/mp4"
+              />
+              <source src={hero.bgVideoUrl} type="video/mp4" />
+            </video>
+          ))}
 
         {/* Scrim. Lightened through the middle band so the footage keeps its
             contrast and reads sharper — the top and bottom stay heavy, since
