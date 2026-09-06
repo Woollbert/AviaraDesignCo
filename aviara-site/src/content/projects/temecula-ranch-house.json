@@ -1,0 +1,19 @@
+{
+  "shortDescription": "A warm, modern staging designed to complement the home’s ranch character through natural textures, earthy tones, and thoughtfully curated furnishings.",
+  "longDescription": "For this ranch-style home, we created a warm and elevated staging concept that felt intentional to the property rather than overly styled. Natural textures, earthy neutrals, organic materials, and modern furnishings were layered throughout the home to complement its existing character while giving each space a fresh, cohesive feel. Our goal was to highlight the home’s best features, create an emotional connection for buyers, and present a lifestyle that felt both elevated and inviting.",
+  "photos": [
+    {
+      "url": "/images/img_8317.jpeg",
+      "alt": "Styled living room detail with organic greenery, wood accents and layered natural textures in a Temecula ranch home",
+      "room": "Living",
+      "caption": "Organic details and natural textures bring warmth to the space."
+    }
+  ],
+  "coverImage": "/images/img_8300.jpeg",
+  "coverImageAlt": "Modern luxury home staging in a Temecula ranch-style living room by Aviara Design Co.",
+  "slug": "temecula-ranch-house",
+  "order": 99,
+  "location": "Temecula, CA",
+  "title": "Temecula Ranch House",
+  "category": "Vacant Staging"
+}
