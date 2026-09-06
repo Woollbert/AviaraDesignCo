@@ -96,7 +96,7 @@ To **add a brand-new city** that doesn't exist yet:
 2. Fill in the form (URL slug as `home-staging-<city>`, e.g. `home-staging-vista`). Pick a Region, give it a Display Order, and write real, local copy for every section. Pages that read like a template with the city name swapped in do more harm than good with Google.
 3. Tick **Published** and click Publish. The page is live about a minute later, with no developer step.
 
-**Rolling out new cities:** there are pre-written city pages sitting unpublished (Laguna Beach, Dana Point, San Clemente, Laguna Niguel, Coto de Caza, Irvine, Hermosa Beach, Redondo Beach, Pacific Palisades, Brentwood, West Hollywood). Read each one, tweak anything that doesn't sound like you, then tick Published. Publishing three or four a week, rather than all at once, is the gentler way to grow the site in Google's eyes and lets you watch Search Console for problems as you go.
+**Rolling out new cities:** there are pre-written Los Angeles city pages sitting unpublished (Hermosa Beach, Redondo Beach, Pacific Palisades, Brentwood, West Hollywood). Read each one, tweak anything that doesn't sound like you, then tick Published. Publishing three or four a week, rather than all at once, is the gentler way to grow the site in Google's eyes and lets you watch Search Console for problems as you go.
 
 ---
 

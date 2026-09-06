@@ -29,6 +29,7 @@ export default function Process() {
             alt=""
             fill
             sizes="100vw"
+            quality={85}
             className="object-cover"
             style={{ filter: "saturate(0.85)" }}
           />
