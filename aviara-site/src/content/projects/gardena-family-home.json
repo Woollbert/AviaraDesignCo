@@ -1,0 +1,19 @@
+{
+  "shortDescription": "An occupied staging transformation blending existing furnishings with curated pieces to create a fresh, cohesive home designed to stand out on the market.",
+  "longDescription": "For this Gardena home, we transformed the existing spaces through a thoughtful blend of occupied staging and curated additions. Working with select furnishings already in the home, we introduced updated furniture, artwork, textiles, greenery, and décor to create a more cohesive and elevated presentation. Each space was intentionally styled to improve flow, highlight the home’s features, and photograph beautifully while still feeling warm and approachable. The result was a polished, market-ready home designed to help buyers see the property at its full potential.",
+  "photos": [
+    {
+      "url": "/images/img_6666.jpeg",
+      "alt": "Staged Gardena living room with fireplace, warm wood tones and layered neutral furnishings",
+      "room": "Living",
+      "caption": "Warm textures and thoughtful styling create an inviting focal point around the fireplace."
+    }
+  ],
+  "coverImage": "/images/img_6670.jpeg",
+  "coverImageAlt": "Occupied living room staging in a Gardena home with neutral furnishings, layered textures and modern decor",
+  "slug": "gardena-family-home",
+  "order": 6,
+  "location": "Gardena, CA",
+  "title": "Gardena Family Home",
+  "category": "Occupied Staging"
+}
