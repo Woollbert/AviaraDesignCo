@@ -82,9 +82,23 @@ export default function ScrollReveal() {
     ? Math.max(0, Math.min(1, (progress - 0.1) / 0.4))
     : (textInView ? 1 : 0);
   const textShift = (1 - textOpacity) * 24;
-  // Subtle parallax: photo drifts slightly to add depth, never leaves frame
-  const parallaxY = scrollDriven ? (progress - 0.5) * 70 : 0;
-  const photoScale = scrollDriven ? 1.08 + progress * 0.05 : 1.1;
+  // Desktop: a slow pan through whatever object-cover is cropping away. A
+  // portrait phone photo on a 16:9 screen has ~60% of its height hidden;
+  // instead of freezing on one band, the crop window drifts from near the
+  // top of the photo (as the section arrives) toward the bottom (as it
+  // leaves), so the whole frame gets seen. Panning object-position rather
+  // than translating the element means an edge can never be exposed, and a
+  // landscape photo with nothing hidden simply doesn't move. Zoom stays
+  // small so the photo keeps its sharpness.
+  const focalY = parseFloat(objectPosition.split(" ")[1]) / 100; // 0 top … 1 bottom
+  const PAN = 0.6; // fraction of the hidden area on each side actually travelled
+  const panY = scrollDriven
+    ? progress < 0.5
+      ? focalY - (0.5 - progress) * 2 * focalY * PAN
+      : focalY + (progress - 0.5) * 2 * (1 - focalY) * PAN
+    : focalY;
+  const livePosition = `50% ${(panY * 100).toFixed(2)}%`;
+  const photoScale = scrollDriven ? 1.02 + progress * 0.03 : 1.06;
 
   return (
     <section
@@ -99,10 +113,11 @@ export default function ScrollReveal() {
           alt={s.imageAlt}
           fill
           sizes="100vw"
+          quality={90}
           className="object-cover"
           style={{
-            objectPosition,
-            transform: `translate3d(0, ${parallaxY}px, 0) scale(${photoScale})`,
+            objectPosition: livePosition,
+            transform: `scale(${photoScale})`,
             transformOrigin: "center",
           }}
           priority={false}
