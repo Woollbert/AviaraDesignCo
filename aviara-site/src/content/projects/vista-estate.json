@@ -1,0 +1,73 @@
+{
+  "shortDescription": "A fresh, modern staging designed to highlight this Vista home’s spacious layout while creating a warm, elevated atmosphere buyers could instantly connect with.",
+  "longDescription": "For this Vista home, we created a cohesive staging concept centered around warm neutrals, natural textures, and modern furnishings to complement the property and enhance its overall presentation. Each space was thoughtfully designed to establish purpose, improve visual flow, and draw attention to the home’s strongest features. Layered textiles, curated artwork, organic accents, and intentional styling brought warmth and dimension throughout, transforming the vacant property into an inviting, market-ready home that photographed beautifully and allowed buyers to envision themselves living there.",
+  "photos": [
+    {
+      "url": "/images/img_7464-1-.jpeg",
+      "alt": "Styled console table with greenery, natural wood and layered decor in a staged Vista home",
+      "room": "Living",
+      "caption": "Natural textures and organic accents bring warmth and character to the space."
+    },
+    {
+      "url": "/images/img_7465.jpeg",
+      "alt": "Welcoming front entry of a Vista home with green door and layered welcome mat",
+      "room": "Entry",
+      "caption": "A welcoming first impression starts before buyers walk through the door."
+    },
+    {
+      "url": "/images/img_7454.jpeg",
+      "alt": "Staged kitchen and dining area with counter seating and warm modern furnishings in a Vista home",
+      "room": "Kitchen",
+      "caption": "Intentional styling highlights the kitchen as a natural place to gather."
+    },
+    {
+      "url": "/images/img_7446.jpeg",
+      "alt": "Modern staged living room in Vista with neutral furnishings, natural textures and warm wood accents",
+      "room": "Living",
+      "caption": "Layered neutrals and warm finishes create an elevated yet approachable living space."
+    },
+    {
+      "url": "/images/img_7440.jpeg",
+      "alt": "Home office staged with desk, chair and neutral decor beside a window in a Vista home",
+      "room": "Office",
+      "caption": "A dedicated workspace helps buyers envision how every area of the home can function."
+    },
+    {
+      "url": "/images/img_7432.jpeg",
+      "alt": "Staged bedroom in a Vista home with neutral bedding, dark wood floors and abundant natural light",
+      "room": "Bedroom",
+      "caption": "Soft neutrals create a calm, inviting retreat while allowing the room to feel bright and spacious."
+    },
+    {
+      "url": "/images/img_7426.jpeg",
+      "alt": "Staged bathroom in a Vista home with white vanity, neutral finishes and modern decor",
+      "room": "Bathroom",
+      "caption": "Clean, understated styling keeps the bathroom feeling fresh and polished."
+    },
+    {
+      "url": "/images/img_7424.jpeg",
+      "alt": "Primary bedroom staging in Vista with neutral bedding, natural textures and modern furnishings",
+      "room": "Bedroom",
+      "caption": "Soft layers and natural textures create a calm, inviting primary retreat."
+    },
+    {
+      "url": "/images/img_7328.jpeg",
+      "alt": "Rustic wood console styled with greenery, neutral decor and a modern mirror in a Vista home",
+      "room": "Entry",
+      "caption": "Warm wood and organic accents create a simple, welcoming moment."
+    },
+    {
+      "url": "/images/img_7271.jpeg",
+      "alt": "Modern fireplace wall in a Vista home styled with neutral artwork, built-in shelving and decorative accents",
+      "room": "Living",
+      "caption": "Minimal styling highlights the fireplace and architectural details without overwhelming the space."
+    }
+  ],
+  "coverImage": "/images/img_7461.jpeg",
+  "coverImageAlt": "Modern home staging in Vista with warm neutral furnishings, natural textures and an open concept living space",
+  "slug": "vista-estate",
+  "order": 7,
+  "location": "Vista, CA",
+  "title": "Vista Estate",
+  "category": "Vacant Staging"
+}
