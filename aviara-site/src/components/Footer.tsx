@@ -3,10 +3,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import { site } from "@/data/site";
-import { cities } from "@/data/cities";
 import { track } from "@/lib/track";
 
-export default function Footer() {
+export type FooterCity = { slug: string; city: string };
+
+type Props = {
+  /** Top cities for the Service Areas column. Passed down from the server
+   *  layout because the city loader reads the filesystem and this is a
+   *  client component. */
+  cities?: FooterCity[];
+};
+
+export default function Footer({ cities = [] }: Props) {
   const year = new Date().getFullYear();
   return (
     <footer className="bg-bone border-t border-line text-slate">
@@ -38,7 +46,7 @@ export default function Footer() {
               Service Areas
             </h4>
             <ul className="mt-6 space-y-3">
-              {cities.slice(0, 5).map((c) => (
+              {cities.map((c) => (
                 <li key={c.slug}>
                   <Link
                     href={`/${c.slug}/`}

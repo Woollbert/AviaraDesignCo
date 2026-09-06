@@ -4,6 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import { site } from "@/data/site";
 import { testimonials } from "@/data/portfolio";
+import { cities } from "@/data/cities";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import MobileContactBar from "@/components/MobileContactBar";
@@ -261,7 +262,7 @@ export default function RootLayout({
         <main id="main" className="flex-1">
           {children}
         </main>
-        <Footer />
+        <Footer cities={cities.slice(0, 5).map((c) => ({ slug: c.slug, city: c.city }))} />
         <MobileContactBar />
         {/* Google Analytics 4 — only rendered if a measurement ID is set in
             env (NEXT_PUBLIC_GA_MEASUREMENT_ID). 'afterInteractive' so the

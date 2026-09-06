@@ -26,6 +26,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const siteMtime = mtime("src/content/site.json", now);
   const servicesMtime = mtime("src/content/services.json", now);
+  const serviceAreasMtime = mtime("src/content/service-areas.json", now);
 
   const staticRoutes: Array<{
     path: string;
@@ -35,7 +36,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }> = [
     { path: "/",               priority: 1.0, freq: "weekly",  lastmod: siteMtime },
     { path: "/portfolio/",     priority: 0.8, freq: "monthly", lastmod: now },
-    { path: "/service-areas/", priority: 0.8, freq: "monthly", lastmod: now },
+    { path: "/service-areas/", priority: 0.8, freq: "monthly", lastmod: serviceAreasMtime },
     { path: "/journal/",       priority: 0.7, freq: "monthly", lastmod: now },
     { path: "/privacy/",       priority: 0.1, freq: "yearly",  lastmod: now },
   ];
@@ -49,15 +50,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
     ...cities.map((c) => ({
       url: `${base}/${c.slug}/`,
-      lastModified: mtime(`src/content/cities/${c.slug.replace(/^home-staging-/, "")}.json`, now),
+      lastModified: mtime(c.sourceFile, now),
       changeFrequency: "monthly" as const,
       priority: 0.9,
     })),
     ...serviceCityCombos.map((sc) => {
-      const cityFile = mtime(
-        `src/content/cities/${sc.city.slug.replace(/^home-staging-/, "")}.json`,
-        servicesMtime,
-      );
+      const cityFile = mtime(sc.city.sourceFile, servicesMtime);
       // Use whichever is newer — the city's local note or the service catalog
       const lastmod = cityFile > servicesMtime ? cityFile : servicesMtime;
       return {

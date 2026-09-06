@@ -5,31 +5,53 @@ import { site } from "@/data/site";
 
 export default function Process() {
   const s = site.sections.process;
+  // Owner-tunable darkness (0–100) from the CMS. Clamped so a typo can't
+  // wipe the text out; the gradient stays a touch heavier at the bottom
+  // where the value-prop copy sits.
+  const overlay = Math.min(100, Math.max(0, s.bgOverlay ?? 70)) / 100;
+  const top = Math.max(0, overlay - 0.08).toFixed(2);
+  const bottom = Math.min(1, overlay + 0.08).toFixed(2);
   return (
-    <section id="process" className="section relative bg-ink text-ivory overflow-hidden">
-      <div aria-hidden="true" className="absolute inset-0 opacity-[0.22]">
-        <Image
-          src={s.bgImage}
-          alt=""
-          fill
-          sizes="100vw"
-          className="object-cover"
-          style={{ mixBlendMode: "luminosity" }}
-        />
+    // No overflow-hidden on the section itself: it would turn the section
+    // into the sticky photo's scroll container and freeze it. The two
+    // decorative layers clip themselves instead.
+    <section id="process" className="section relative bg-ink text-ivory">
+      {/* Background photo. Sticky inside a clipped full-height wrapper so it
+          stays one viewport tall while the section scrolls past, instead of
+          being stretched to the whole section (which on phones, where the
+          section runs several screens tall, zoomed it into a blur). Reads as
+          a gentle parallax on desktop. clip-path clips without creating a
+          scroll container, which is what keeps position:sticky working. */}
+      <div aria-hidden="true" className="absolute inset-0" style={{ clipPath: "inset(0)" }}>
+        <div className="sticky top-0 h-screen w-full">
+          <Image
+            src={s.bgImage}
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover"
+            style={{ filter: "saturate(0.85)" }}
+          />
+        </div>
       </div>
       <div
         aria-hidden="true"
         className="absolute inset-0"
+        data-testid="process-overlay"
+        data-overlay={Math.round(overlay * 100)}
         style={{
-          background:
-            "linear-gradient(180deg, rgba(28,24,21,0.85) 0%, rgba(28,24,21,0.94) 100%)",
+          background: `linear-gradient(180deg, rgba(28,24,21,${top}) 0%, rgba(28,24,21,${bottom}) 100%)`,
         }}
       />
-      <div aria-hidden="true" className="watermark watermark--light top-1/2 -translate-y-1/2 -left-12">
-        Process
+      <div aria-hidden="true" className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="watermark watermark--light top-1/2 -translate-y-1/2 -left-12">
+          Process
+        </div>
       </div>
 
-      <div className="container-wide relative z-10">
+      {/* Soft shadow keeps the copy legible over the photo even if the owner
+          turns the overlay down in the CMS. */}
+      <div className="container-wide relative z-10" style={{ textShadow: "0 1px 12px rgba(0,0,0,0.45)" }}>
         <div className="grid lg:grid-cols-12 gap-10 items-end">
           <Reveal className="lg:col-span-7">
             <p className="eyebrow !text-brassSoft flex items-center gap-3">

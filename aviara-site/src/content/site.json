@@ -36,7 +36,8 @@
       "headlineLine1": "Calm, considered, and intentionally",
       "headlineItalic": "seamless.",
       "intro": "From the first walkthrough to the final styled vignette, every Aviara project follows a refined four-step process designed to protect your time, simplify the experience, and elevate the presentation of your home from start to finish.",
-      "bgImage": "/images/A7405959.jpeg"
+      "bgImage": "/images/consoletable_woodvignette_aviaradesignco_homestaging.jpg",
+      "bgOverlay": 70
     },
     "team": {
       "eyebrow": "The Team",
@@ -62,6 +63,15 @@
       "headlineLine1": "Let's explore your",
       "headlineItalic": "project.",
       "intro": "Tell us about your home, your timeline, and the feeling you want the space to create. Whether you’re preparing a listing for market or designing a home to live beautifully in, our team will guide you through the process with care, clarity, and intention. We’ll be in touch within one business day."
+    },
+    "featured": {
+      "eyebrow": "Featured Work",
+      "headlineLine1": "Where the open house",
+      "headlineItalic": "becomes a feeling.",
+      "body": "Every detail is thoughtfully considered to create warmth, connection, and a memorable first impression.",
+      "image": "/images/diningroom_farmhousetable_aviaradesignco_homestaging.jpg",
+      "imageAlt": "Staged dining room with a dark farmhouse table, boucle chairs, woven placemats, and a caged linear chandelier by Aviara Design Co.",
+      "imagePosition": "upper"
     }
   },
   "tagline": "Luxury Home Staging & Interior Design",
@@ -87,7 +97,8 @@
     "Fallbrook",
     "San Diego",
     "Orange County",
-    "Inland Empire"
+    "Inland Empire",
+    "Los Angeles"
   ],
   "address": {
     "city": "Temecula",

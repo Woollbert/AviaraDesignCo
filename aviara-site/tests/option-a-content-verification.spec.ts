@@ -43,9 +43,9 @@ test.describe('Option A content verification — / homepage', () => {
     }
   });
 
-  test('services.json — stats row renders all 4 stat values', async ({ page }) => {
-    // "10+", "300+", "< 21", "8%"
-    for (const value of ['10+', '300+', '8%']) {
+  test('services.json — stats row renders all 3 stat values', async ({ page }) => {
+    // "10+", "75+", "< 30"
+    for (const value of ['10+', '75+', '< 30']) {
       await expect(page.getByText(value).first()).toBeVisible();
     }
   });

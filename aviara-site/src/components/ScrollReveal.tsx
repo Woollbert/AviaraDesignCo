@@ -2,8 +2,23 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { site } from "@/data/site";
+import type { ImagePosition } from "@/data/site";
+
+// Where the photo is anchored when object-cover has to crop it. Portrait
+// phone shots on a 16:9 viewport lose ~60% of their height, so the owner
+// picks which band survives from the CMS.
+const OBJECT_POSITION: Record<ImagePosition, string> = {
+  top: "50% 0%",
+  upper: "50% 25%",
+  center: "50% 50%",
+  lower: "50% 75%",
+  bottom: "50% 100%",
+};
 
 export default function ScrollReveal() {
+  const s = site.sections.featured;
+  const objectPosition = OBJECT_POSITION[s.imagePosition ?? "center"];
   const sectionRef = useRef<HTMLElement | null>(null);
   const [progress, setProgress] = useState(0);
   // On touch devices we skip the scroll-driven translate+scale on the photo —
@@ -80,12 +95,13 @@ export default function ScrollReveal() {
     >
       <div className="absolute inset-0 will-change-transform">
         <Image
-          src="/images/A7405944.jpeg"
-          alt="A signature Aviara staged interior: open living and dining with mountain views"
+          src={s.image}
+          alt={s.imageAlt}
           fill
           sizes="100vw"
           className="object-cover"
           style={{
+            objectPosition,
             transform: `translate3d(0, ${parallaxY}px, 0) scale(${photoScale})`,
             transformOrigin: "center",
           }}
@@ -119,7 +135,9 @@ export default function ScrollReveal() {
         className="sr-only"
       />
 
-      <div className="absolute inset-0 container-wide flex flex-col justify-end pb-16 md:pb-24">
+      {/* pb-28 on phones clears the fixed Call/Text bar that overlays the
+          bottom ~90px of the viewport there. */}
+      <div className="absolute inset-0 container-wide flex flex-col justify-end pb-28 md:pb-24">
         <div
           className="max-w-3xl"
           style={{
@@ -130,22 +148,21 @@ export default function ScrollReveal() {
         >
           <p className="eyebrow !text-brassSoft flex items-center gap-3">
             <span className="inline-block w-10 h-px bg-brassSoft" />
-            Featured Work
+            {s.eyebrow}
           </p>
           <h2
             className="mt-5 font-display text-4xl md:text-6xl lg:text-[4.5rem] leading-[1.02] text-ivory"
             style={{ textShadow: "0 2px 24px rgba(0,0,0,0.55)" }}
           >
-            Where the open house
+            {s.headlineLine1}
             <br />
-            <span className="italic font-light text-brassSoft">becomes a feeling.</span>
+            <span className="italic font-light text-brassSoft">{s.headlineItalic}</span>
           </h2>
           <p
             className="mt-6 text-base md:text-lg text-ivory max-w-xl leading-relaxed"
             style={{ textShadow: "0 1px 14px rgba(0,0,0,0.6)" }}
           >
-            Every install is composed for the camera and for the person who walks
-            in next. Light. Texture. Air. Restraint.
+            {s.body}
           </p>
         </div>
       </div>
