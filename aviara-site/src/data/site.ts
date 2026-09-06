@@ -45,6 +45,21 @@ export type ProcessSection = {
   headlineItalic: string;
   intro: string;
   bgImage: string;
+  /** 0–100: how dark the ink overlay on top of bgImage is. Lower = more photo. */
+  bgOverlay?: number;
+};
+
+/** Vertical crop anchor for a full-bleed photo. */
+export type ImagePosition = "top" | "upper" | "center" | "lower" | "bottom";
+
+export type FeaturedSection = {
+  eyebrow: string;
+  headlineLine1: string;
+  headlineItalic: string;
+  body: string;
+  image: string;
+  imageAlt: string;
+  imagePosition?: ImagePosition;
 };
 
 export type TeamSection = {
@@ -79,6 +94,7 @@ export type ContactSection = {
 export type Sections = {
   about: AboutSection;
   services: ServicesSection;
+  featured: FeaturedSection;
   process: ProcessSection;
   team: TeamSection;
   portfolio: PortfolioSection;

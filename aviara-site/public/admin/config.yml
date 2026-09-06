@@ -87,8 +87,9 @@ collections:
               - { name: city, label: City, widget: string }
               - { name: region, label: State/Region (e.g. CA), widget: string }
           - name: serviceAreas
-            label: Service Areas (cities served)
+            label: Service Areas (short list)
             widget: list
+            hint: 'The short "Serving X, Y, Z" list used in the contact section and in the business info sent to Google. Does NOT create city pages. To add a city page, use the City Landing Pages editor.'
             field: { name: area, label: Area, widget: string }
           - name: hours
             label: Business Hours
@@ -141,6 +142,27 @@ collections:
                   - { name: intro, label: Intro Paragraph, widget: text }
                   - { name: inquireCtaLabel, label: 'Inquire Button Label', widget: string }
                   - { name: inquireCtaHref, label: 'Inquire Button Link', widget: string }
+              - name: featured
+                label: Featured Work Section (full-screen photo)
+                widget: object
+                hint: 'The full-screen photo between Services and Portfolio, with the "Where the open house becomes a feeling" headline.'
+                fields:
+                  - { name: image, label: Photo, widget: image, choose_url: false, media_library: { config: { multiple: false } }, hint: 'Fills the whole screen. Wide (landscape) photos crop least; tall phone photos work too, use Photo Focus below to choose which part stays visible.' }
+                  - { name: imageAlt, label: Photo Alt Text, widget: string, hint: 'One sentence describing the photo, for screen readers and Google Images.' }
+                  - name: imagePosition
+                    label: Photo Focus (which part of a tall photo to keep)
+                    widget: select
+                    default: center
+                    options:
+                      - { label: Top, value: top }
+                      - { label: Upper middle, value: upper }
+                      - { label: Center, value: center }
+                      - { label: Lower middle, value: lower }
+                      - { label: Bottom, value: bottom }
+                  - { name: eyebrow, label: Eyebrow (small label), widget: string, hint: 'Currently: "Featured Work"' }
+                  - { name: headlineLine1, label: Headline (line 1), widget: string }
+                  - { name: headlineItalic, label: Headline (line 2, italic), widget: string }
+                  - { name: body, label: Caption Paragraph (under the headline), widget: text }
               - name: process
                 label: Process Section Header
                 widget: object
@@ -149,7 +171,8 @@ collections:
                   - { name: headlineLine1, label: Headline (regular), widget: string }
                   - { name: headlineItalic, label: Headline (italic suffix), widget: string }
                   - { name: intro, label: Intro Paragraph, widget: text }
-                  - { name: bgImage, label: Background Image (washed-out behind dark gradient), widget: image, choose_url: false, media_library: { config: { multiple: false } } }
+                  - { name: bgImage, label: Background Photo, widget: image, choose_url: false, media_library: { config: { multiple: false } }, hint: 'Shown behind the dark section. Darker, moodier photos read best.' }
+                  - { name: bgOverlay, label: 'Overlay Darkness (0-100)', widget: number, value_type: int, min: 0, max: 100, step: 5, default: 70, hint: 'How much dark tint sits over the photo. 100 = solid black, 0 = photo only. Keep it 60 or higher so the white text stays easy to read. Currently 70.' }
               - name: team
                 label: Team Section Header
                 widget: object
@@ -257,6 +280,7 @@ collections:
   # ==========================================================================
   - name: projects
     label: Projects
+    label_singular: Project
     description: 'Each project = one staged home. Add a new project to create a new portfolio page at /portfolio/<slug>/.'
     folder: aviara-site/src/content/projects
     create: true
@@ -322,18 +346,35 @@ collections:
   # ==========================================================================
   - name: cities
     label: City Landing Pages
-    description: 'One file per city. Editing here updates the public /home-staging-<slug>/ page. To add a brand new city: create a new entry below AND ask the developer to add the matching route file.'
+    label_singular: City Landing Page
+    description: 'One entry per city. Each published city becomes a public page at /home-staging-<city>/ and shows up on the Service Areas page under its Region. Add a new city with "+ New City Landing Page", fill in the form, tick Published, and Publish. No developer step needed. Untick Published to hide a city (a draft you are still writing, or a market you are pausing) without deleting it.'
     folder: aviara-site/src/content/cities
     create: true
     slug: '{{fields.city | lower | replace(" ", "-")}}'
     format: json
-    summary: '{{city}} ({{county}})'
+    summary: '{{city}} - {{region}}'
     editor: { preview: false }
-    sortable_fields: [city]
+    sortable_fields: [order, city, region]
+    view_groups:
+      - { label: By Region, field: region }
+      - { label: By Published, field: published }
     fields:
-      - { name: slug, label: URL Slug, widget: string, hint: 'Lowercase, dashes only — e.g. "home-staging-temecula". Becomes /<slug>/.' }
+      - { name: slug, label: URL Slug, widget: string, pattern: ['^home-staging-[a-z0-9-]+$', 'Must look like home-staging-city-name (lowercase letters, numbers, dashes)'], hint: 'e.g. "home-staging-temecula". Becomes /<slug>/. Do not change this on a city that is already live.' }
       - { name: city, label: City Name, widget: string, hint: 'e.g. "Temecula"' }
       - { name: county, label: County, widget: string, hint: 'e.g. "Riverside County"' }
+      - name: region
+        label: Region (which group on the Service Areas page)
+        widget: select
+        hint: 'Regions are defined in the "Service Areas Page" editor. If the right region is not listed here, ask Darren to add it to this dropdown.'
+        options:
+          - Inland Riverside County
+          - Coastal San Diego
+          - Inland North County San Diego
+          - Orange County
+          - Los Angeles
+          - Big Bear & the San Bernardino Mountains
+      - { name: order, label: Display Order, widget: number, value_type: int, default: 500, hint: 'Lower numbers show first within a region. The five lowest overall appear in the footer. Use gaps (10, 20, 30...) so you can slot cities in later.' }
+      - { name: published, label: Published (live on the site), widget: boolean, default: true, hint: 'Untick to keep this city as a hidden draft. Hidden cities have no page, no links, and are left out of the sitemap.' }
       - { name: metaTitle, label: SEO Page Title, widget: string, hint: 'Shows in the browser tab + Google search results.' }
       - { name: metaDescription, label: SEO Description, widget: text, hint: 'Shows under the page title in Google search results. Aim for ~150-160 characters.' }
       - { name: h1, label: Page Heading (H1), widget: string, hint: 'The big headline at the top of the page. e.g. "Home Staging in Temecula, CA"' }
@@ -387,10 +428,47 @@ collections:
         field: { name: slug, label: Slug, widget: string }
 
   # ==========================================================================
+  # Service Areas page — hero copy + the region groups that cities sort into
+  # ==========================================================================
+  - name: service_areas
+    label: Service Areas Page
+    description: 'The /service-areas/ page: its headline and intro, the regions cities are grouped under, and the closing call-to-action. Cities pick their region in the City Landing Pages editor.'
+    files:
+      - name: areas
+        label: Service Areas Page
+        file: aviara-site/src/content/service-areas.json
+        format: json
+        editor: { preview: false }
+        fields:
+          - { name: metaTitle, label: SEO Page Title, widget: string }
+          - { name: metaDescription, label: SEO Description, widget: text, hint: '~150-160 characters. Shows under the title in Google.' }
+          - { name: eyebrow, label: Eyebrow (small label), widget: string }
+          - { name: headlineLine1, label: Headline (regular), widget: string }
+          - { name: headlineItalic, label: Headline (italic suffix), widget: string }
+          - { name: intro, label: Intro Paragraph, widget: text }
+          - name: regions
+            label: Regions (in display order)
+            widget: list
+            summary: '{{name}}'
+            hint: 'Drag to reorder. The Region name must match what cities choose in their Region dropdown. A region with no published cities is simply not shown.'
+            fields:
+              - { name: name, label: Region Name (the heading), widget: string }
+              - { name: eyebrow, label: Eyebrow (small label above the heading), widget: string, hint: 'e.g. "Coastal Luxury"' }
+              - { name: blurb, label: Blurb, widget: text, hint: 'One or two sentences about the region.' }
+          - name: closing
+            label: Closing Call-to-Action
+            widget: object
+            fields:
+              - { name: eyebrow, label: Eyebrow, widget: string }
+              - { name: headline, label: Headline, widget: string }
+              - { name: body, label: Body, widget: text }
+
+  # ==========================================================================
   # Journal — blog posts at /journal/<slug>/
   # ==========================================================================
   - name: journal
     label: Journal (Blog)
+    label_singular: Journal Post
     description: 'Blog posts. Each file generates a page at /journal/<slug>/ and shows on the /journal/ index. Used for SEO + long-form content.'
     folder: aviara-site/src/content/journal
     create: true

@@ -11,8 +11,30 @@ import Reveal from "@/components/Reveal";
 
 type Props = { city: City };
 
+// Up to three published neighbours. Starts with the slugs the owner chose;
+// if some of those are unpublished drafts (or typos), tops up with other
+// published cities from the same region, then anywhere else, so a live page
+// never shows an empty "Nearby" section.
+function pickNearby(city: City): City[] {
+  const chosen = city.nearbyCitySlugs
+    .map((slug) => cities.find((c) => c.slug === slug))
+    .filter((c): c is City => !!c && c.slug !== city.slug);
+  const taken = new Set([city.slug, ...chosen.map((c) => c.slug)]);
+  const fill = (pool: City[]) => {
+    for (const c of pool) {
+      if (chosen.length >= 3) break;
+      if (taken.has(c.slug)) continue;
+      chosen.push(c);
+      taken.add(c.slug);
+    }
+  };
+  fill(cities.filter((c) => c.region && c.region === city.region));
+  fill(cities.filter((c) => c.county === city.county));
+  return chosen.slice(0, 3);
+}
+
 export default function CityPage({ city }: Props) {
-  const nearby = cities.filter((c) => city.nearbyCitySlugs.includes(c.slug));
+  const nearby = pickNearby(city);
 
   return (
     <main className="bg-bone">
@@ -133,7 +155,8 @@ export default function CityPage({ city }: Props) {
               Local Work
             </p>
             <h2 className="mt-4 font-display text-3xl md:text-4xl text-ink leading-tight">
-              We've worked across the {city.city} market.
+              Bringing livable luxury to{" "}
+              <span className="italic text-brass">{city.city}.</span>
             </h2>
             <p className="mt-6 text-lg text-slate leading-relaxed max-w-3xl">{city.localProof}</p>
             <Link href="/portfolio/" className="btn btn-ink mt-8 inline-block">
@@ -208,7 +231,7 @@ export default function CityPage({ city }: Props) {
           <Reveal>
             <p className="eyebrow flex items-center gap-3">
               <span className="gold-rule" />
-              Neighborhoods we serve in {city.city}
+              Neighborhoods we serve in and around {city.city}
             </p>
             <h2 className="mt-4 font-display text-3xl md:text-4xl text-ink leading-tight">
               From the established core to the newest{" "}
@@ -281,7 +304,8 @@ export default function CityPage({ city }: Props) {
       </section>
 
       {/* Cross-link nearby cities */}
-      <section className="section border-t border-line bg-ivory">
+      {nearby.length > 0 && (
+      <section className="section border-t border-line bg-ivory" data-testid="nearby-cities">
         <div className="container-wide max-w-5xl">
           <Reveal>
             <p className="eyebrow flex items-center gap-3">
@@ -312,6 +336,7 @@ export default function CityPage({ city }: Props) {
           </ul>
         </div>
       </section>
+      )}
 
       {/* Closing CTA */}
       <section className="section border-t border-line bg-ink text-ivory">

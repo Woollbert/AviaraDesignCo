@@ -1,0 +1,45 @@
+{
+  "metaTitle": "Service Areas — Home Staging Across Southern California | Aviara Design Co.",
+  "metaDescription": "Aviara Design Co. stages homes across Southern California: Temecula and Riverside County, the San Diego coast and inland North County, Orange County, Los Angeles, and Big Bear.",
+  "eyebrow": "Service Areas",
+  "headlineLine1": "Staging across",
+  "headlineItalic": "Southern California.",
+  "intro": "Aviara Design Co. stages homes from our Temecula home base out into the Riverside County valleys, along the San Diego coastline from Carlsbad to Coronado, through the inland communities of Fallbrook to Poway, across the Orange County coast, into the Westside and South Bay of Los Angeles, and up the mountain to Big Bear. Choose your area below to see how we work there.",
+  "regions": [
+    {
+      "name": "Inland Riverside County",
+      "eyebrow": "Our Home Region",
+      "blurb": "Our home base and the markets we know best. Temecula Valley, the San Jacinto Valley, and the I-15 / I-215 corridor."
+    },
+    {
+      "name": "Coastal San Diego",
+      "eyebrow": "Coastal Luxury",
+      "blurb": "Coastal-luxury staging from Carlsbad's bluffs and lagoons through the design-aware villages of Encinitas, Cardiff, Solana Beach, and Del Mar, into La Jolla, the inland estates of Rancho Santa Fe, and across the bay to Coronado."
+    },
+    {
+      "name": "Inland North County San Diego",
+      "eyebrow": "Inland Estates",
+      "blurb": "Estate, family-home, and luxury inland staging across Fallbrook's avocado country, San Marcos, the older established neighborhoods of Escondido, and the large-lot communities of Poway."
+    },
+    {
+      "name": "Orange County",
+      "eyebrow": "South Coast",
+      "blurb": "Harbor, bluff, and hillside staging along the Orange County coast, from Newport Beach and Corona del Mar through Laguna to Dana Point and San Clemente, plus the master-planned communities of Irvine, Laguna Niguel, and Coto de Caza."
+    },
+    {
+      "name": "Los Angeles",
+      "eyebrow": "Westside & South Bay",
+      "blurb": "Estate and beach-city staging in Los Angeles, from Beverly Hills, Brentwood, and Pacific Palisades on the Westside to Manhattan Beach, Hermosa, Redondo, and the Palos Verdes Peninsula in the South Bay."
+    },
+    {
+      "name": "Big Bear & the San Bernardino Mountains",
+      "eyebrow": "Mountain Resort",
+      "blurb": "Mountain-luxury staging for cabins, lake homes, and vacation-rental properties in the Big Bear Valley."
+    }
+  ],
+  "closing": {
+    "eyebrow": "Begin",
+    "headline": "Don't see your city? Reach out anyway.",
+    "body": "We travel for the right project across Southern California. If your property is somewhere between Temecula and the coast, in Orange County or Los Angeles, or up at the mountain, we want to hear about it."
+  }
+}

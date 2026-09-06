@@ -19,7 +19,7 @@ If you're using a shared computer, click **Log out** in the top-right when you'r
 
 ## The dashboard
 
-The dashboard has 8 tiles. Each one opens an editor for a different part of the site.
+The dashboard has a tile for each editor. Each one opens a form for a different part of the site.
 
 | Tile | What it edits |
 |---|---|
@@ -29,7 +29,8 @@ The dashboard has 8 tiles. Each one opens an editor for a different part of the 
 | **Team** | Founder bio + supporting team members |
 | **Projects (Portfolio)** | Each staged home with photo galleries — becomes a /portfolio/&lt;slug&gt;/ page |
 | **Testimonials** | Client quotes |
-| **City Landing Pages** | The 14 city pages (Temecula, Murrieta, Carlsbad, etc.) |
+| **City Landing Pages** | Every city page (Temecula, Carlsbad, Newport Beach, etc.), including which ones are live |
+| **Service Areas Page** | The headline, intro, and region groupings on the /service-areas/ page |
 | **Journal (Blog)** | Blog posts at /journal/&lt;slug&gt;/ |
 
 When you click a tile, you'll see a form. Make your changes, scroll to the bottom, click the **Publish** button in the dark bar. Wait ~60 seconds, then refresh the live site to see your changes.
@@ -47,8 +48,10 @@ This is the one you'll touch most often. Phone, email, hours, social links, and 
 Things to keep in mind:
 - **Phone number formatting matters.** The "Phone (display)" field is what shows on the page — write it nicely, like `(949) 697-1618`. The "Phone (tel link)" is what dialing apps use — write it as `+19496971618` (no spaces, no parens, country code).
 - **Email** updates the contact form's reply-to. If you change this, the contact form will start sending inquiries to the new address.
-- **Service Areas** is a separate field that controls the "Serving X, Y, Z" line in the hero. It doesn't add city landing pages — those are a separate editor (see below).
+- **Service Areas (short list)** controls the "Serving X, Y, Z" line in the contact section and what we tell Google about where you work. It doesn't add city landing pages — those are a separate editor (see below).
 - **Homepage section copy** (the eyebrows, headlines, and intro paragraphs for About, Services, Process, etc.) all live further down the form, grouped under "Homepage Section Copy."
+- **Featured Work section** (the full-screen photo with "Where the open house becomes a feeling") is under Homepage Section Copy too. You can swap the photo, choose which part of a tall photo stays visible ("Photo Focus"), and edit the headline and caption.
+- **Process section background** is under Homepage Section Copy → Process Section Header. Pick the photo, then set "Overlay Darkness" (0–100). Lower numbers show more photo; keep it 60 or higher so the white text stays easy to read.
 
 ---
 
@@ -82,13 +85,18 @@ Tips:
 - **Common Mistakes** and **Market Context** are optional — if you delete all of them, that section just doesn't render on the live page.
 - **Nearby Cities** are slugs (e.g. `home-staging-murrieta`), not display names. The page picks up the display name from each linked city automatically.
 
+- **Region** decides which group the city appears under on the Service Areas page (Coastal San Diego, Orange County, Los Angeles, etc.).
+- **Display Order** decides the order within that group. Lower numbers first. The five lowest-numbered cities overall are the ones listed in the footer.
+- **Published** is the on/off switch. Untick it and the city disappears from the site (no page, no links, not in the sitemap) but everything you wrote is kept. Tick it again to bring it back.
+
 Don't change the **URL Slug** field on an existing city — that breaks Google's indexing and any external links pointing to that page. If you want to rename, ask Darren to do it as a proper move.
 
 To **add a brand-new city** that doesn't exist yet:
-1. Click **+ Add City** at the top of the cities list.
-2. Fill in the form (URL slug as `home-staging-<city>`, e.g. `home-staging-vista`).
-3. Publish.
-4. **Tell Darren** — he needs to create one matching code file before the new page goes live. (The editor saves your data; the route file is a one-line code change.)
+1. Click **+ New City Landing Page** at the top of the cities list.
+2. Fill in the form (URL slug as `home-staging-<city>`, e.g. `home-staging-vista`). Pick a Region, give it a Display Order, and write real, local copy for every section. Pages that read like a template with the city name swapped in do more harm than good with Google.
+3. Tick **Published** and click Publish. The page is live about a minute later, with no developer step.
+
+**Rolling out new cities:** there are pre-written city pages sitting unpublished (Laguna Beach, Dana Point, San Clemente, Laguna Niguel, Coto de Caza, Irvine, Hermosa Beach, Redondo Beach, Pacific Palisades, Brentwood, West Hollywood). Read each one, tweak anything that doesn't sound like you, then tick Published. Publishing three or four a week, rather than all at once, is the gentler way to grow the site in Google's eyes and lets you watch Search Console for problems as you go.
 
 ---
 
@@ -156,7 +164,8 @@ If you make a mistake, the previous version is still in GitHub — Darren can ro
 
 ## When to ask for help
 
-- "I want to add a new city page that doesn't exist yet" → you can fill the form, but Darren needs to add one code file before it goes live.
+- "I want to add a new city page that doesn't exist yet" → you can do this entirely yourself now (City Landing Pages → + New City Landing Page → tick Published).
+- "I want a new Region on the Service Areas page" → add it in the Service Areas Page editor, then tell Darren so it also appears in the Region dropdown for cities.
 - "I changed the URL slug of a city and now the page won't load" → tell Darren immediately. Slug changes need a few coordinated edits.
 - "I deleted a project / city / journal post and need it back" → Darren can recover from git history in under a minute.
 - "The Publish button is showing an error" → check what the error says first (usually it's a missing required field on the form). If unclear, screenshot it for Darren.
@@ -185,7 +194,12 @@ The editor changes the website. The action list changes how Google finds and ran
 | Add a new completed project | Projects (Portfolio) → + Add Project |
 | Write a blog post | Journal → + Add Post |
 | Update the FAQs for a city | City Landing Pages → [city] → FAQs |
-| Add a new city the site doesn't cover yet | City Landing Pages → + Add City (then tell Darren) |
+| Add a new city the site doesn't cover yet | City Landing Pages → + New City Landing Page → tick Published |
+| Hide or un-hide a city page | City Landing Pages → [city] → Published checkbox |
+| Change which group a city sits in on Service Areas | City Landing Pages → [city] → Region |
+| Edit the Service Areas page intro or region blurbs | Service Areas Page |
+| Swap the full-screen "Featured Work" photo or its caption | Site Settings → Homepage Section Copy → Featured Work Section |
+| Make the Process section lighter or darker / change its photo | Site Settings → Homepage Section Copy → Process Section Header |
 | Change the homepage layout / swap hero image | Homepage Layout |
 | Change a homepage section's headline or intro | Site Settings → Homepage Section Copy |
 
