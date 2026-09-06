@@ -94,18 +94,18 @@
     "region": "CA"
   },
   "hero": {
-    "subhead": "A licensed, family-owned home staging and interior design studio creating spaces that feel both elevated and inviting, across Temecula, San Diego, Orange County, and the Inland Empire.",
+    "subhead": "A licensed, family-owned home staging and interior design studio creating spaces that feel both elevated and inviting, across the Inland Empire, San Diego, Orange County, and Los Angeles.",
     "ctaPrimaryLabel": "Begin a Project",
     "headlineLine1": "Livable luxury,",
     "headlineLine2": "thoughtfully staged.",
     "ctaSecondaryHref": "#portfolio",
-    "ctaSecondaryLabel": "View the Work",
+    "ctaSecondaryLabel": "View our Work",
     "bgImageAlt": "Staged living room with linear fireplace, cream sofa, walnut console table, and brass accents by Aviara Design Co.",
     "bgImageUrl": "/images/stagedlivingroom_walkthrough_aviaradesignco_homestaging-poster-v5.jpg",
     "footerLabel": "Serving Southern California",
-    "ctaPrimaryHref": "#contact",
     "bgVideoUrl": "/videos/stagedlivingroom_walkthrough_aviaradesignco_homestaging-v5.mp4",
-    "bgVideoUrlMobile": "/videos/stagedlivingroom_walkthrough_aviaradesignco_homestaging-mobile-v5.mp4"
+    "bgVideoUrlMobile": "/videos/stagedlivingroom_walkthrough_aviaradesignco_homestaging-mobile-v5.mp4",
+    "ctaPrimaryHref": "#contact"
   },
   "email": "aviaradesignco@gmail.com",
   "description": "A licensed and insured family-owned home staging and interior design studio crafting livable luxury spaces across Southern California.",
