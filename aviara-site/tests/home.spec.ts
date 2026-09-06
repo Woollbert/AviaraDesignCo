@@ -39,10 +39,10 @@ test.describe("Aviara Design Co. Home Page", () => {
     }
   });
 
-  test("stats render four metrics in About", async ({ page }) => {
+  test("stats render three metrics in About", async ({ page }) => {
     await gotoHome(page);
     const stats = page.getByTestId("stats").locator("li");
-    await expect(stats).toHaveCount(4);
+    await expect(stats).toHaveCount(3);
   });
 });
 

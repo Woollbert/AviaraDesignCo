@@ -31,7 +31,7 @@ export default function About() {
             </p>
           ))}
 
-          <ul className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-y-8 gap-x-6" data-testid="stats">
+          <ul className="mt-12 grid grid-cols-2 sm:grid-cols-3 gap-y-8 gap-x-6" data-testid="stats">
             {stats.map((stat) => (
               <li key={stat.label} className="text-left">
                 <div className="font-display text-4xl md:text-5xl text-ink leading-none">

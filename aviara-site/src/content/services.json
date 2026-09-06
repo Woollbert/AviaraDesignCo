@@ -78,10 +78,6 @@
     {
       "value": "< 30",
       "label": "Avg Days on Market"
-    },
-    {
-      "value": "8%",
-      "label": "Avg ROI Lift"
     }
   ]
 }
