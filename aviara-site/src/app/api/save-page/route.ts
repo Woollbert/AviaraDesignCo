@@ -66,7 +66,10 @@ export async function POST(req: NextRequest) {
 
   // Commit to GitHub
   const octokit = new Octokit({ auth: githubPat });
-  const path = `apps/reference-site/src/content/pages/${slug}.json`;
+  // Path is repo-relative. This was `apps/reference-site/...` in the kit this
+  // route was ported from, which does not exist here, so every save committed
+  // a file the site never reads.
+  const path = `aviara-site/src/content/pages/${slug}.json`;
   const contentString = JSON.stringify(data, null, 2) + '\n';
   const contentB64 = Buffer.from(contentString, 'utf-8').toString('base64');
 
@@ -97,8 +100,8 @@ export async function POST(req: NextRequest) {
       branch: githubBranch,
       sha,
       committer: {
-        name: 'Visual Editor',
-        email: 'editor@example.com',
+        name: 'Aviara Visual Editor',
+        email: 'aviaradesignco@gmail.com',
       },
     });
     return NextResponse.json({

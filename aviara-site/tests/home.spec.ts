@@ -1,4 +1,16 @@
 import { test, expect, Page } from "@playwright/test";
+import { readFileSync, readdirSync } from "node:fs";
+import { join } from "node:path";
+
+// Assertions read from the same content files the site renders from, so the
+// owner editing copy in the CMS does not break the suite. Only structure and
+// behaviour are hard-coded here.
+const contentDir = join(__dirname, "..", "src", "content");
+const readJson = (f: string) => JSON.parse(readFileSync(join(contentDir, f), "utf8"));
+const site = readJson("site.json");
+const servicesData = readJson("services.json");
+const testimonialsData = readJson("testimonials.json");
+const firstTestimonial = testimonialsData.items[0];
 
 const sections = ["about", "services", "portfolio", "process", "team", "contact"] as const;
 
@@ -13,10 +25,10 @@ test.describe("Aviara Design Co. Home Page", () => {
 
     const headline = page.getByTestId("hero-headline");
     await expect(headline).toBeVisible();
-    await expect(headline).toContainText(/Livable luxury/i);
-    await expect(headline).toContainText(/thoughtfully staged/i);
+    await expect(headline).toContainText(site.hero.headlineLine1);
+    await expect(headline).toContainText(site.hero.headlineLine2);
 
-    await expect(page.getByTestId("hero-eyebrow")).toContainText(/Licensed/i);
+    await expect(page.getByTestId("hero-eyebrow")).toContainText(site.licensing);
     await expect(page.getByTestId("hero-subhead")).toContainText(/Temecula/i);
 
     await expect(page.getByTestId("hero-cta-primary")).toBeVisible();
@@ -83,7 +95,13 @@ test.describe("Services interactive list", () => {
     await section.scrollIntoViewIfNeeded();
     const isMobile = info.project.name === "mobile";
 
-    const button = page.getByTestId("service-interior-design");
+    // Exercise the first and last service in the CMS list, whatever they are.
+    const items = servicesData.items;
+    expect(items.length).toBeGreaterThan(1);
+    const first = items[0];
+    const last = items[items.length - 1];
+
+    const button = page.getByTestId(`service-${first.slug}`);
     // The list is wrapped in a Reveal, so wait until its IntersectionObserver
     // has fired so the button is fully visible/interactive before clicking.
     await button.scrollIntoViewIfNeeded();
@@ -91,13 +109,13 @@ test.describe("Services interactive list", () => {
     if (isMobile) await button.click();
     else await button.hover();
     await expect(button).toHaveAttribute("data-active", "true");
-    await expect(page.getByTestId("service-detail")).toContainText(/Interior Design/i);
+    await expect(page.getByTestId("service-detail")).toContainText(first.name);
 
-    const button2 = page.getByTestId("service-consultations");
+    const button2 = page.getByTestId(`service-${last.slug}`);
     await button2.scrollIntoViewIfNeeded();
     await button2.click();
     await expect(button2).toHaveAttribute("data-active", "true");
-    await expect(page.getByTestId("service-detail")).toContainText(/Staging Consultations/i);
+    await expect(page.getByTestId("service-detail")).toContainText(last.name);
   });
 });
 
@@ -123,9 +141,9 @@ test.describe("Testimonials", () => {
     await page.locator("#testimonials").scrollIntoViewIfNeeded();
 
     await expect(page.getByTestId("testimonial-quote")).toContainText(
-      /professional and accommodating/i
+      firstTestimonial.quote.slice(0, 60)
     );
-    await expect(page.getByTestId("testimonial-author")).toHaveText(/Missy D\./);
+    await expect(page.getByTestId("testimonial-author")).toContainText(firstTestimonial.author);
   });
 });
 
@@ -202,7 +220,12 @@ test.describe("Mobile menu", () => {
 });
 
 test.describe("Scroll-reveal section", () => {
-  test("reveal mask progresses as the user scrolls", async ({ page }) => {
+  // Desktop only: the scroll-driven effect is deliberately disabled on touch
+  // devices (see ScrollReveal.tsx) because the per-frame compositor work made
+  // iOS Safari scrolling jitter. On mobile the headline fades in via an
+  // IntersectionObserver instead and the progress attribute stays at 0.
+  test("reveal mask progresses as the user scrolls", async ({ page }, info) => {
+    test.skip(info.project.name === "mobile", "scroll-driven reveal is desktop-only by design");
     await gotoHome(page);
     const reveal = page.getByTestId("scroll-reveal");
     await reveal.scrollIntoViewIfNeeded();

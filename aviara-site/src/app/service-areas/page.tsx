@@ -97,8 +97,13 @@ export default function Page() {
                     <p className="text-[0.72rem] uppercase tracking-[0.28em] text-mute">
                       {city.county}
                     </p>
+                    {/* City name leads: it is what the reader is scanning for.
+                        "Home Staging" sits underneath as the service label. */}
                     <p className="mt-2 font-display text-2xl text-ink group-hover:text-brass transition-colors">
-                      Home Staging {city.city}
+                      {city.city}
+                    </p>
+                    <p className="mt-1.5 text-[0.7rem] uppercase tracking-[0.28em] text-mute">
+                      Home Staging
                     </p>
                     <p className="mt-3 text-sm text-slate leading-relaxed">
                       {city.metaDescription}
