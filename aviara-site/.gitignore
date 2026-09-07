@@ -8,3 +8,7 @@ out
 playwright-report
 test-results
 .playwright
+
+# One-off scratch/debug scripts (underscore prefix). Reusable audit
+# scripts live alongside them without the prefix and are committed.
+scripts/_*.mjs

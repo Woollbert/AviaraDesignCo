@@ -41,3 +41,6 @@ reference-repo/
 
 # Local sandbox/preview screenshots from earlier iterations
 aviara-site/preview-*.png
+
+# One-off scratch/debug scripts (underscore prefix).
+scripts/_*.mjs
