@@ -1,85 +1,97 @@
 import { test, expect } from '@playwright/test';
+import { readFileSync, readdirSync } from 'node:fs';
+import { join } from 'node:path';
 
-// Verifies that Option A (JSON-backed data) renders identical content
-// to what the hand-coded TS data files produced. Each test asserts specific
-// strings that come straight from the corresponding src/content/*.json file.
-//
-// If any of these fail after Option A, the JSON-to-component pipeline is
-// broken or a component is reading from the wrong field.
+// Verifies that the JSON-backed content in src/content/ actually reaches the
+// rendered homepage. Every expectation is read from the same file the site
+// reads, so the owner editing copy in the CMS changes what these tests assert
+// rather than breaking them. A failure here means the JSON-to-component
+// pipeline is broken or a component is reading the wrong field.
 
-test.describe('Option A content verification — / homepage', () => {
+const contentDir = join(__dirname, '..', 'src', 'content');
+const readJson = (f: string) => JSON.parse(readFileSync(join(contentDir, f), 'utf8'));
+
+const site = readJson('site.json');
+const services = readJson('services.json');
+const team = readJson('team.json');
+const testimonials = readJson('testimonials.json');
+const process = readJson('process.json');
+
+// The homepage grid shows the first three projects by display order
+// (Portfolio.tsx renders projects.slice(0, 3); portfolio.ts sorts by `order`
+// then title).
+const projectsDir = join(contentDir, 'projects');
+const featuredProjects = readdirSync(projectsDir)
+  .filter((f) => f.endsWith('.json'))
+  .map((f) => JSON.parse(readFileSync(join(projectsDir, f), 'utf8')))
+  .sort((a, b) => (a.order ?? 999) - (b.order ?? 999) || a.title.localeCompare(b.title))
+  .slice(0, 3);
+
+test.describe('Content verification — / homepage', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
     // Wait for hydration so reveal-animated content is mounted
     await page.waitForLoadState('networkidle');
   });
 
-  test('site.json — tagline and licensing visible', async ({ page }) => {
-    // Tagline appears in title/meta. Licensing copy is rendered in the hero/header area.
-    await expect(page).toHaveTitle(/Aviara Design Co/);
-    const licensing = page.getByText(/Licensed & Insured/i);
-    await expect(licensing.first()).toBeVisible();
+  test('site.json — title and licensing line visible', async ({ page }) => {
+    await expect(page).toHaveTitle(new RegExp(site.name.replace(/\./g, '\\.')));
+    await expect(page.getByText(site.licensing).first()).toBeVisible();
   });
 
   test('site.json — phone number rendered as click-to-call', async ({ page }) => {
-    // The (949) 697-1618 phone string + tel:+19496971618 href both come from site.json
-    const phoneLink = page.locator('a[href="tel:+19496971618"]').first();
+    const phoneLink = page.locator(`a[href="tel:${site.phoneTel}"]`).first();
     await expect(phoneLink).toBeVisible();
   });
 
-  test('site.json — service area cities show up', async ({ page }) => {
-    // Temecula, Murrieta, etc. appear in the hero copy and service-area section
-    await expect(page.getByText(/Temecula/).first()).toBeVisible();
+  test('site.json — service areas show up', async ({ page }) => {
+    await expect(page.getByText(new RegExp(site.serviceAreas[0])).first()).toBeVisible();
   });
 
-  test('services.json — all 4 service names render', async ({ page }) => {
-    for (const name of [
-      'Vacant Home Staging',
-      'Occupied Home Staging',
-      'Interior Design',
-      'Staging Consultations',
-    ]) {
-      await expect(page.getByText(name).first()).toBeVisible();
+  test('services.json — every service name renders', async ({ page }) => {
+    for (const item of services.items) {
+      await expect(page.getByText(item.name).first()).toBeVisible();
     }
   });
 
-  test('services.json — stats row renders all 3 stat values', async ({ page }) => {
-    // "10+", "75+", "< 30"
-    for (const value of ['10+', '75+', '< 30']) {
-      await expect(page.getByText(value).first()).toBeVisible();
+  test('services.json — every stat value renders', async ({ page }) => {
+    for (const stat of services.stats) {
+      await expect(page.getByText(stat.value).first()).toBeVisible();
     }
   });
 
   test('team.json — founder name and role appear', async ({ page }) => {
-    await expect(page.getByText('Brooklyn James').first()).toBeVisible();
-    await expect(page.getByText(/Founder/i).first()).toBeVisible();
+    await expect(page.getByText(team.founder.name).first()).toBeVisible();
+    await expect(page.getByText(new RegExp(team.founder.role, 'i')).first()).toBeVisible();
   });
 
   test('team.json — supporting members render', async ({ page }) => {
-    await expect(page.getByText('Dre James').first()).toBeVisible();
-    await expect(page.getByText('Darren DiMarco').first()).toBeVisible();
-  });
-
-  test('portfolio.json — all 3 project titles render', async ({ page }) => {
-    await expect(page.getByText('Fallbrook Estate').first()).toBeVisible();
-    await expect(page.getByText('Menifee Family Home').first()).toBeVisible();
-    await expect(page.getByText('Temeku Hills Golf Estate').first()).toBeVisible();
-  });
-
-  test('portfolio.json — testimonial quote renders', async ({ page }) => {
-    await expect(page.getByText(/professional and accommodating/i).first()).toBeVisible();
-    await expect(page.getByText(/Missy D/i).first()).toBeVisible();
-  });
-
-  test('process.json — all 4 step titles render in order', async ({ page }) => {
-    for (const title of ['Discover', 'Design', 'Install', 'Deliver']) {
-      await expect(page.getByText(title).first()).toBeVisible();
+    for (const member of team.members) {
+      await expect(page.getByText(member.name).first()).toBeVisible();
     }
   });
 
-  test('process.json — value props render', async ({ page }) => {
-    await expect(page.getByText('Livable, Not Loud').first()).toBeVisible();
-    await expect(page.getByText('Editorial Eye').first()).toBeVisible();
-    await expect(page.getByText('Family Owned').first()).toBeVisible();
+  test('projects — the three featured project titles render', async ({ page }) => {
+    expect(featuredProjects.length).toBe(3);
+    for (const project of featuredProjects) {
+      await expect(page.getByText(project.title).first()).toBeVisible();
+    }
+  });
+
+  test('testimonials.json — the featured quote and author render', async ({ page }) => {
+    const first = testimonials.items[0];
+    await expect(page.getByText(first.quote.slice(0, 60)).first()).toBeVisible();
+    await expect(page.getByText(first.author).first()).toBeVisible();
+  });
+
+  test('process.json — every step title renders in order', async ({ page }) => {
+    const titles = await page.getByTestId('process-list').locator('h3').allTextContents();
+    expect(titles).toEqual(process.steps.map((s: { title: string }) => s.title));
+  });
+
+  test('process.json — every value prop renders', async ({ page }) => {
+    for (const prop of process.valueProps) {
+      await expect(page.getByText(prop.title).first()).toBeVisible();
+    }
   });
 });

@@ -1,3 +1,64 @@
+import { readFileSync, readdirSync } from "node:fs";
+import { join } from "node:path";
+
+/*
+ * Services live in the CMS, and removing one silently deletes its
+ * service x city landing pages. Any URL Google already indexed then starts
+ * returning 404, which throws away the ranking those pages built.
+ *
+ * For each retired service listed here we redirect its orphaned URLs to the
+ * matching city hub, but ONLY while the service is actually missing from
+ * services.json. Restore the service in the CMS and these redirects stop
+ * being emitted on the next build, so the real pages serve again. The
+ * redirect is temporary (302) rather than permanent for the same reason:
+ * a 301 is cached hard by browsers and would be painful to undo.
+ */
+const RETIRED_SERVICE_ROUTES = [
+  {
+    urlPrefix: "staging-consultations",
+    serviceSlug: "consultations",
+    // Matches the per-city serviceNotes entry that used to generate the page.
+    noteMatch: /consultation/i,
+  },
+];
+
+function retiredServiceRedirects() {
+  const root = process.cwd();
+  let liveSlugs;
+  try {
+    const services = JSON.parse(readFileSync(join(root, "src/content/services.json"), "utf8"));
+    liveSlugs = new Set((services.items ?? []).map((s) => s.slug));
+  } catch {
+    return []; // can't read services: emit nothing rather than guess
+  }
+
+  const citiesDir = join(root, "src/content/cities");
+  let cities = [];
+  try {
+    cities = readdirSync(citiesDir)
+      .filter((f) => f.endsWith(".json"))
+      .map((f) => JSON.parse(readFileSync(join(citiesDir, f), "utf8")));
+  } catch {
+    return [];
+  }
+
+  const out = [];
+  for (const retired of RETIRED_SERVICE_ROUTES) {
+    if (liveSlugs.has(retired.serviceSlug)) continue; // service is back
+    for (const city of cities) {
+      if (city.published === false) continue;
+      if (!(city.serviceNotes ?? []).some((n) => retired.noteMatch.test(n.name))) continue;
+      const citySlug = city.city.toLowerCase().replace(/\s+/g, "-");
+      out.push({
+        source: `/${retired.urlPrefix}-${citySlug}/`,
+        destination: `/${city.slug}/`,
+        permanent: false,
+      });
+    }
+  }
+  return out;
+}
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -33,6 +94,8 @@ const nextConfig = {
   // even if traffic drops to zero, leaving them in place costs nothing.
   async redirects() {
     return [
+      // Orphaned service x city URLs (see RETIRED_SERVICE_ROUTES above).
+      ...retiredServiceRedirects(),
       // Old WordPress blog posts → new /journal/ structure
       {
         source: "/how-home-staging-helps-homes-sell-faster-in-temecula-ca/",
