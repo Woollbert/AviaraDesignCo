@@ -135,6 +135,8 @@ const nextConfig = {
       { source: "/the-aviara-experience/", destination: "/#about", permanent: true },
       { source: "/about/", destination: "/#about", permanent: true },
       { source: "/about-us/", destination: "/#about", permanent: true },
+      // Old homepage address, still requested by Google (Search Console 404 report).
+      { source: "/home/", destination: "/", permanent: true },
       { source: "/for-realtors/", destination: "/#contact", permanent: true },
       { source: "/For%20Realtors/", destination: "/#contact", permanent: true },
       { source: "/The%20Aviara%20Experience/", destination: "/#about", permanent: true },
