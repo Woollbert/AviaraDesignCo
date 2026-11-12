@@ -169,4 +169,10 @@ test.describe("Internal links", () => {
     expect([301, 308]).toContain(res.status());
     expect(res.headers()["location"]).toContain("/#about");
   });
+
+  test("the old /home/ address redirects to the homepage", async ({ request }) => {
+    const res = await request.get("/home/", { maxRedirects: 0 });
+    expect([301, 308]).toContain(res.status());
+    expect(new URL(res.headers()["location"]!, "http://localhost:3000").pathname).toBe("/");
+  });
 });
