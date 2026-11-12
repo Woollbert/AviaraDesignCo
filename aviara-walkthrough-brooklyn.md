@@ -110,11 +110,17 @@ The journal is your blog. Each post is built from a series of paragraphs and sec
    - **URL Slug** — lowercase with dashes (e.g. `staging-tips-for-fallbrook-listings`)
    - **Title** — the headline of the post
    - **Published Date** — pick the date in the calendar
-   - **SEO Title + Description** — these are what show in Google search results
+   - **SEO Title + Description** — these are what show in Google search results. Don't type "| Aviara Design Co." at the end of the SEO Title; the site adds it for you.
    - **Excerpt** — 2–3 sentence summary shown on the /journal/ index card
    - **Cover Image** — optional
 4. Build the body by clicking **+ Paragraph** for a paragraph and **+ Section Heading** for a subheader. You can reorder, edit, and remove blocks one at a time.
 5. Click **Publish**.
+
+**Adding a link inside a paragraph:** wrap the words in square brackets and put the page address in round brackets right after, with no space between them. For example:
+
+`We offer [vacant home staging](/services/vacant-home-staging/) across the [Temecula Valley](/home-staging-temecula/).`
+
+Linking to your own service pages and city pages in each post helps Google find them. One or two links per post is plenty.
 
 A good cadence is 1–2 posts per month. Google rewards active sites. Topic ideas:
 - "5 things to do before staging photos in Murrieta"
@@ -126,9 +132,9 @@ A good cadence is 1–2 posts per month. Google rewards active sites. Topic idea
 
 ## Editing other things
 
-- **Services** — the 4 offerings shown on the homepage. Edit name, description, feature bullets, image.
+- **Services** — the 4 offerings shown on the homepage. Edit name, description, feature bullets, image. Each service also has its own page (for example /services/vacant-home-staging/). The fields that start with **"Service Page:"** control that page: the SEO title and description, the overview paragraphs, the "who it is right for" list, and the FAQs. The process steps and example projects on those pages fill themselves in from Process & Values and from your Projects.
 - **Team** — founder bio plus a list of other team members.
-- **Projects (Portfolio)** — each completed project with full photo gallery. Each becomes its own /portfolio/&lt;slug&gt;/ page. Use **+ Add Project** to add a new staged home.
+- **Projects (Portfolio)** — each completed project with full photo gallery. Each becomes its own /portfolio/&lt;slug&gt;/ page. Use **+ Add Project** to add a new staged home. Type the **Location** as "City, CA" using the same city name as its City Landing Page (e.g. "Temecula, CA"): the project then appears on that city's page automatically, and links back to it. Leave **SEO Title** blank unless you want to override the automatic one.
 - **Testimonials** — client quotes. Add the quote, the author name, and a short role/context line.
 
 All of these follow the same pattern: click tile → fill form → click Publish.
