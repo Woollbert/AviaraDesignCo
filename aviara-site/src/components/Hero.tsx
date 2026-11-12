@@ -289,6 +289,7 @@ export default function Hero() {
           alt={hero.bgImageAlt}
           fill
           priority
+          fetchPriority="high"
           sizes="100vw"
           className={FRAME_CLASS + (showVideo ? "" : " scale-[1.05] animate-kenburns")}
         />

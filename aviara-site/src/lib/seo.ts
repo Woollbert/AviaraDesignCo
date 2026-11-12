@@ -121,3 +121,26 @@ export function parseInlineLinks(text: string): InlinePart[] {
   if (last < text.length) parts.push({ text: text.slice(last) });
   return parts;
 }
+
+/**
+ * Trims a paragraph to a search-result description (~155 characters). Keeps
+ * whole sentences where they fit; otherwise cuts at a word boundary and adds
+ * an ellipsis, so a description never ends mid-word.
+ */
+export function toMetaDescription(text: string, max = 158): string {
+  const clean = text.replace(/\s+/g, " ").trim();
+  if (clean.length <= max) return clean;
+  const sentences = clean.match(/[^.!?]+[.!?]+/g) ?? [];
+  let out = "";
+  for (const s of sentences) {
+    if ((out + s).trim().length > max) break;
+    out += s;
+  }
+  out = out.trim();
+  // Too little kept (a long first sentence): cut at a word boundary instead.
+  if (out.length < max * 0.5) {
+    const cut = clean.slice(0, max - 1);
+    out = cut.slice(0, cut.lastIndexOf(" ")).replace(/[,;:\s]+$/, "") + "…";
+  }
+  return out;
+}

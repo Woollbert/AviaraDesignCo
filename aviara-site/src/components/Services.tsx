@@ -188,8 +188,8 @@ export default function Services() {
               <div className="photo-frame relative aspect-[4/5] sm:aspect-auto bg-linen overflow-hidden h-full">
                 {/* Render every service image stacked and crossfade via opacity
                     so clicking a different service doesn't flash blank while
-                    next/image loads the new src. One-time first-paint cost,
-                    instant tab switches after. */}
+                    next/image loads the new src. Lazy-loaded (the section is
+                    below the fold), then instant tab switches after. */}
                 {services.map((svc, i) => (
                   <Image
                     key={svc.slug}
@@ -201,7 +201,6 @@ export default function Services() {
                       "object-cover transition-opacity duration-300",
                       i === active ? "opacity-100" : "opacity-0",
                     ].join(" ")}
-                    priority={i === 0}
                   />
                 ))}
               </div>

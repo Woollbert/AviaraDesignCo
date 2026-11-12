@@ -32,6 +32,7 @@ export default function ServiceCityPage({ combo }: Props) {
             alt={heroAlt}
             fill
             priority
+            fetchPriority="high"
             sizes="100vw"
             className="object-cover"
           />

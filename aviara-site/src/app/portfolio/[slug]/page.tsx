@@ -120,6 +120,7 @@ export default async function ProjectDetailPage({
             alt={project.coverImageAlt}
             fill
             priority
+            fetchPriority="high"
             sizes="100vw"
             className="object-cover"
           />
