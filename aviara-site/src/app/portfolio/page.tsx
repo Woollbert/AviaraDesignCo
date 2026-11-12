@@ -31,6 +31,7 @@ export default function PortfolioIndexPage() {
             className="object-cover"
             style={{ mixBlendMode: "luminosity" }}
             priority
+            fetchPriority="high"
           />
         </div>
         <div

@@ -7,6 +7,7 @@ import { loadPage, listPageSlugs } from "@/lib/pages";
 import { cities, findCity } from "@/data/cities";
 import { serviceCityCombos, findServiceCity } from "@/data/serviceCities";
 import { site } from "@/data/site";
+import { toMetaDescription } from "@/lib/seo";
 
 // This single dynamic route handles THREE unrelated source-of-truth concerns
 // at the same URL depth, because Next.js permits only one dynamic-param
@@ -65,7 +66,11 @@ export async function generateMetadata({
     return {};
   }
   const title = `${combo.service.name} in ${combo.city.city}, CA`;
-  const description = `${combo.service.name} in ${combo.city.city}, CA from ${site.name}. ${combo.service.short}`;
+  // Lead with the city-specific note, the one paragraph unique to this page.
+  // The shared service blurb gave every city the same search-result description.
+  const description = toMetaDescription(
+    `${combo.service.name} in ${combo.city.city}, CA. ${combo.serviceNote.note}`,
+  );
   return {
     title,
     description,

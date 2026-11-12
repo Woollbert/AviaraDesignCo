@@ -53,6 +53,7 @@ export default function CityPage({ city }: Props) {
             className="object-cover"
             style={{ mixBlendMode: "luminosity" }}
             priority
+            fetchPriority="high"
           />
         </div>
         <div
