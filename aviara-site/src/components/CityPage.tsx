@@ -3,6 +3,7 @@ import Link from "next/link";
 import { site } from "@/data/site";
 import { cities, type City } from "@/data/cities";
 import { serviceCityCombos } from "@/data/serviceCities";
+import { projectsForCity } from "@/data/projectLinks";
 import Reveal from "@/components/Reveal";
 
 // Renders a city-specific home staging landing page. Data comes from
@@ -35,6 +36,9 @@ function pickNearby(city: City): City[] {
 
 export default function CityPage({ city }: Props) {
   const nearby = pickNearby(city);
+  // Portfolio projects whose Location is this city. Empty for most cities,
+  // in which case nothing extra renders: no project is ever implied.
+  const localProjects = projectsForCity(city);
 
   return (
     <main className="bg-bone">
@@ -159,6 +163,22 @@ export default function CityPage({ city }: Props) {
               <span className="italic text-brass">{city.city}.</span>
             </h2>
             <p className="mt-6 text-lg text-slate leading-relaxed max-w-3xl">{city.localProof}</p>
+            {localProjects.length > 0 && (
+              <ul className="mt-8 grid sm:grid-cols-2 gap-6 max-w-3xl" data-testid="city-projects">
+                {localProjects.map((p) => (
+                  <li key={p.slug}>
+                    <Link href={`/portfolio/${p.slug}/`} className="block border-t border-line pt-5 group">
+                      <p className="text-[0.72rem] uppercase tracking-[0.28em] text-mute">
+                        {p.category} · {p.location}
+                      </p>
+                      <p className="mt-2 font-display text-2xl text-ink group-hover:text-brass transition-colors">
+                        {p.title}
+                      </p>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
             <Link href="/portfolio/" className="btn btn-ink mt-8 inline-block">
               See Recent Projects
             </Link>

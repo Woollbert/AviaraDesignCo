@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { site } from "@/data/site";
 import type { ServiceCityCombo } from "@/data/serviceCities";
+import { servicePath } from "@/data/services";
 import Reveal from "@/components/Reveal";
 
 /*
@@ -167,6 +168,12 @@ export default function ServiceCityPage({ combo }: Props) {
                 className="text-sm text-brass hover:text-ink transition-colors underline underline-offset-4 decoration-brass/40 hover:decoration-ink"
               >
                 Full {city.city} staging guide →
+              </Link>
+              <Link
+                href={servicePath(service)}
+                className="text-sm text-brass hover:text-ink transition-colors underline underline-offset-4 decoration-brass/40 hover:decoration-ink"
+              >
+                More about {service.name.toLowerCase()} →
               </Link>
               <Link
                 href="/portfolio/"

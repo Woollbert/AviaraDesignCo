@@ -97,7 +97,7 @@ collections:
             summary: '{{day}}: {{time}}'
             fields:
               - { name: day, label: Day(s), widget: string, hint: 'e.g. "Mon to Fri" or "Sat"' }
-              - { name: time, label: Hours, widget: string, hint: 'e.g. "By appointment" or "9am–5pm"' }
+              - { name: time, label: Hours, widget: string, hint: 'e.g. "9am-5pm", "Closed", or "By appointment". Clock hours like "9am-5pm" are also sent to Google as your business hours, so keep them identical to your Google Business Profile.' }
           - name: hero
             label: Homepage Hero
             widget: object
@@ -212,7 +212,7 @@ collections:
   # ==========================================================================
   - name: services
     label: Services
-    description: 'Service offerings (Vacant Staging, Interior Design, etc.) and the stat row.'
+    description: 'Service offerings (Vacant Staging, Interior Design, etc.) and the stat row. Each service also has its own page at /services/<service>/, built from the fields below.'
     files:
       - name: services
         label: Services
@@ -235,6 +235,29 @@ collections:
                 field: { name: feature, label: Feature, widget: string }
               - { name: imageUrl, label: Image, widget: image, choose_url: false, media_library: { config: { multiple: false } } }
               - { name: imageAlt, label: Image Alt Text (for accessibility), widget: string, hint: 'One sentence describing the photo for screen-readers and SEO.' }
+              - { name: metaTitle, label: 'Service Page: SEO Title', widget: string, required: false, hint: 'Shows in the browser tab and Google results for this service page. Do not add "| Aviara Design Co." at the end, the site adds it for you.' }
+              - { name: metaDescription, label: 'Service Page: SEO Description', widget: text, required: false, hint: 'Shows under the title in Google. Aim for ~150-160 characters.' }
+              - name: pageIntro
+                label: 'Service Page: Overview Paragraphs'
+                widget: list
+                required: false
+                hint: 'The long-form description at the top of the service page. 2-3 paragraphs.'
+                field: { name: paragraph, label: Paragraph, widget: text }
+              - name: idealFor
+                label: 'Service Page: Who It Is Right For'
+                widget: list
+                required: false
+                hint: 'Short bullets. e.g. "Listings the seller has already moved out of".'
+                field: { name: item, label: Item, widget: string }
+              - name: faqs
+                label: 'Service Page: FAQs'
+                widget: list
+                required: false
+                summary: '{{question | truncate(60)}}'
+                hint: 'Questions clients ask about this service. Also sent to Google as FAQ data.'
+                fields:
+                  - { name: question, label: Question, widget: string }
+                  - { name: answer, label: Answer, widget: text }
           - name: stats
             label: Stats Row (homepage)
             widget: list
@@ -294,7 +317,7 @@ collections:
     fields:
       - { name: slug, label: URL Slug, widget: string, hint: 'Lowercase, dashes only — e.g. "fallbrook-estate". Becomes /portfolio/<slug>/' }
       - { name: title, label: Project Title, widget: string }
-      - { name: location, label: Location, widget: string, hint: 'e.g. "Fallbrook, CA"' }
+      - { name: location, label: Location, widget: string, hint: 'e.g. "Fallbrook, CA". If the city has a City Landing Page, the project and that city page link to each other automatically, so spell the city the same way.' }
       - name: category
         label: Category
         widget: select
@@ -304,6 +327,7 @@ collections:
       - { name: longDescription, label: Long Description (full paragraph), widget: text }
       - { name: coverImage, label: Cover Image, widget: image, choose_url: false, media_library: { config: { multiple: false } }, hint: 'The hero photo for the project page + the card on /portfolio/.' }
       - { name: coverImageAlt, label: Cover Image Alt Text, widget: string }
+      - { name: metaTitle, label: SEO Title (optional), widget: string, required: false, hint: 'Leave blank and the site writes one for you from the title, category and location, e.g. "Fallbrook Estate: Vacant Home Staging in Fallbrook, CA". Do not add "| Aviara Design Co.".' }
       - name: photos
         label: Photo Gallery
         widget: list
@@ -480,9 +504,12 @@ collections:
     fields:
       - { name: slug, label: URL Slug, widget: string, hint: 'Lowercase, dashes only. Becomes /journal/<slug>/.' }
       - { name: title, label: Title, widget: string }
-      - { name: metaTitle, label: SEO Title, widget: string, required: false, hint: 'Defaults to the regular title if blank.' }
+      - { name: metaTitle, label: SEO Title, widget: string, required: false, hint: 'Defaults to the regular title if blank. Do not add "| Aviara Design Co." at the end, the site adds it for you.' }
       - { name: metaDescription, label: SEO Description, widget: text, hint: 'Shows in Google search results. ~150-160 chars.' }
-      - { name: publishedAt, label: Published Date, widget: date, format: 'YYYY-MM-DD' }
+      # "datetime" with time_format: false = a date-only picker. The old
+      # "date" widget no longer exists in this CMS version, so the field was
+      # not rendering and new posts were being saved with no date at all.
+      - { name: publishedAt, label: Published Date, widget: datetime, format: 'YYYY-MM-DD', date_format: 'YYYY-MM-DD', time_format: false }
       - { name: excerpt, label: Excerpt (shown on /journal/ index), widget: text }
       - { name: coverImage, label: Cover Image (optional), widget: image, required: false, choose_url: false, media_library: { config: { multiple: false } } }
       - name: blocks
@@ -493,7 +520,7 @@ collections:
             label: Paragraph
             fields:
               - { name: type, label: Type, widget: hidden, default: 'p' }
-              - { name: text, label: Text, widget: text }
+              - { name: text, label: Text, widget: text, hint: 'To link some words to another page, wrap them like this: [vacant home staging](/services/vacant-home-staging/) or [Temecula](/home-staging-temecula/). Linking to your service and city pages helps Google find them.' }
           - name: h2
             label: 'Section Heading (H2)'
             fields:

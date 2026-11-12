@@ -65,7 +65,7 @@ export async function generateMetadata({
     return {};
   }
   const title = `${combo.service.name} in ${combo.city.city}, CA`;
-  const description = `${combo.service.name.toLowerCase()} in ${combo.city.city} from ${site.name} — ${combo.service.short}`;
+  const description = `${combo.service.name} in ${combo.city.city}, CA from ${site.name}. ${combo.service.short}`;
   return {
     title,
     description,

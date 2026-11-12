@@ -133,6 +133,8 @@ const nextConfig = {
       { source: "/contact/", destination: "/#contact", permanent: true },
       { source: "/testimonial/", destination: "/#testimonials", permanent: true },
       { source: "/the-aviara-experience/", destination: "/#about", permanent: true },
+      { source: "/about/", destination: "/#about", permanent: true },
+      { source: "/about-us/", destination: "/#about", permanent: true },
       { source: "/for-realtors/", destination: "/#contact", permanent: true },
       { source: "/For%20Realtors/", destination: "/#contact", permanent: true },
       { source: "/The%20Aviara%20Experience/", destination: "/#about", permanent: true },

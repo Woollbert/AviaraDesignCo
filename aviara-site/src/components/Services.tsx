@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Reveal from "./Reveal";
-import { services } from "@/data/services";
+import { services, servicePath } from "@/data/services";
 import { site } from "@/data/site";
 
 export default function Services() {
@@ -155,9 +155,17 @@ export default function Services() {
                               </li>
                             ))}
                           </ul>
-                          <a href={s.inquireCtaHref} className="btn btn-outline mt-6 self-start">
-                            {s.inquireCtaLabel}
+                          <a
+                            href={servicePath(svc)}
+                            className="mt-5 inline-block text-sm text-brass hover:text-ink transition-colors underline underline-offset-4 decoration-brass/40 hover:decoration-ink"
+                          >
+                            More about {svc.name.toLowerCase()} →
                           </a>
+                          <div>
+                            <a href={s.inquireCtaHref} className="btn btn-outline mt-6 self-start">
+                              {s.inquireCtaLabel}
+                            </a>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -213,6 +221,22 @@ export default function Services() {
                     </li>
                   ))}
                 </ul>
+                {/* Crawlable link to the service's own page. Rendered for every
+                    service (only the active one is visible) so search engines
+                    find all of them from the homepage, not just the first. */}
+                {services.map((svc, i) => (
+                  <a
+                    key={svc.slug}
+                    href={servicePath(svc)}
+                    className={[
+                      "mt-5 self-start text-sm text-brass hover:text-ink transition-colors underline underline-offset-4 decoration-brass/40 hover:decoration-ink",
+                      i === active ? "" : "hidden",
+                    ].join(" ")}
+                    data-testid={`service-link-${svc.slug}`}
+                  >
+                    More about {svc.name.toLowerCase()} →
+                  </a>
+                ))}
                 <a href={s.inquireCtaHref} className="btn btn-outline mt-auto self-start">
                   {s.inquireCtaLabel}
                 </a>

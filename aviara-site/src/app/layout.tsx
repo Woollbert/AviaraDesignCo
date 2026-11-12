@@ -3,8 +3,8 @@ import { Cormorant_Garamond, Manrope } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { site } from "@/data/site";
-import { testimonials } from "@/data/portfolio";
 import { cities } from "@/data/cities";
+import { openingHoursFromSite } from "@/lib/seo";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import MobileContactBar from "@/components/MobileContactBar";
@@ -28,16 +28,10 @@ const GSC_VERIFICATION =
 // verification step) and a <meta name="msvalidate.01"> will render.
 const BING_VERIFICATION = process.env.NEXT_PUBLIC_BING_VERIFICATION || "";
 
-// Parse "X stars" out of a testimonial's role/context string (e.g.
-// "Yelp · 5 stars"). Defaults to 5 if no rating is present so the
-// AggregateRating is still well-formed and Brooklyn can add reviews
-// from sources that don't include a star count in the role line.
-function extractRating(role: string | undefined): number {
-  if (!role) return 5;
-  const m = role.match(/(\d(?:\.\d)?)\s*stars?\b/i);
-  const n = m ? parseFloat(m[1]) : 5;
-  return Number.isFinite(n) && n >= 1 && n <= 5 ? n : 5;
-}
+// Opening hours come straight from the CMS ("Business Hours" in Site Info),
+// so the structured data can never disagree with the hours printed on the
+// page or (once Brooklyn matches them) on the Google Business Profile.
+const openingHours = openingHoursFromSite(site.hours);
 
 // LocalBusiness structured data — tells Google what kind of business this is
 // and where we operate. Without this, we can't appear in rich results / local
@@ -68,43 +62,13 @@ const localBusinessJsonLd = {
     name: area,
   })),
   sameAs: [site.social.instagram, site.social.facebook, site.social.linkedin, site.social.yelp].filter(Boolean),
-  // Reviews — fed from src/content/testimonials.json. Helps Google show
-  // star-rated rich results in the local pack. The "X stars" suffix in the
-  // role line is parsed to derive each individual rating; if none parses we
-  // default to 5 (Brooklyn has never published anything below five) and
-  // aggregate accordingly.
-  ...(testimonials.length > 0
-    ? {
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: (
-            testimonials.reduce((sum, t) => sum + extractRating(t.role), 0) /
-            testimonials.length
-          ).toFixed(1),
-          reviewCount: testimonials.length,
-          bestRating: 5,
-          worstRating: 1,
-        },
-        review: testimonials.map((t) => ({
-          "@type": "Review",
-          reviewRating: {
-            "@type": "Rating",
-            ratingValue: extractRating(t.role),
-            bestRating: 5,
-            worstRating: 1,
-          },
-          author: { "@type": "Person", name: t.author },
-          reviewBody: t.quote,
-        })),
-      }
-    : {}),
-  openingHoursSpecification: [
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-      description: "By appointment",
-    },
-  ],
+  // No aggregateRating / review markup on purpose. The testimonials on the
+  // site are quotes copied from Google and Yelp, and Google's review-snippet
+  // rules exclude both reviews a business publishes about itself and reviews
+  // syndicated from other sites. Stars in search come from the Google
+  // Business Profile, not from this block. The quotes still render on the
+  // page for visitors.
+  ...(openingHours.length > 0 ? { openingHoursSpecification: openingHours } : {}),
   knowsAbout: [
     "Home Staging",
     "Vacant Home Staging",
