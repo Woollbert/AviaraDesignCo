@@ -84,6 +84,9 @@ export default async function ServicePage({
   const idealFor = service.idealFor ?? [];
   const faqs = service.faqs ?? [];
   const examples = projectsForService(service);
+  // The steps in "Process & Values" are written about staging a listing
+  // ("target buyer", "market-ready"), so they only appear on staging services.
+  const showProcess = /staging/i.test(service.name) && processSteps.length > 0;
 
   // Cities where this service has its own local page, grouped the same way
   // as /service-areas/ so the two pages read consistently.
@@ -271,7 +274,7 @@ export default async function ServicePage({
       )}
 
       {/* Process */}
-      {processSteps.length > 0 && (
+      {showProcess && (
         <section className="section border-t border-line">
           <div className="container-wide">
             <Reveal>
