@@ -127,7 +127,7 @@ Each directory listing does two things: gives Google another "this business exis
 
 - Name: **Aviara Design Co.**
 - Phone: **(949) 697-1618**
-- Website: **https://www.aviaradesignco.com**
+- Website: **https://aviaradesignco.com** (no "www")
 - Email: **aviaradesignco@gmail.com**
 
 ### Sign up on these directories (do these first):

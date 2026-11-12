@@ -6,6 +6,7 @@ import { projects } from "@/data/portfolio";
 import { cities } from "@/data/cities";
 import { journalPosts } from "@/data/journal";
 import { serviceCityCombos } from "@/data/serviceCities";
+import { services, servicePath } from "@/data/services";
 
 // Return the real modification time of a content file so the sitemap's
 // <lastmod> reflects when content actually changed (not the deploy time).
@@ -47,6 +48,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: r.lastmod,
       changeFrequency: r.freq,
       priority: r.priority,
+    })),
+    ...services.map((s) => ({
+      url: `${base}${servicePath(s)}`,
+      lastModified: servicesMtime,
+      changeFrequency: "monthly" as const,
+      priority: 0.9,
     })),
     ...cities.map((c) => ({
       url: `${base}/${c.slug}/`,

@@ -29,6 +29,8 @@ export type Project = {
   coverImage: string;
   coverImageAlt: string;
   photos: ProjectPhoto[];
+  /** Optional SEO title override. Defaults to "<title>: <service> in <location>". */
+  metaTitle?: string;
 };
 
 export type Testimonial = {

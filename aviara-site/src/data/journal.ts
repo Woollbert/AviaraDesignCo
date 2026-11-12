@@ -14,7 +14,8 @@ export type JournalPost = {
   title: string;
   metaTitle?: string;
   metaDescription: string;
-  publishedAt: string;
+  /** YYYY-MM-DD. Optional so a post saved without a date still builds. */
+  publishedAt?: string;
   excerpt: string;
   coverImage?: string;
   blocks: JournalBlock[];
@@ -28,7 +29,15 @@ function loadAllJournalPosts(): JournalPost[] {
     const raw = fs.readFileSync(path.join(dir, f), "utf8");
     return JSON.parse(raw) as JournalPost;
   });
-  return posts.sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1));
+  // Newest first. Undated posts sort to the top so a post the owner just
+  // wrote is never buried under older ones.
+  return posts.sort((a, b) => {
+    if (!a.publishedAt || !b.publishedAt) {
+      if (a.publishedAt === b.publishedAt) return a.title.localeCompare(b.title);
+      return a.publishedAt ? 1 : -1;
+    }
+    return a.publishedAt < b.publishedAt ? 1 : -1;
+  });
 }
 
 export const journalPosts: JournalPost[] = loadAllJournalPosts();

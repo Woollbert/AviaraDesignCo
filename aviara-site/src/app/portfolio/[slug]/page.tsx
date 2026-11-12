@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { projects, getProjectBySlug } from "@/data/portfolio";
+import { projects, getProjectBySlug, type Project } from "@/data/portfolio";
 import { site } from "@/data/site";
+import { servicePath } from "@/data/services";
+import { cityForProject, serviceForProject } from "@/data/projectLinks";
+import { stripBrand } from "@/lib/seo";
 import Reveal from "@/components/Reveal";
 import ProjectGallery from "@/components/ProjectGallery.client";
 
@@ -11,6 +14,16 @@ export const dynamicParams = false;
 
 export async function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
+}
+
+// "Fallbrook Estate" alone says nothing to someone searching, so the title
+// also names the kind of work and the city: "Fallbrook Estate: Vacant Home
+// Staging in Fallbrook, CA". The owner can override it per project in the CMS.
+function projectSeoTitle(project: Project): string {
+  if (project.metaTitle?.trim()) return stripBrand(project.metaTitle, site.name);
+  const kind = serviceForProject(project)?.name ?? project.category;
+  const where = project.location?.trim();
+  return where ? `${project.title}: ${kind} in ${where}` : `${project.title}: ${kind}`;
 }
 
 export async function generateMetadata({
@@ -21,12 +34,13 @@ export async function generateMetadata({
   const { slug } = await params;
   const project = getProjectBySlug(slug);
   if (!project) return { title: "Project not found" };
+  const title = projectSeoTitle(project);
   return {
-    title: project.title,
+    title,
     description: project.shortDescription,
     alternates: { canonical: `/portfolio/${project.slug}/` },
     openGraph: {
-      title: `${project.title} | ${site.name}`,
+      title: `${title} | ${site.name}`,
       description: project.shortDescription,
       url: `/portfolio/${project.slug}/`,
       images: [{ url: project.coverImage, width: 1200, height: 630 }],
@@ -48,8 +62,56 @@ export default async function ProjectDetailPage({
   const prev = idx > 0 ? projects[idx - 1] : null;
   const next = idx < projects.length - 1 ? projects[idx + 1] : null;
 
+  // Related pages, derived from the project's own Location and Category.
+  const city = cityForProject(project);
+  const service = serviceForProject(project);
+
+  // Structured data: where this page sits in the site, and the photo set
+  // itself, so Google Images can tie each photo to the project and business.
+  const baseUrl = site.url.replace(/\/$/, "");
+  const pageUrl = `${baseUrl}/portfolio/${project.slug}/`;
+  const abs = (u: string) => `${baseUrl}${u.startsWith("/") ? "" : "/"}${u}`;
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: `${baseUrl}/` },
+          { "@type": "ListItem", position: 2, name: "Portfolio", item: `${baseUrl}/portfolio/` },
+          { "@type": "ListItem", position: 3, name: project.title, item: pageUrl },
+        ],
+      },
+      {
+        "@type": "ImageGallery",
+        "@id": `${pageUrl}#gallery`,
+        name: projectSeoTitle(project),
+        description: project.shortDescription,
+        url: pageUrl,
+        creator: { "@id": `${baseUrl}/#business` },
+        ...(project.location
+          ? { contentLocation: { "@type": "Place", name: project.location } }
+          : {}),
+        image: (project.photos.length > 0
+          ? project.photos
+          : [{ url: project.coverImage, alt: project.coverImageAlt } as Project["photos"][number]]
+        ).map((ph) => ({
+          "@type": "ImageObject",
+          contentUrl: abs(ph.url),
+          ...(ph.caption || ph.alt ? { caption: ph.caption || ph.alt } : {}),
+          ...(ph.width && ph.height ? { width: ph.width, height: ph.height } : {}),
+          creditText: site.name,
+        })),
+      },
+    ],
+  };
+
   return (
     <main className="bg-bone">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Hero — cover photo + project metadata */}
       <section className="relative h-[75svh] min-h-[520px] w-full overflow-hidden bg-ink text-ivory">
         <div className="absolute inset-0 z-0">
@@ -105,6 +167,26 @@ export default async function ProjectDetailPage({
               {project.shortDescription}
             </p>
             <p className="mt-6 text-lg text-mute leading-relaxed">{project.longDescription}</p>
+            {(city || service) && (
+              <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3" data-testid="project-related">
+                {city && (
+                  <Link
+                    href={`/${city.slug}/`}
+                    className="text-sm text-brass hover:text-ink transition-colors underline underline-offset-4 decoration-brass/40 hover:decoration-ink"
+                  >
+                    Home staging in {city.city} →
+                  </Link>
+                )}
+                {service && (
+                  <Link
+                    href={servicePath(service)}
+                    className="text-sm text-brass hover:text-ink transition-colors underline underline-offset-4 decoration-brass/40 hover:decoration-ink"
+                  >
+                    More about {service.name.toLowerCase()} →
+                  </Link>
+                )}
+              </div>
+            )}
           </Reveal>
         </div>
       </section>

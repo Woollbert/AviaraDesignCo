@@ -3,6 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { journalPosts, findJournalPost } from "@/data/journal";
 import { site } from "@/data/site";
+import { services, servicePath } from "@/data/services";
+import { parseInlineLinks, stripBrand } from "@/lib/seo";
 import Reveal from "@/components/Reveal";
 
 export const dynamicParams = false;
@@ -20,7 +22,9 @@ export async function generateMetadata({
   const post = findJournalPost(slug);
   if (!post) return { title: "Article not found" };
   return {
-    title: post.metaTitle ?? post.title,
+    // stripBrand: the layout appends the brand, so drop it if the editor
+    // also typed it into the SEO Title field.
+    title: stripBrand(post.metaTitle?.trim() || post.title, site.name),
     description: post.metaDescription,
     alternates: { canonical: `/journal/${post.slug}/` },
     openGraph: {
@@ -28,7 +32,7 @@ export async function generateMetadata({
       description: post.metaDescription,
       url: `/journal/${post.slug}/`,
       type: "article",
-      publishedTime: post.publishedAt,
+      ...(post.publishedAt ? { publishedTime: post.publishedAt } : {}),
       images: [{ url: post.coverImage ?? "/images/stagedlivingroom_stonefireplace_aviaradesignco_homestaging-og.jpg", width: 1200, height: 630 }],
     },
   };
@@ -56,8 +60,9 @@ export default async function JournalPostPage({
     headline: post.title,
     description: post.metaDescription,
     image: [articleImage],
-    datePublished: post.publishedAt,
-    dateModified: post.publishedAt,
+    ...(post.publishedAt
+      ? { datePublished: post.publishedAt, dateModified: post.publishedAt }
+      : {}),
     author: {
       "@type": "Organization",
       name: site.name,
@@ -91,8 +96,12 @@ export default async function JournalPostPage({
               <Link href="/journal/" className="hover:text-ivory transition-colors">
                 Journal
               </Link>
-              <span className="mx-3 text-ivory/40">·</span>
-              {formatDate(post.publishedAt)}
+              {post.publishedAt && (
+                <>
+                  <span className="mx-3 text-ivory/40">·</span>
+                  {formatDate(post.publishedAt)}
+                </>
+              )}
             </p>
             <h1 className="mt-6 font-display text-3xl md:text-4xl lg:text-5xl text-ivory leading-tight">
               {post.title}
@@ -117,15 +126,57 @@ export default async function JournalPostPage({
                   </h2>
                 );
               }
+              // Paragraphs may contain [label](/path/) links, typed in the
+              // CMS, so posts can point readers (and Google) at the service
+              // and city pages they talk about.
               return (
                 <p key={i} className="mt-5 text-slate leading-relaxed text-lg">
-                  {block.text}
+                  {parseInlineLinks(block.text).map((part, j) =>
+                    part.href ? (
+                      <a
+                        key={j}
+                        href={part.href}
+                        className="text-brass hover:text-ink transition-colors underline underline-offset-4 decoration-brass/40 hover:decoration-ink"
+                        {...(/^https?:/i.test(part.href)
+                          ? { target: "_blank", rel: "noopener noreferrer" }
+                          : {})}
+                      >
+                        {part.text}
+                      </a>
+                    ) : (
+                      part.text
+                    ),
+                  )}
                 </p>
               );
             })}
           </div>
         </div>
       </article>
+
+      {/* Related services: every post links on to the service pages */}
+      {services.length > 0 && (
+        <section className="section border-t border-line bg-ivory" data-testid="journal-services">
+          <div className="container-wide max-w-5xl">
+            <p className="eyebrow flex items-center gap-3">
+              <span className="gold-rule" />
+              Our services
+            </p>
+            <ul className="mt-8 grid sm:grid-cols-2 gap-x-10 gap-y-6">
+              {services.map((s) => (
+                <li key={s.slug}>
+                  <Link href={servicePath(s)} className="block border-t border-line pt-5 group">
+                    <p className="font-display text-2xl text-ink group-hover:text-brass transition-colors">
+                      {s.name}
+                    </p>
+                    <p className="mt-2 text-sm text-slate leading-relaxed">{s.short}</p>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
 
       {/* CTA + nav */}
       <section className="section border-t border-line bg-ink text-ivory">

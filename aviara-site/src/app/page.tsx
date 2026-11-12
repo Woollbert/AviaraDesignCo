@@ -8,7 +8,7 @@ import Process from "@/components/Process";
 import Team from "@/components/Team";
 import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
-import { services } from "@/data/services";
+import { services, servicePath } from "@/data/services";
 import { site } from "@/data/site";
 
 // Title.absolute so this overrides the layout's "%s | Aviara Design Co."
@@ -38,6 +38,7 @@ const servicesJsonLd = {
       "@id": `${baseUrl}/#service-${s.slug}`,
       name: s.name,
       description: s.description,
+      url: `${baseUrl}${servicePath(s)}`,
       provider: providerRef,
       areaServed,
       serviceType:

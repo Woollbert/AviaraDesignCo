@@ -10,19 +10,8 @@
  *        /staging-consultations-murrieta/
  *        /residential-interior-design-big-bear-lake/
  */
-import { services, type Service } from "@/data/services";
+import { services, SERVICE_URL_PREFIX, type Service } from "@/data/services";
 import { cities, type City, type CityServiceNote } from "@/data/cities";
-
-// SEO-tuned URL prefix per service slug. Independent from the service's
-// internal slug so we can write "vacant-home-staging" in the URL even
-// though the data model uses "vacant-staging."
-const SERVICE_URL_PREFIX: Record<string, string> = {
-  "vacant-staging": "vacant-home-staging",
-  "occupied-staging": "occupied-home-staging",
-  "residential-interior-design": "residential-interior-design",
-  "commercial-interior-design": "commercial-interior-design",
-  consultations: "staging-consultations",
-};
 
 // City serviceNotes don't always use the exact service.name string —
 // historically the cities call it "Interior Design," services calls the

@@ -50,9 +50,11 @@ export default function JournalIndexPage() {
               {journalPosts.map((post, i) => (
                 <Reveal key={post.slug} as="li" delay={i * 80}>
                   <Link href={`/journal/${post.slug}/`} className="block group">
-                    <p className="text-[0.7rem] uppercase tracking-[0.28em] text-mute">
-                      {formatDate(post.publishedAt)}
-                    </p>
+                    {post.publishedAt && (
+                      <p className="text-[0.7rem] uppercase tracking-[0.28em] text-mute">
+                        {formatDate(post.publishedAt)}
+                      </p>
+                    )}
                     <h2 className="mt-3 font-display text-2xl md:text-3xl text-ink group-hover:text-brass transition-colors leading-tight">
                       {post.title}
                     </h2>
